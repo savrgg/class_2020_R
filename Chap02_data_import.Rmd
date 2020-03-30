@@ -5,7 +5,7 @@ output:
   html_document:
     toc: true
     theme: united
-    toc_depth: 4
+    toc_depth: 1
 
 ---
 

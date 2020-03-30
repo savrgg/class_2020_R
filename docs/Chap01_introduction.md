@@ -5,86 +5,11 @@ output:
   html_document:
     toc: true
     theme: united
-    toc_depth: 4
+    toc_depth: 1
 
 ---
 
-## Proyectos de R y Paths
-
-Un proyecto en Rstudio tiene amplias ventajas ya que permite dividir el trabajo en distintos contextos, cada uno con su propio directorio de trabajo, historial de ejecución y códigos. Para poder crear un proyecto se requiere tener instalado RStudio. Se pueden crear proyectos en un nuevo directorio, en un directorio existente o clonando un repositorio de Github.
-
-Para crear un nuevo proyecto, basta con dar click en `Archivo -> Nuevo proyecto` y seguir las instrucciones que aparecen. Una vez creado, aparecerá en el directorio del proyecto un nuevo archivo con extensión *.Rproj*. Este archivo contiene distintas configuraciones del proyecto. Además de este archivo, se crea el directorio oculto *.Rproj.user* donde aparecen las configuraciones específicas del proyecto. Finalmente, en la parte superior derecha aparece el nombre del proyecto.
-
-Antes de profundizar en los proyectos, se explicarán brevemente los archivos:
-
-1. *.Rprofile*: Hace referencia a un archivo oculto que contiene código en R que se ejecuta justo al iniciar R.
-2. *.Rdata*: Contiene datos guardados del proyecto.
-3. *.Rhistory*: Contiene un historial de los comandos ejecutados.
-
-Adicional a esto, es necesario explicar el término **directorio de trabajo**. Los *filesystem* de Windows y macOS permiten ubicar un archivo o directorio a través de una ruta. Por ejemplo, en Windows las rutas son de la forma:
-
-`C:\Users\usuario1\proyectos\curso_r`
-
-En cambio, en macOS, los directorios son de la forma:
-
-`/Users/usuario1/proyectos/curso_r`
-
-Para no tener que escribir la ruta completa de un archivo, se define el **directorio de trabajo**. Por default, el directorio de trabajo es el mismo que la carpeta *home* del usuario, pero siempre es conveniente modificarlo. Para obtener el *directorio de trabajo* actual se utiliza la función `getwd()`, mientras que para modificarlo se utiliza la función `setwd()`.
-
-Una vez explicados estos términos, se puede profundizar un poco más acerca de las funcionalidades del proyecto. Una vez creado, se puede abrir y cerrar las veces que sea necesario, pero lo importante es que cada vez que se abra el proyecto, se llevarán a cabo los siguientes pasos:
-
-1. Se iniciará una nueva sesión de R. Por lo tanto, se tienen que cargar de nuevo las librerías (con `library()`)
-2. Se carga el código que se encuentra en el archivo *.Rprofile*
-3. Se cargan los datos almacenados en *.Rdata*
-4. Se carga la historia del código ejecutado obtenida del archivo *.Rhistory*
-5. El directorio de trabajo es configurado en la carpeta del proyecto actual
-6. Se abren los archivos que se estaban editando cuando se cerro el proyecto
-7. Se cargan otras configuraciones particulares del proyecto
-
-## Instalación de R
-
-Al instalar [R](https://cran.r-project.org), se instala la consola que permite la ejecución de código y funciones. Adicionalmente, se instalan las librerías **core** que permiten el correcto funcionamiento de R. Al iniciar una sesión de R, un subconjunto de las librerías **core** son cargadas automáticamente:
-
-Librería       | Descripción
--------------  | ---------------------------------------------------------------------------
-base           | Contiene funciones básicas que permiten funcionar a R como un lenguaje de programación: funciones aritméticas, input/output, etc 
-compiler       | Permite la compilación del Byte Code en R.
-datasets       | Contiene una amplia variedad de datasets en R.
-graphics       | Contiene funciones para los gráficos *base*.
-grDevices      | Suplemento para el paquete graphics. Colores y fuentes.
-grid           | Suplemento para el paquete graphics.
-methods        | Permite definir métodos y clases para los objetos de R.
-parallel       | Permite cómputo en paralelo en R.
-splines        | Funciones y clases para splines.
-stats          | Funciones para cálculos estadísticos y generación de números aleatorios.
-stats4         | Funciones estadísticas usando las clases S4.
-tcltk          | Permite el uso del lenguage para scripts TCL.
-tools          | Contiene funciones para manipular paquetes de R y su documentación.
-utils          | Contiene gran variedad de funciones utilitarias.
-
-Mientras que el otro subconjunto de librerías **core** necesitan ser cargadas explícitamente con la función `library()`. Para obtener una lista con estas librerías de click en este [link](https://stat.ethz.ch/R-manual/R-devel/doc/html/packages.html).
-
-
-## Instalación de Rstudio 
-
-Para aumentar la productividad al programar en R, es muy recomendable instalar [RStudio](https://www.rstudio.com/products/rstudio/download/). Rstudio es un IDE (Integrated Development Environment) que facilita (entre otras funcionalidades):
-
-1. Crear de scripts en un editor de texto
-2. Visualizar variables en el entorno actual
-3. Crear proyectos
-4. Autocompletar código
-5. Usar *shortcuts*
-6. Usar fácilmente un control de versiones como *Git*.
-7. Ver la historia de ejecución.
-
-
-## Instalación de paquetes desde el CRAN.
-
-Además de las librerías **core** de R, se pueden instalar nuevos paquetes desde el CRAN (Comprehensive R Archive Network) o bien, instalar paquetes en desarrollo desde *Github*. Cada paquete es una colección de funciones, datos y código compilado. Todas estas son agregados a la librería de funciones de R, pero no son cargadas en automático (de nuevo, se necesita usar la función `library()`). En resumen, se instala el paquete solamente una vez, pero se carga la librería cada vez que se abre una sesión nueva.
-
-El CRAN es un repositorio central que contiene todos los paquetes disponibles en R. El CRAN está replicado a través de espejos (*mirrors*) en todo el mundo, esto con el fin de brindar disponibilidad y baja latencia al descargar los paquetes. Para instalar un paquete desde el CRAN se tiene que usar la función: `install_packages("nombre_paquete")`, usando comillas alrededor del nombre del paquete. Adicional al CRAN, hay usuarios que desarrollan paquetes y los hostean en *Github*, principalmente cuando son paquetes en desarrollo o versiones nuevas (algunas veces no estables). Para poder instalar paquetes desde github, se necesita la función `install_github("nombre_paquete")` de la librería devtools.
-
-Una vez instalado el paquete, el conjunto de funciones, los datos y el código compilado son almacenados en una librería que no se carga automáticamente; por lo tanto, en caso de hacer referencia a una función del paquete se mostrará un error. Por esto, es muy importante que una vez instalado el paquete se utilice la función `library("nombre_paquete")` cada vez que se inicie una sesión. (Imaginen que tienen 1000 paquetes instalados, es poco practico siempre poder acceder a todas las funciones de cada uno de los paquetes en todo momento. Por esto, solamente es recomendable solo cargar las librerías que se ocuparán en el proyecto a desarrollar.)
+# Estructura de datos de R
 
 ## Ayuda y vignettes
 
@@ -111,7 +36,8 @@ Como el nombre lo sugiere, un *namespace* es un espacio de nombres para las func
 Para esto, es muy util saber el namespace de cada paquete. Por ejemplo, una función llamada summarize se encuentra en los paquetes Hmisc y plyr (y tiene distinta funcionalidad cada función), y si están cargados los dos, ¿Cómo hacemos referencia a cada una de estas funciones? Con el namespace:
 
 
-```{r namespaces, eval=F}
+
+```r
 # Hacer referencia a la funcion summarize() del paquete Hmisc
 Hmisc::summarize()
 # Hacer referencia a la funcion summarize() del paquete plyr
@@ -290,7 +216,8 @@ Al igual que en otros lenguajes de programación, existen
 
 Una función en R es muy parecido a una función común. Recibe unos parámetros de entrada, los cuales usa para arrojar otros de salida. Los objetos creados dentro de la función son *locales*, es decir, solamente existen dentro del *scope* de la función. Si se quiere exportar algún valor, o lista se tiene que mencionar explicitamente. (Por default, las funciones en R devuelven la última linea del código siempre y cuando no sea una asignación). La sintaxis es la siguiente:
 
-```{r funcion, eval=T, warning=FALSE}
+
+```r
  mi_funcion <- function(valor){
    valor_exportado <- 5
    valor_no_exportado <- valor
@@ -299,25 +226,42 @@ Una función en R es muy parecido a una función común. Recibe unos parámetros
  mi_funcion(10)
 ```
 
+```
+## [1] 5
+```
+
 ### Condicionales
 
 Otra estructura muy explotada en los lenguajes de programación son los condicionales. Los principales en R son `dplyr::if_else` y `dplyr::case_when`. El primero evalua si una expresión es verdadera o falsa y da distinto resultado en caso de ser verdadero y uno en caso de ser falso. El segundo vectoriza multiples condicionales `if`. Por ejemplo:
 
-```{r libraries, eval=T,  echo=F}
-suppressMessages(library(dplyr))
-```
 
-```{r libraries_echo, eval=F,  echo=T}
+
+
+```r
 library(dplyr)
 ```
 
-```{r if_else, eval=T}
+
+```r
 x <- c(-5:5, NA)
 if_else(x < 0, NA_integer_, x)
+```
+
+```
+##  [1] NA NA NA NA NA  0  1  2  3  4  5 NA
+```
+
+```r
 if_else(x < 0, "negativo", "positivo", "faltante")
 ```
 
-```{r case_when, eval=T, warning=FALSE}
+```
+##  [1] "negativo" "negativo" "negativo" "negativo" "negativo" "positivo"
+##  [7] "positivo" "positivo" "positivo" "positivo" "positivo" "faltante"
+```
+
+
+```r
 edad <- 1:10
 case_when(
   edad > 35 ~ "adulto",
@@ -327,6 +271,10 @@ case_when(
 )
 ```
 
+```
+##  [1] "niño" "niño" "niño" "niño" "niño" "niño" "niño" "niño" "niño" "niño"
+```
+
 
 ### Iteraciones
 
@@ -334,20 +282,51 @@ Las iteraciones en cualquier lenguaje de programación son básicamente replicar
 ![](figures/chapter3/3-for.png)
 Como se observa en la imagen, el ciclo **for** se ejecuta n veces con n conocido (o bien, sobre un vector ya conocido). Por otra parte, un ciclo **while** se ejecuta mientras una condición se cumpla, por lo que teóricamente puede seguir iterando mientras no se cumpla dicha condición. Finalmente, en el ciclo **repeat** se repite el código hasta que explicitamente se salga del código con un comando llamado **break**. Los dos comandos faltantes son **next** y **break**. El primero sirve para terminal la iteración actual y continuar con la siguiente, mientras que el segundo sirve para salir por completo del ciclo.
 
-```{r for_while_repeat, eval=T, warning=FALSE}
+
+```r
 # ejemplos de for:
 for (numero in 1:3){
   print(paste("El número es", numero))
 }
+```
+
+```
+## [1] "El número es 1"
+## [1] "El número es 2"
+## [1] "El número es 3"
+```
+
+```r
 for (anio in c(2015,2016,2017,2018)){
   print(paste("El año es", anio))
 }
+```
+
+```
+## [1] "El año es 2015"
+## [1] "El año es 2016"
+## [1] "El año es 2017"
+## [1] "El año es 2018"
+```
+
+```r
 # ejemplo de while
 i <- 1
 while (i < 6) {
   print(i)
   i = i+1
 }
+```
+
+```
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+```
+
+```r
 # ejemplo de repeat (con break)
 x <- 1
 repeat {
@@ -357,6 +336,17 @@ repeat {
   break
   }
 }
+```
+
+```
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+```
+
+```r
 # ejemplo de repeat (con break y next)
 x <- 1
 repeat {
@@ -370,5 +360,12 @@ repeat {
   break
   }
 }
+```
+
+```
+## [1] 1
+## [1] 2
+## [1] 4
+## [1] 5
 ```
 

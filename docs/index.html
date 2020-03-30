@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>ITAM - Estadística 2</title>
-  <meta name="description" content="Notas para el curso de Estadística 2 - Primavera 2020" />
+  <title>ITAM - Curso R</title>
+  <meta name="description" content="Notas para el curso de R para Estadística 2 - Primavera 2020" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="ITAM - Estadística 2" />
+  <meta property="og:title" content="ITAM - Curso R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Notas para el curso de Estadística 2 - Primavera 2020" />
+  <meta property="og:description" content="Notas para el curso de R para Estadística 2 - Primavera 2020" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="ITAM - Estadística 2" />
+  <meta name="twitter:title" content="ITAM - Curso R" />
   
-  <meta name="twitter:description" content="Notas para el curso de Estadística 2 - Primavera 2020" />
+  <meta name="twitter:description" content="Notas para el curso de R para Estadística 2 - Primavera 2020" />
   
 
 <meta name="author" content="Salvador García" />
@@ -31,7 +31,7 @@
   
   
 
-<link rel="next" href="introducción-a-r.html"/>
+<link rel="next" href="estructura-de-datos-de-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -68,28 +68,29 @@
 <li><a href="./">A Minimal Bookdown Book</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduccion</a></li>
-<li class="chapter" data-level="2" data-path="introducción-a-r.html"><a href="introducción-a-r.html"><i class="fa fa-check"></i><b>2</b> Introducción a R</a><ul>
-<li class="chapter" data-level="2.1" data-path="introducción-a-r.html"><a href="introducción-a-r.html#el-lenguaje-de-programación-r"><i class="fa fa-check"></i><b>2.1</b> El lenguaje de programación R</a></li>
-<li class="chapter" data-level="2.2" data-path="introducción-a-r.html"><a href="introducción-a-r.html#paquetes-y-librerias-de-r"><i class="fa fa-check"></i><b>2.2</b> Paquetes y librerias de R</a></li>
-<li class="chapter" data-level="2.3" data-path="introducción-a-r.html"><a href="introducción-a-r.html#paradigma-de-r"><i class="fa fa-check"></i><b>2.3</b> Paradigma de R</a></li>
-<li class="chapter" data-level="2.4" data-path="introducción-a-r.html"><a href="introducción-a-r.html#proyectos-de-r-y-paths"><i class="fa fa-check"></i><b>2.4</b> Proyectos de R y Paths</a></li>
-<li class="chapter" data-level="2.5" data-path="introducción-a-r.html"><a href="introducción-a-r.html#instalación-de-r"><i class="fa fa-check"></i><b>2.5</b> Instalación de R</a></li>
-<li class="chapter" data-level="2.6" data-path="introducción-a-r.html"><a href="introducción-a-r.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>2.6</b> Instalación de Rstudio</a></li>
-<li class="chapter" data-level="2.7" data-path="introducción-a-r.html"><a href="introducción-a-r.html#instalación-de-paquetes-desde-el-cran."><i class="fa fa-check"></i><b>2.7</b> Instalación de paquetes desde el CRAN.</a></li>
-<li class="chapter" data-level="2.8" data-path="introducción-a-r.html"><a href="introducción-a-r.html#ayuda-y-vignettes"><i class="fa fa-check"></i><b>2.8</b> Ayuda y vignettes</a></li>
-<li class="chapter" data-level="2.9" data-path="introducción-a-r.html"><a href="introducción-a-r.html#namespaces"><i class="fa fa-check"></i><b>2.9</b> Namespaces</a></li>
-<li class="chapter" data-level="2.10" data-path="introducción-a-r.html"><a href="introducción-a-r.html#paquetería-útil-para-el-análisis-de-datos"><i class="fa fa-check"></i><b>2.10</b> Paquetería útil para el análisis de datos</a></li>
-<li class="chapter" data-level="2.11" data-path="introducción-a-r.html"><a href="introducción-a-r.html#estructuras-de-datos-en-r"><i class="fa fa-check"></i><b>2.11</b> Estructuras de datos en R</a><ul>
-<li class="chapter" data-level="2.11.1" data-path="introducción-a-r.html"><a href="introducción-a-r.html#vectores-atómicos"><i class="fa fa-check"></i><b>2.11.1</b> Vectores atómicos</a></li>
-<li class="chapter" data-level="2.11.2" data-path="introducción-a-r.html"><a href="introducción-a-r.html#matrices-y-arrays."><i class="fa fa-check"></i><b>2.11.2</b> Matrices y arrays.</a></li>
-<li class="chapter" data-level="2.11.3" data-path="introducción-a-r.html"><a href="introducción-a-r.html#listas."><i class="fa fa-check"></i><b>2.11.3</b> Listas.</a></li>
-<li class="chapter" data-level="2.11.4" data-path="introducción-a-r.html"><a href="introducción-a-r.html#data.frames"><i class="fa fa-check"></i><b>2.11.4</b> Data.frames</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduccion</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#el-lenguaje-de-programación-r"><i class="fa fa-check"></i><b>1.1</b> El lenguaje de programación R</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#paquetes-y-librerias-de-r"><i class="fa fa-check"></i><b>1.2</b> Paquetes y librerias de R</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#paradigma-de-r"><i class="fa fa-check"></i><b>1.3</b> Paradigma de R</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#proyectos-de-r-y-paths"><i class="fa fa-check"></i><b>1.4</b> Proyectos de R y Paths</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#instalación-de-r"><i class="fa fa-check"></i><b>1.5</b> Instalación de R</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>1.6</b> Instalación de Rstudio</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#instalación-de-paquetes-desde-el-cran."><i class="fa fa-check"></i><b>1.7</b> Instalación de paquetes desde el CRAN.</a></li>
 </ul></li>
-<li class="chapter" data-level="2.12" data-path="introducción-a-r.html"><a href="introducción-a-r.html#funciones-condicionales-e-iteraciones"><i class="fa fa-check"></i><b>2.12</b> Funciones, condicionales e iteraciones:</a><ul>
-<li class="chapter" data-level="2.12.1" data-path="introducción-a-r.html"><a href="introducción-a-r.html#funciones"><i class="fa fa-check"></i><b>2.12.1</b> Funciones</a></li>
-<li class="chapter" data-level="2.12.2" data-path="introducción-a-r.html"><a href="introducción-a-r.html#condicionales"><i class="fa fa-check"></i><b>2.12.2</b> Condicionales</a></li>
-<li class="chapter" data-level="2.12.3" data-path="introducción-a-r.html"><a href="introducción-a-r.html#iteraciones"><i class="fa fa-check"></i><b>2.12.3</b> Iteraciones</a></li>
+<li class="chapter" data-level="2" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html"><i class="fa fa-check"></i><b>2</b> Estructura de datos de R</a><ul>
+<li class="chapter" data-level="2.1" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#ayuda-y-vignettes"><i class="fa fa-check"></i><b>2.1</b> Ayuda y vignettes</a></li>
+<li class="chapter" data-level="2.2" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#namespaces"><i class="fa fa-check"></i><b>2.2</b> Namespaces</a></li>
+<li class="chapter" data-level="2.3" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#paquetería-útil-para-el-análisis-de-datos"><i class="fa fa-check"></i><b>2.3</b> Paquetería útil para el análisis de datos</a></li>
+<li class="chapter" data-level="2.4" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#estructuras-de-datos-en-r"><i class="fa fa-check"></i><b>2.4</b> Estructuras de datos en R</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#vectores-atómicos"><i class="fa fa-check"></i><b>2.4.1</b> Vectores atómicos</a></li>
+<li class="chapter" data-level="2.4.2" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#matrices-y-arrays."><i class="fa fa-check"></i><b>2.4.2</b> Matrices y arrays.</a></li>
+<li class="chapter" data-level="2.4.3" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#listas."><i class="fa fa-check"></i><b>2.4.3</b> Listas.</a></li>
+<li class="chapter" data-level="2.4.4" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#data.frames"><i class="fa fa-check"></i><b>2.4.4</b> Data.frames</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#funciones-condicionales-e-iteraciones"><i class="fa fa-check"></i><b>2.5</b> Funciones, condicionales e iteraciones:</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#funciones"><i class="fa fa-check"></i><b>2.5.1</b> Funciones</a></li>
+<li class="chapter" data-level="2.5.2" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#condicionales"><i class="fa fa-check"></i><b>2.5.2</b> Condicionales</a></li>
+<li class="chapter" data-level="2.5.3" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#iteraciones"><i class="fa fa-check"></i><b>2.5.3</b> Iteraciones</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="importar-datos.html"><a href="importar-datos.html"><i class="fa fa-check"></i><b>3</b> Importar datos</a><ul>
@@ -109,7 +110,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ITAM - Estadística 2</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ITAM - Curso R</a>
           </h1>
         </div>
 
@@ -118,11 +119,161 @@
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">ITAM - Estadística 2</h1>
+<h1 class="title">ITAM - Curso R</h1>
 <p class="author"><em>Salvador García</em></p>
 </div>
 <div id="introduccion" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Introduccion</h1>
+<p>Este curso está diseñado como un curso introductorio al lenguaje de programación R. Se hace una exploración rápida de la filosofia detrás de R, así como paquetes más usados y use cases más comunes.</p>
+<div id="el-lenguaje-de-programación-r" class="section level2">
+<h2><span class="header-section-number">1.1</span> El lenguaje de programación R</h2>
+<ol style="list-style-type: decimal">
+<li><p>R es un lenguaje de programación con un enfoque al análisis estadístico.</p></li>
+<li><p>R es un software libre de código abierto. De esta manera se permite hacer <em>profiling</em> y <em>debugging</em> a profundidad. (¡E instalarlo y utilizarlo en cualquier lugar!)</p></li>
+<li><p>R es un software <strong>hecho a la medida</strong>; es decir, el usuario instala la paquetería necesaria a sus necesidades.</p></li>
+</ol>
+</div>
+<div id="paquetes-y-librerias-de-r" class="section level2">
+<h2><span class="header-section-number">1.2</span> Paquetes y librerias de R</h2>
+<p>La primer diferencia para entender R, es entender la diferencia entre paquete y libreria. Paquete es el grupo de codigos que descargamos de internet y libreria es un paqute que se encuentra instalado y listo para usar.</p>
+<ol style="list-style-type: decimal">
+<li><p>La paquetería básica de R está basada en librerías en Fortran y C, creando <em>wrappers</em> que hacen referencia a las funciones originales. Por ejemplo, al calcular distintas factorizaciones de matrices (LU, Chol, QR, SVD, Schur) son calculadas utilizando la librería de <em>LAPACK</em>.</p></li>
+<li><p>Algunas paqueterías requieren que el software este instalado en el sistema. Por ejemplo:</p></li>
+</ol>
+<ul>
+<li><p>la mayoría de paquetería para manipulación de imágenes (png, jpeg, svg). Esta paquetería está por default instalada en Windows y macOS</p></li>
+<li><p>la paquetería para simular MCMC (R2Jags, Rstan, R2OpenBUGS), Se tiene que instalar explícitamente en Windows y macOS, así como añadir a las respectivas variables de entorno</p></li>
+</ul>
+</div>
+<div id="paradigma-de-r" class="section level2">
+<h2><span class="header-section-number">1.3</span> Paradigma de R</h2>
+<ol style="list-style-type: decimal">
+<li><p>¿Es R un Lenguage orientado a objetos? R es considerado un lenguaje multiparadigma. Es decir, puede ser orientado a objetos o no, puede ser funcional o no, puede ser imperativo o no. Esta flexibilidad nace de la necesidad y la diversidad de usuarios. Por ejemplo, R tiene 3 sistemas distintos de programación orientada a objetos (más los heredados de otros lenguajes).</p></li>
+<li><p>¿R vs Python?
+R y python son ambos lenguajes de alto nivel. Mucho se habla que Python es más eficiente que R (con varios papers realizando benchmarks), pero en la realidad ambos lenguajes presentan un performance mucho más bajo que lenguajes low level como C o C++. En mi opinión, si solo se requiere analizar datos, escribir scripts de automatización y modelar datos, R es la herramienta adecuada. Si se quiere tener cosas en productivo, Python es una herramienta adecuada.</p></li>
+</ol>
+</div>
+<div id="proyectos-de-r-y-paths" class="section level2">
+<h2><span class="header-section-number">1.4</span> Proyectos de R y Paths</h2>
+<p>Un proyecto en Rstudio tiene amplias ventajas ya que permite dividir el trabajo en distintos contextos, cada uno con su propio directorio de trabajo, historial de ejecución y códigos. Para poder crear un proyecto se requiere tener instalado RStudio. Se pueden crear proyectos en un nuevo directorio, en un directorio existente o clonando un repositorio de Github.</p>
+<p>Para crear un nuevo proyecto, basta con dar click en <code>Archivo -&gt; Nuevo proyecto</code> y seguir las instrucciones que aparecen. Una vez creado, aparecerá en el directorio del proyecto un nuevo archivo con extensión <em>.Rproj</em>. Este archivo contiene distintas configuraciones del proyecto. Además de este archivo, se crea el directorio oculto <em>.Rproj.user</em> donde aparecen las configuraciones específicas del proyecto. Finalmente, en la parte superior derecha aparece el nombre del proyecto.</p>
+<p>Antes de profundizar en los proyectos, se explicarán brevemente los archivos:</p>
+<ol style="list-style-type: decimal">
+<li><em>.Rprofile</em>: Hace referencia a un archivo oculto que contiene código en R que se ejecuta justo al iniciar R.</li>
+<li><em>.Rdata</em>: Contiene datos guardados del proyecto.</li>
+<li><em>.Rhistory</em>: Contiene un historial de los comandos ejecutados.</li>
+</ol>
+<p>Adicional a esto, es necesario explicar el término <strong>directorio de trabajo</strong>. Los <em>filesystem</em> de Windows y macOS permiten ubicar un archivo o directorio a través de una ruta. Por ejemplo, en Windows las rutas son de la forma:</p>
+<p><code>C:\Users\usuario1\proyectos\curso_r</code></p>
+<p>En cambio, en macOS, los directorios son de la forma:</p>
+<p><code>/Users/usuario1/proyectos/curso_r</code></p>
+<p>Para no tener que escribir la ruta completa de un archivo, se define el <strong>directorio de trabajo</strong>. Por default, el directorio de trabajo es el mismo que la carpeta <em>home</em> del usuario, pero siempre es conveniente modificarlo. Para obtener el <em>directorio de trabajo</em> actual se utiliza la función <code>getwd()</code>, mientras que para modificarlo se utiliza la función <code>setwd()</code>.</p>
+<p>Una vez explicados estos términos, se puede profundizar un poco más acerca de las funcionalidades del proyecto. Una vez creado, se puede abrir y cerrar las veces que sea necesario, pero lo importante es que cada vez que se abra el proyecto, se llevarán a cabo los siguientes pasos:</p>
+<ol style="list-style-type: decimal">
+<li>Se iniciará una nueva sesión de R. Por lo tanto, se tienen que cargar de nuevo las librerías (con <code>library()</code>)</li>
+<li>Se carga el código que se encuentra en el archivo <em>.Rprofile</em></li>
+<li>Se cargan los datos almacenados en <em>.Rdata</em></li>
+<li>Se carga la historia del código ejecutado obtenida del archivo <em>.Rhistory</em></li>
+<li>El directorio de trabajo es configurado en la carpeta del proyecto actual</li>
+<li>Se abren los archivos que se estaban editando cuando se cerro el proyecto</li>
+<li>Se cargan otras configuraciones particulares del proyecto</li>
+</ol>
+</div>
+<div id="instalación-de-r" class="section level2">
+<h2><span class="header-section-number">1.5</span> Instalación de R</h2>
+<p>Al instalar <a href="https://cran.r-project.org">R</a>, se instala la consola que permite la ejecución de código y funciones. Adicionalmente, se instalan las librerías <strong>core</strong> que permiten el correcto funcionamiento de R. Al iniciar una sesión de R, un subconjunto de las librerías <strong>core</strong> son cargadas automáticamente:</p>
+<table>
+<colgroup>
+<col width="14%" />
+<col width="85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Librería</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>base</td>
+<td>Contiene funciones básicas que permiten funcionar a R como un lenguaje de programación: funciones aritméticas, input/output, etc</td>
+</tr>
+<tr class="even">
+<td>compiler</td>
+<td>Permite la compilación del Byte Code en R.</td>
+</tr>
+<tr class="odd">
+<td>datasets</td>
+<td>Contiene una amplia variedad de datasets en R.</td>
+</tr>
+<tr class="even">
+<td>graphics</td>
+<td>Contiene funciones para los gráficos <em>base</em>.</td>
+</tr>
+<tr class="odd">
+<td>grDevices</td>
+<td>Suplemento para el paquete graphics. Colores y fuentes.</td>
+</tr>
+<tr class="even">
+<td>grid</td>
+<td>Suplemento para el paquete graphics.</td>
+</tr>
+<tr class="odd">
+<td>methods</td>
+<td>Permite definir métodos y clases para los objetos de R.</td>
+</tr>
+<tr class="even">
+<td>parallel</td>
+<td>Permite cómputo en paralelo en R.</td>
+</tr>
+<tr class="odd">
+<td>splines</td>
+<td>Funciones y clases para splines.</td>
+</tr>
+<tr class="even">
+<td>stats</td>
+<td>Funciones para cálculos estadísticos y generación de números aleatorios.</td>
+</tr>
+<tr class="odd">
+<td>stats4</td>
+<td>Funciones estadísticas usando las clases S4.</td>
+</tr>
+<tr class="even">
+<td>tcltk</td>
+<td>Permite el uso del lenguage para scripts TCL.</td>
+</tr>
+<tr class="odd">
+<td>tools</td>
+<td>Contiene funciones para manipular paquetes de R y su documentación.</td>
+</tr>
+<tr class="even">
+<td>utils</td>
+<td>Contiene gran variedad de funciones utilitarias.</td>
+</tr>
+</tbody>
+</table>
+<p>Mientras que el otro subconjunto de librerías <strong>core</strong> necesitan ser cargadas explícitamente con la función <code>library()</code>. Para obtener una lista con estas librerías de click en este <a href="https://stat.ethz.ch/R-manual/R-devel/doc/html/packages.html">link</a>.</p>
+</div>
+<div id="instalación-de-rstudio" class="section level2">
+<h2><span class="header-section-number">1.6</span> Instalación de Rstudio</h2>
+<p>Para aumentar la productividad al programar en R, es muy recomendable instalar <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a>. Rstudio es un IDE (Integrated Development Environment) que facilita (entre otras funcionalidades):</p>
+<ol style="list-style-type: decimal">
+<li>Crear de scripts en un editor de texto</li>
+<li>Visualizar variables en el entorno actual</li>
+<li>Crear proyectos</li>
+<li>Autocompletar código</li>
+<li>Usar <em>shortcuts</em></li>
+<li>Usar fácilmente un control de versiones como <em>Git</em>.</li>
+<li>Ver la historia de ejecución.</li>
+</ol>
+</div>
+<div id="instalación-de-paquetes-desde-el-cran." class="section level2">
+<h2><span class="header-section-number">1.7</span> Instalación de paquetes desde el CRAN.</h2>
+<p>Además de las librerías <strong>core</strong> de R, se pueden instalar nuevos paquetes desde el CRAN (Comprehensive R Archive Network) o bien, instalar paquetes en desarrollo desde <em>Github</em>. Cada paquete es una colección de funciones, datos y código compilado. Todas estas son agregados a la librería de funciones de R, pero no son cargadas en automático (de nuevo, se necesita usar la función <code>library()</code>). En resumen, se instala el paquete solamente una vez, pero se carga la librería cada vez que se abre una sesión nueva.</p>
+<p>El CRAN es un repositorio central que contiene todos los paquetes disponibles en R. El CRAN está replicado a través de espejos (<em>mirrors</em>) en todo el mundo, esto con el fin de brindar disponibilidad y baja latencia al descargar los paquetes. Para instalar un paquete desde el CRAN se tiene que usar la función: <code>install_packages(&quot;nombre_paquete&quot;)</code>, usando comillas alrededor del nombre del paquete. Adicional al CRAN, hay usuarios que desarrollan paquetes y los hostean en <em>Github</em>, principalmente cuando son paquetes en desarrollo o versiones nuevas (algunas veces no estables). Para poder instalar paquetes desde github, se necesita la función <code>install_github(&quot;nombre_paquete&quot;)</code> de la librería devtools.</p>
+<p>Una vez instalado el paquete, el conjunto de funciones, los datos y el código compilado son almacenados en una librería que no se carga automáticamente; por lo tanto, en caso de hacer referencia a una función del paquete se mostrará un error. Por esto, es muy importante que una vez instalado el paquete se utilice la función <code>library(&quot;nombre_paquete&quot;)</code> cada vez que se inicie una sesión. (Imaginen que tienen 1000 paquetes instalados, es poco practico siempre poder acceder a todas las funciones de cada uno de los paquetes en todo momento. Por esto, solamente es recomendable solo cargar las librerías que se ocuparán en el proyecto a desarrollar.)</p>
+
+</div>
 </div>
             </section>
 
@@ -130,7 +281,7 @@
         </div>
       </div>
 
-<a href="introducción-a-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="estructura-de-datos-de-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
