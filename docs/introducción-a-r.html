@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Introducción a R | ITAM - Estadística 2</title>
+  <meta name="description" content="Notas para el curso de Estadística 2 - Primavera 2020" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Introducción a R | ITAM - Estadística 2" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notas para el curso de Estadística 2 - Primavera 2020" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Introducción a R | ITAM - Estadística 2" />
+  
+  <meta name="twitter:description" content="Notas para el curso de Estadística 2 - Primavera 2020" />
+  
+
+<meta name="author" content="Salvador García" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="importar-datos.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Bookdown Book</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduccion</a></li>
+<li class="chapter" data-level="2" data-path="introducción-a-r.html"><a href="introducción-a-r.html"><i class="fa fa-check"></i><b>2</b> Introducción a R</a><ul>
+<li class="chapter" data-level="2.1" data-path="introducción-a-r.html"><a href="introducción-a-r.html#el-lenguaje-de-programación-r"><i class="fa fa-check"></i><b>2.1</b> El lenguaje de programación R</a></li>
+<li class="chapter" data-level="2.2" data-path="introducción-a-r.html"><a href="introducción-a-r.html#paquetes-y-librerias-de-r"><i class="fa fa-check"></i><b>2.2</b> Paquetes y librerias de R</a></li>
+<li class="chapter" data-level="2.3" data-path="introducción-a-r.html"><a href="introducción-a-r.html#paradigma-de-r"><i class="fa fa-check"></i><b>2.3</b> Paradigma de R</a></li>
+<li class="chapter" data-level="2.4" data-path="introducción-a-r.html"><a href="introducción-a-r.html#proyectos-de-r-y-paths"><i class="fa fa-check"></i><b>2.4</b> Proyectos de R y Paths</a></li>
+<li class="chapter" data-level="2.5" data-path="introducción-a-r.html"><a href="introducción-a-r.html#instalación-de-r"><i class="fa fa-check"></i><b>2.5</b> Instalación de R</a></li>
+<li class="chapter" data-level="2.6" data-path="introducción-a-r.html"><a href="introducción-a-r.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>2.6</b> Instalación de Rstudio</a></li>
+<li class="chapter" data-level="2.7" data-path="introducción-a-r.html"><a href="introducción-a-r.html#instalación-de-paquetes-desde-el-cran."><i class="fa fa-check"></i><b>2.7</b> Instalación de paquetes desde el CRAN.</a></li>
+<li class="chapter" data-level="2.8" data-path="introducción-a-r.html"><a href="introducción-a-r.html#ayuda-y-vignettes"><i class="fa fa-check"></i><b>2.8</b> Ayuda y vignettes</a></li>
+<li class="chapter" data-level="2.9" data-path="introducción-a-r.html"><a href="introducción-a-r.html#namespaces"><i class="fa fa-check"></i><b>2.9</b> Namespaces</a></li>
+<li class="chapter" data-level="2.10" data-path="introducción-a-r.html"><a href="introducción-a-r.html#paquetería-útil-para-el-análisis-de-datos"><i class="fa fa-check"></i><b>2.10</b> Paquetería útil para el análisis de datos</a></li>
+<li class="chapter" data-level="2.11" data-path="introducción-a-r.html"><a href="introducción-a-r.html#estructuras-de-datos-en-r"><i class="fa fa-check"></i><b>2.11</b> Estructuras de datos en R</a><ul>
+<li class="chapter" data-level="2.11.1" data-path="introducción-a-r.html"><a href="introducción-a-r.html#vectores-atómicos"><i class="fa fa-check"></i><b>2.11.1</b> Vectores atómicos</a></li>
+<li class="chapter" data-level="2.11.2" data-path="introducción-a-r.html"><a href="introducción-a-r.html#matrices-y-arrays."><i class="fa fa-check"></i><b>2.11.2</b> Matrices y arrays.</a></li>
+<li class="chapter" data-level="2.11.3" data-path="introducción-a-r.html"><a href="introducción-a-r.html#listas."><i class="fa fa-check"></i><b>2.11.3</b> Listas.</a></li>
+<li class="chapter" data-level="2.11.4" data-path="introducción-a-r.html"><a href="introducción-a-r.html#data.frames"><i class="fa fa-check"></i><b>2.11.4</b> Data.frames</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="introducción-a-r.html"><a href="introducción-a-r.html#funciones-condicionales-e-iteraciones"><i class="fa fa-check"></i><b>2.12</b> Funciones, condicionales e iteraciones:</a><ul>
+<li class="chapter" data-level="2.12.1" data-path="introducción-a-r.html"><a href="introducción-a-r.html#funciones"><i class="fa fa-check"></i><b>2.12.1</b> Funciones</a></li>
+<li class="chapter" data-level="2.12.2" data-path="introducción-a-r.html"><a href="introducción-a-r.html#condicionales"><i class="fa fa-check"></i><b>2.12.2</b> Condicionales</a></li>
+<li class="chapter" data-level="2.12.3" data-path="introducción-a-r.html"><a href="introducción-a-r.html#iteraciones"><i class="fa fa-check"></i><b>2.12.3</b> Iteraciones</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="importar-datos.html"><a href="importar-datos.html"><i class="fa fa-check"></i><b>3</b> Importar datos</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="importar-datos.html"><a href="importar-datos.html#archivos-.csv"><i class="fa fa-check"></i><b>3.0.1</b> Archivos <strong>.csv</strong></a></li>
+<li class="chapter" data-level="3.0.2" data-path="importar-datos.html"><a href="importar-datos.html#archivos-.xlsx-y-.xls"><i class="fa fa-check"></i><b>3.0.2</b> Archivos <strong>.xlsx y .xls</strong></a></li>
+<li class="chapter" data-level="3.0.3" data-path="importar-datos.html"><a href="importar-datos.html#otros-formatos-de-archivos-.sav-.data-.sas"><i class="fa fa-check"></i><b>3.0.3</b> Otros formatos de archivos <strong>.sav</strong>, <strong>.data</strong>, <strong>.sas</strong></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ITAM - Estadística 2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introducción-a-r" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Introducción a R</h1>
+<p>Este curso está diseñado como un curso introductorio al lenguaje de programación R. Se hace una exploración rápida de la filosofia detrás de R, así como paquetes más usados y use cases más comunes.</p>
+<div id="el-lenguaje-de-programación-r" class="section level2">
+<h2><span class="header-section-number">2.1</span> El lenguaje de programación R</h2>
+<ol style="list-style-type: decimal">
+<li><p>R es un lenguaje de programación con un enfoque al análisis estadístico.</p></li>
+<li><p>R es un software libre de código abierto. De esta manera se permite hacer <em>profiling</em> y <em>debugging</em> a profundidad. (¡E instalarlo y utilizarlo en cualquier lugar!)</p></li>
+<li><p>R es un software <strong>hecho a la medida</strong>; es decir, el usuario instala la paquetería necesaria a sus necesidades.</p></li>
+</ol>
+</div>
+<div id="paquetes-y-librerias-de-r" class="section level2">
+<h2><span class="header-section-number">2.2</span> Paquetes y librerias de R</h2>
+<p>La primer diferencia para entender R, es entender la diferencia entre paquete y libreria. Paquete es el grupo de codigos que descargamos de internet y libreria es un paqute que se encuentra instalado y listo para usar.</p>
+<ol style="list-style-type: decimal">
+<li><p>La paquetería básica de R está basada en librerías en Fortran y C, creando <em>wrappers</em> que hacen referencia a las funciones originales. Por ejemplo, al calcular distintas factorizaciones de matrices (LU, Chol, QR, SVD, Schur) son calculadas utilizando la librería de <em>LAPACK</em>.</p></li>
+<li><p>Algunas paqueterías requieren que el software este instalado en el sistema. Por ejemplo:</p></li>
+</ol>
+<ul>
+<li><p>la mayoría de paquetería para manipulación de imágenes (png, jpeg, svg). Esta paquetería está por default instalada en Windows y macOS</p></li>
+<li><p>la paquetería para simular MCMC (R2Jags, Rstan, R2OpenBUGS), Se tiene que instalar explícitamente en Windows y macOS, así como añadir a las respectivas variables de entorno</p></li>
+</ul>
+</div>
+<div id="paradigma-de-r" class="section level2">
+<h2><span class="header-section-number">2.3</span> Paradigma de R</h2>
+<ol style="list-style-type: decimal">
+<li><p>¿Es R un Lenguage orientado a objetos? R es considerado un lenguaje multiparadigma. Es decir, puede ser orientado a objetos o no, puede ser funcional o no, puede ser imperativo o no. Esta flexibilidad nace de la necesidad y la diversidad de usuarios. Por ejemplo, R tiene 3 sistemas distintos de programación orientada a objetos (más los heredados de otros lenguajes).</p></li>
+<li><p>¿R vs Python?
+R y python son ambos lenguajes de alto nivel. Mucho se habla que Python es más eficiente que R (con varios papers realizando benchmarks), pero en la realidad ambos lenguajes presentan un performance mucho más bajo que lenguajes low level como C o C++. En mi opinión, si solo se requiere analizar datos, escribir scripts de automatización y modelar datos, R es la herramienta adecuada. Si se quiere tener cosas en productivo, Python es una herramienta adecuada.</p></li>
+</ol>
+
+</div>
+<div id="proyectos-de-r-y-paths" class="section level2">
+<h2><span class="header-section-number">2.4</span> Proyectos de R y Paths</h2>
+</div>
+<div id="instalación-de-r" class="section level2">
+<h2><span class="header-section-number">2.5</span> Instalación de R</h2>
+</div>
+<div id="instalación-de-rstudio" class="section level2">
+<h2><span class="header-section-number">2.6</span> Instalación de Rstudio</h2>
+</div>
+<div id="instalación-de-paquetes-desde-el-cran." class="section level2">
+<h2><span class="header-section-number">2.7</span> Instalación de paquetes desde el CRAN.</h2>
+</div>
+<div id="ayuda-y-vignettes" class="section level2">
+<h2><span class="header-section-number">2.8</span> Ayuda y vignettes</h2>
+</div>
+<div id="namespaces" class="section level2">
+<h2><span class="header-section-number">2.9</span> Namespaces</h2>
+</div>
+<div id="paquetería-útil-para-el-análisis-de-datos" class="section level2">
+<h2><span class="header-section-number">2.10</span> Paquetería útil para el análisis de datos</h2>
+</div>
+<div id="estructuras-de-datos-en-r" class="section level2">
+<h2><span class="header-section-number">2.11</span> Estructuras de datos en R</h2>
+<div id="vectores-atómicos" class="section level3">
+<h3><span class="header-section-number">2.11.1</span> Vectores atómicos</h3>
+</div>
+<div id="matrices-y-arrays." class="section level3">
+<h3><span class="header-section-number">2.11.2</span> Matrices y arrays.</h3>
+</div>
+<div id="listas." class="section level3">
+<h3><span class="header-section-number">2.11.3</span> Listas.</h3>
+</div>
+<div id="data.frames" class="section level3">
+<h3><span class="header-section-number">2.11.4</span> Data.frames</h3>
+</div>
+</div>
+<div id="funciones-condicionales-e-iteraciones" class="section level2">
+<h2><span class="header-section-number">2.12</span> Funciones, condicionales e iteraciones:</h2>
+<div id="funciones" class="section level3">
+<h3><span class="header-section-number">2.12.1</span> Funciones</h3>
+</div>
+<div id="condicionales" class="section level3">
+<h3><span class="header-section-number">2.12.2</span> Condicionales</h3>
+</div>
+<div id="iteraciones" class="section level3">
+<h3><span class="header-section-number">2.12.3</span> Iteraciones</h3>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="importar-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
