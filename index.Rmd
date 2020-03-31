@@ -149,11 +149,11 @@ Conceptos básicos:
 **paquete y libreria** Para usar un paquete/libreria en R, son dos pasos: instalar el paquete y cargar libreria (install.packages() se corre solo una vez para instalar el paquete, library() se corre cada vez que se quiera usar la libreria)
 
 ```{r}
-install.packages("broom", repo="http://cran.rstudio.com/")
+install.packages("crayon", repo="http://cran.rstudio.com/")
 ```
 
 ```{r}
-library(broom)
+library(crayon)
 ```
 
 Para visualizar todos los paquetes se puede ocupar el panel derecho en la pestaña de packages o bien con la funcion: installed.packages()

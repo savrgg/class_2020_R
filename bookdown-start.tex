@@ -1,182 +1,416 @@
---- 
-title: "ITAM - Curso R"
-author: "Salvador García"
-site: bookdown::bookdown_site
-documentclass: book
-bibliography: [book.bib]
-biblio-style: apalike
-link-citations: yes
-github-repo: ''
-url: ''
-description: "Notas para el curso de R para Estadística 2 - Primavera 2020"
----
-# Introduccion
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={ITAM - Curso R},
+            pdfauthor={Salvador García},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{booktabs}
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{ITAM - Curso R}
+\author{Salvador García}
+\date{}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{introduccion}{%
+\chapter{Introduccion}\label{introduccion}}
 
 Este curso está diseñado como un curso introductorio al lenguaje de programación R. Se hace una exploración rápida de la filosofia detrás de R, así como paquetes más usados y use cases más comunes.
 
-## El lenguaje de programación R
+\hypertarget{el-lenguaje-de-programaciuxf3n-r}{%
+\section{El lenguaje de programación R}\label{el-lenguaje-de-programaciuxf3n-r}}
 
-1. R es un lenguaje de programación con un enfoque al análisis estadístico. 
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  R es un lenguaje de programación con un enfoque al análisis estadístico.
+\item
+  R es un software libre de código abierto. De esta manera se permite hacer \emph{profiling} y \emph{debugging} a profundidad. (¡E instalarlo y utilizarlo en cualquier lugar!)
+\item
+  R es un software \textbf{hecho a la medida}; es decir, el usuario instala la paquetería necesaria a sus necesidades.
+\end{enumerate}
 
-2. R es un software libre de código abierto. De esta manera se permite hacer *profiling* y *debugging* a profundidad. (¡E instalarlo y utilizarlo en cualquier lugar!)
+\hypertarget{paquetes-y-librerias-de-r}{%
+\section{Paquetes y librerias de R}\label{paquetes-y-librerias-de-r}}
 
-3. R es un software **hecho a la medida**; es decir, el usuario instala la paquetería necesaria a sus necesidades. 
+La primer diferencia para entender R, es entender la diferencia entre paquete y libreria. Paquete es el grupo de codigos que descargamos de internet y libreria es un paquete que se encuentra instalado y listo para usar.
 
-## Paquetes y librerias de R
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  La paquetería básica de R está basada en librerías en Fortran y C (lenguajes de programación low level), creando \emph{wrappers} que hacen referencia a las funciones originales. Por ejemplo, al calcular distintas factorizaciones de matrices (LU, Chol, QR, SVD, Schur) son calculadas utilizando la librería de \emph{LAPACK}.
+\item
+  Algunas paqueterías requieren que el software este instalado en el sistema. Por ejemplo:
+\end{enumerate}
 
-La primer diferencia para entender R, es entender la diferencia entre paquete y libreria. Paquete es el grupo de codigos que descargamos de internet y libreria es un paquete que se encuentra instalado y listo para usar.  
+\begin{itemize}
+\item
+  la mayoría de paquetería para manipulación de imágenes (png, jpeg, svg). Esta paquetería está por default instalada en Windows y macOS
+\item
+  la paquetería para simular MCMC (R2Jags, Rstan, R2OpenBUGS), Se tiene que instalar explícitamente en Windows y macOS, así como añadir a las respectivas variables de entorno
+\end{itemize}
 
-1. La paquetería básica de R está basada en librerías en Fortran y C (lenguajes de programación low level), creando *wrappers* que hacen referencia a las funciones originales. Por ejemplo, al calcular distintas factorizaciones de matrices (LU, Chol, QR, SVD, Schur) son calculadas utilizando la librería de *LAPACK*.
+\hypertarget{paradigma-de-r}{%
+\section{Paradigma de R}\label{paradigma-de-r}}
 
-2. Algunas paqueterías requieren que el software este instalado en el sistema. Por ejemplo:
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  ¿Es R un Lenguage orientado a objetos? R es considerado un lenguaje multiparadigma. Es decir, puede ser orientado a objetos o no, puede ser funcional o no, puede ser imperativo o no. Esta flexibilidad nace de la necesidad y la diversidad de usuarios. Por ejemplo, R tiene 3 sistemas distintos de programación orientada a objetos (más los heredados de otros lenguajes).
+\item
+  ¿R vs Python?
+  R y python son ambos lenguajes de alto nivel. Mucho se habla que Python es más eficiente que R (con varios papers realizando benchmarks), pero en la realidad ambos lenguajes presentan un performance mucho más bajo que lenguajes low level como C o C++. En mi opinión, si solo se requiere analizar datos, escribir scripts de automatización y modelar datos, R es la herramienta adecuada. Si se quiere tener cosas en productivo, Python es una herramienta adecuada.
+\end{enumerate}
 
-  + la mayoría de paquetería para manipulación de imágenes (png, jpeg, svg). Esta paquetería está por default instalada en Windows y macOS
-
-  + la paquetería para simular MCMC (R2Jags, Rstan, R2OpenBUGS), Se tiene que instalar explícitamente en Windows y macOS, así como añadir a las respectivas variables de entorno
-
-## Paradigma de R
-1. ¿Es R un Lenguage orientado a objetos? R es considerado un lenguaje multiparadigma. Es decir, puede ser orientado a objetos o no, puede ser funcional o no, puede ser imperativo o no. Esta flexibilidad nace de la necesidad y la diversidad de usuarios. Por ejemplo, R tiene 3 sistemas distintos de programación orientada a objetos (más los heredados de otros lenguajes).
-
-2. ¿R vs Python?
-R y python son ambos lenguajes de alto nivel. Mucho se habla que Python es más eficiente que R (con varios papers realizando benchmarks), pero en la realidad ambos lenguajes presentan un performance mucho más bajo que lenguajes low level como C o C++. En mi opinión, si solo se requiere analizar datos, escribir scripts de automatización y modelar datos, R es la herramienta adecuada. Si se quiere tener cosas en productivo, Python es una herramienta adecuada. 
-
-
-## Proyectos de R y Paths
+\hypertarget{proyectos-de-r-y-paths}{%
+\section{Proyectos de R y Paths}\label{proyectos-de-r-y-paths}}
 
 Un proyecto en Rstudio tiene amplias ventajas ya que permite dividir el trabajo en distintos contextos, cada uno con su propio directorio de trabajo, historial de ejecución y códigos. Para poder crear un proyecto se requiere tener instalado RStudio. Se pueden crear proyectos en un nuevo directorio, en un directorio existente o clonando un repositorio de Github.
 
-Para crear un nuevo proyecto, basta con dar click en `Archivo -> Nuevo proyecto` y seguir las instrucciones que aparecen. Una vez creado, aparecerá en el directorio del proyecto un nuevo archivo con extensión *.Rproj*. Este archivo contiene distintas configuraciones del proyecto. Además de este archivo, se crea el directorio oculto *.Rproj.user* donde aparecen las configuraciones específicas del proyecto. Finalmente, en la parte superior derecha aparece el nombre del proyecto.
+Para crear un nuevo proyecto, basta con dar click en \texttt{Archivo\ -\textgreater{}\ Nuevo\ proyecto} y seguir las instrucciones que aparecen. Una vez creado, aparecerá en el directorio del proyecto un nuevo archivo con extensión \emph{.Rproj}. Este archivo contiene distintas configuraciones del proyecto. Además de este archivo, se crea el directorio oculto \emph{.Rproj.user} donde aparecen las configuraciones específicas del proyecto. Finalmente, en la parte superior derecha aparece el nombre del proyecto.
 
 Antes de profundizar en los proyectos, se explicarán brevemente los archivos:
 
-1. *.Rprofile*: Hace referencia a un archivo oculto que contiene código en R que se ejecuta justo al iniciar R.
-2. *.Rdata*: Contiene datos guardados del proyecto.
-3. *.Rhistory*: Contiene un historial de los comandos ejecutados.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \emph{.Rprofile}: Hace referencia a un archivo oculto que contiene código en R que se ejecuta justo al iniciar R.
+\item
+  \emph{.Rdata}: Contiene datos guardados del proyecto.
+\item
+  \emph{.Rhistory}: Contiene un historial de los comandos ejecutados.
+\end{enumerate}
 
-Adicional a esto, es necesario explicar el término **directorio de trabajo**. Los *filesystem* de Windows y macOS permiten ubicar un archivo o directorio a través de una ruta. Por ejemplo, en Windows las rutas son de la forma:
+Adicional a esto, es necesario explicar el término \textbf{directorio de trabajo}. Los \emph{filesystem} de Windows y macOS permiten ubicar un archivo o directorio a través de una ruta. Por ejemplo, en Windows las rutas son de la forma:
 
-`C:\Users\usuario1\proyectos\curso_r`
+\texttt{C:\textbackslash{}Users\textbackslash{}usuario1\textbackslash{}proyectos\textbackslash{}curso\_r}
 
 En cambio, en macOS, los directorios son de la forma:
 
-`/Users/usuario1/proyectos/curso_r`
+\texttt{/Users/usuario1/proyectos/curso\_r}
 
-Para no tener que escribir la ruta completa de un archivo, se define el **directorio de trabajo**. Por default, el directorio de trabajo es el mismo que la carpeta *home* del usuario, pero siempre es conveniente modificarlo. Para obtener el *directorio de trabajo* actual se utiliza la función `getwd()`, mientras que para modificarlo se utiliza la función `setwd()`.
+Para no tener que escribir la ruta completa de un archivo, se define el \textbf{directorio de trabajo}. Por default, el directorio de trabajo es el mismo que la carpeta \emph{home} del usuario, pero siempre es conveniente modificarlo. Para obtener el \emph{directorio de trabajo} actual se utiliza la función \texttt{getwd()}, mientras que para modificarlo se utiliza la función \texttt{setwd()}.
 
 Una vez explicados estos términos, se puede profundizar un poco más acerca de las funcionalidades del proyecto. Una vez creado, se puede abrir y cerrar las veces que sea necesario, pero lo importante es que cada vez que se abra el proyecto, se llevarán a cabo los siguientes pasos:
 
-1. Se iniciará una nueva sesión de R. Por lo tanto, se tienen que cargar de nuevo las librerías (con `library()`)
-2. Se carga el código que se encuentra en el archivo *.Rprofile*
-3. Se cargan los datos almacenados en *.Rdata*
-4. Se carga la historia del código ejecutado obtenida del archivo *.Rhistory*
-5. El directorio de trabajo es configurado en la carpeta del proyecto actual
-6. Se abren los archivos que se estaban editando cuando se cerro el proyecto
-7. Se cargan otras configuraciones particulares del proyecto
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Se iniciará una nueva sesión de R. Por lo tanto, se tienen que cargar de nuevo las librerías (con \texttt{library()})
+\item
+  Se carga el código que se encuentra en el archivo \emph{.Rprofile}
+\item
+  Se cargan los datos almacenados en \emph{.Rdata}
+\item
+  Se carga la historia del código ejecutado obtenida del archivo \emph{.Rhistory}
+\item
+  El directorio de trabajo es configurado en la carpeta del proyecto actual
+\item
+  Se abren los archivos que se estaban editando cuando se cerro el proyecto
+\item
+  Se cargan otras configuraciones particulares del proyecto
+\end{enumerate}
 
-## Instalación de R
+\hypertarget{instalaciuxf3n-de-r}{%
+\section{Instalación de R}\label{instalaciuxf3n-de-r}}
 
-Al instalar [R](https://cran.r-project.org), se instala la consola que permite la ejecución de código y funciones. Adicionalmente, se instalan las librerías **core** que permiten el correcto funcionamiento de R. Al iniciar una sesión de R, un subconjunto de las librerías **core** son cargadas automáticamente:
+Al instalar \href{https://cran.r-project.org}{R}, se instala la consola que permite la ejecución de código y funciones. Adicionalmente, se instalan las librerías \textbf{core} que permiten el correcto funcionamiento de R. Al iniciar una sesión de R, un subconjunto de las librerías \textbf{core} son cargadas automáticamente:
 
-Librería       | Descripción
--------------  | ---------------------------------------------------------------------------
-base           | Contiene funciones básicas que permiten funcionar a R como un lenguaje de programación: funciones aritméticas, input/output, etc 
-compiler       | Permite la compilación del Byte Code en R.
-datasets       | Contiene una amplia variedad de datasets en R.
-graphics       | Contiene funciones para los gráficos *base*.
-grDevices      | Suplemento para el paquete graphics. Colores y fuentes.
-grid           | Suplemento para el paquete graphics.
-methods        | Permite definir métodos y clases para los objetos de R.
-parallel       | Permite cómputo en paralelo en R.
-splines        | Funciones y clases para splines.
-stats          | Funciones para cálculos estadísticos y generación de números aleatorios.
-stats4         | Funciones estadísticas usando las clases S4.
-tcltk          | Permite el uso del lenguage para scripts TCL.
-tools          | Contiene funciones para manipular paquetes de R y su documentación.
-utils          | Contiene gran variedad de funciones utilitarias.
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.14\columnwidth}\raggedright
+Librería\strut
+\end{minipage} & \begin{minipage}[b]{0.80\columnwidth}\raggedright
+Descripción\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+base\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Contiene funciones básicas que permiten funcionar a R como un lenguaje de programación: funciones aritméticas, input/output, etc\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+compiler\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Permite la compilación del Byte Code en R.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+datasets\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Contiene una amplia variedad de datasets en R.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+graphics\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Contiene funciones para los gráficos \emph{base}.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+grDevices\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Suplemento para el paquete graphics. Colores y fuentes.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+grid\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Suplemento para el paquete graphics.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+methods\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Permite definir métodos y clases para los objetos de R.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+parallel\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Permite cómputo en paralelo en R.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+splines\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Funciones y clases para splines.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+stats\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Funciones para cálculos estadísticos y generación de números aleatorios.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+stats4\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Funciones estadísticas usando las clases S4.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+tcltk\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Permite el uso del lenguage para scripts TCL.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+tools\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Contiene funciones para manipular paquetes de R y su documentación.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.14\columnwidth}\raggedright
+utils\strut
+\end{minipage} & \begin{minipage}[t]{0.80\columnwidth}\raggedright
+Contiene gran variedad de funciones utilitarias.\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
 
-Mientras que el otro subconjunto de librerías **core** necesitan ser cargadas explícitamente con la función `library()`. Para obtener una lista con estas librerías de click en este [link](https://stat.ethz.ch/R-manual/R-devel/doc/html/packages.html).
+Mientras que el otro subconjunto de librerías \textbf{core} necesitan ser cargadas explícitamente con la función \texttt{library()}. Para obtener una lista con estas librerías de click en este \href{https://stat.ethz.ch/R-manual/R-devel/doc/html/packages.html}{link}.
 
+\hypertarget{instalaciuxf3n-de-rstudio}{%
+\section{Instalación de Rstudio}\label{instalaciuxf3n-de-rstudio}}
 
-## Instalación de Rstudio 
+Para aumentar la productividad al programar en R, es muy recomendable instalar \href{https://www.rstudio.com/products/rstudio/download/}{RStudio}. Rstudio es un IDE (Integrated Development Environment) que facilita (entre otras funcionalidades):
 
-Para aumentar la productividad al programar en R, es muy recomendable instalar [RStudio](https://www.rstudio.com/products/rstudio/download/). Rstudio es un IDE (Integrated Development Environment) que facilita (entre otras funcionalidades):
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Crear de scripts en un editor de texto
+\item
+  Visualizar variables en el entorno actual
+\item
+  Crear proyectos
+\item
+  Autocompletar código
+\item
+  Usar \emph{shortcuts}
+\item
+  Usar fácilmente un control de versiones como \emph{Git}.
+\item
+  Ver la historia de ejecución.
+\end{enumerate}
 
-1. Crear de scripts en un editor de texto
-2. Visualizar variables en el entorno actual
-3. Crear proyectos
-4. Autocompletar código
-5. Usar *shortcuts*
-6. Usar fácilmente un control de versiones como *Git*.
-7. Ver la historia de ejecución.
+\hypertarget{instalaciuxf3n-de-paquetes-desde-el-cran.}{%
+\section{Instalación de paquetes desde el CRAN.}\label{instalaciuxf3n-de-paquetes-desde-el-cran.}}
 
+Además de las librerías \textbf{core} de R, se pueden instalar nuevos paquetes desde el CRAN (Comprehensive R Archive Network) o bien, instalar paquetes en desarrollo desde \emph{Github}. Cada paquete es una colección de funciones, datos y código compilado. Todas estas son agregados a la librería de funciones de R, pero no son cargadas en automático (de nuevo, se necesita usar la función \texttt{library()}). En resumen, se instala el paquete solamente una vez, pero se carga la librería cada vez que se abre una sesión nueva.
 
-## Instalación de paquetes desde el CRAN.
+El CRAN es un repositorio central que contiene todos los paquetes disponibles en R. El CRAN está replicado a través de espejos (\emph{mirrors}) en todo el mundo, esto con el fin de brindar disponibilidad y baja latencia al descargar los paquetes. Para instalar un paquete desde el CRAN se tiene que usar la función: \texttt{install\_packages("nombre\_paquete")}, usando comillas alrededor del nombre del paquete. Adicional al CRAN, hay usuarios que desarrollan paquetes y los hostean en \emph{Github}, principalmente cuando son paquetes en desarrollo o versiones nuevas (algunas veces no estables). Para poder instalar paquetes desde github, se necesita la función \texttt{install\_github("nombre\_paquete")} de la librería devtools.
 
-Además de las librerías **core** de R, se pueden instalar nuevos paquetes desde el CRAN (Comprehensive R Archive Network) o bien, instalar paquetes en desarrollo desde *Github*. Cada paquete es una colección de funciones, datos y código compilado. Todas estas son agregados a la librería de funciones de R, pero no son cargadas en automático (de nuevo, se necesita usar la función `library()`). En resumen, se instala el paquete solamente una vez, pero se carga la librería cada vez que se abre una sesión nueva.
+Una vez instalado el paquete, el conjunto de funciones, los datos y el código compilado son almacenados en una librería que no se carga automáticamente; por lo tanto, en caso de hacer referencia a una función del paquete se mostrará un error. Por esto, es muy importante que una vez instalado el paquete se utilice la función \texttt{library("nombre\_paquete")} cada vez que se inicie una sesión. (Imaginen que tienen 1000 paquetes instalados, es poco practico siempre poder acceder a todas las funciones de cada uno de los paquetes en todo momento. Por esto, solamente es recomendable solo cargar las librerías que se ocuparán en el proyecto a desarrollar.)
 
-El CRAN es un repositorio central que contiene todos los paquetes disponibles en R. El CRAN está replicado a través de espejos (*mirrors*) en todo el mundo, esto con el fin de brindar disponibilidad y baja latencia al descargar los paquetes. Para instalar un paquete desde el CRAN se tiene que usar la función: `install_packages("nombre_paquete")`, usando comillas alrededor del nombre del paquete. Adicional al CRAN, hay usuarios que desarrollan paquetes y los hostean en *Github*, principalmente cuando son paquetes en desarrollo o versiones nuevas (algunas veces no estables). Para poder instalar paquetes desde github, se necesita la función `install_github("nombre_paquete")` de la librería devtools.
+\hypertarget{ejercicios-de-practica}{%
+\section{Ejercicios de practica}\label{ejercicios-de-practica}}
 
-Una vez instalado el paquete, el conjunto de funciones, los datos y el código compilado son almacenados en una librería que no se carga automáticamente; por lo tanto, en caso de hacer referencia a una función del paquete se mostrará un error. Por esto, es muy importante que una vez instalado el paquete se utilice la función `library("nombre_paquete")` cada vez que se inicie una sesión. (Imaginen que tienen 1000 paquetes instalados, es poco practico siempre poder acceder a todas las funciones de cada uno de los paquetes en todo momento. Por esto, solamente es recomendable solo cargar las librerías que se ocuparán en el proyecto a desarrollar.)
+\hypertarget{ejercicio-1.}{%
+\subsection{Ejercicio 1.}\label{ejercicio-1.}}
 
-## Ejercicios de practica
-
-
-### Ejercicio 1.
-
-**R Projects & Paths -----------------------------------------------**
+\textbf{R Projects \& Paths -----------------------------------------------}
 
 Conceptos básicos:
 
-**Directorio de trabajo (PATH)**: Es donde se guardan por default los archivos y donde se leen por default. 
+\textbf{Directorio de trabajo (PATH)}: Es donde se guardan por default los archivos y donde se leen por default.
 
-**Path absoluto**: especifica la ruta desde el root del sistema (por ejemplo: C:\Users\salvador\projecto1\archivo1.csv)
+\textbf{Path absoluto}: especifica la ruta desde el root del sistema (por ejemplo: C:\Users\salvador\projecto1\archivo1.csv)
 
-**Path relativo** es relativo a la carpeta (por ejemplo: archivo1.csv)
+\textbf{Path relativo} es relativo a la carpeta (por ejemplo: archivo1.csv)
 Al inicializar un proyecto, todo se usa a través de un path relativo
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{getwd}\NormalTok{() }\CommentTok{# obtiene el path absoluto por default}
+\end{Highlighting}
+\end{Shaded}
 
-```r
-getwd() # obtiene el path absoluto por default
-```
-
-```
+\begin{verbatim}
 ## [1] "/cloud/project/class_2020_R"
-```
+\end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"."}\NormalTok{) }\CommentTok{# permite hacer overwrite del path por default}
+\end{Highlighting}
+\end{Shaded}
 
-```r
-setwd(".") # permite hacer overwrite del path por default
-```
-### Ejercicio 2.
-**Installing & loading packages ------------------------------------**
+\hypertarget{ejercicio-2.}{%
+\subsection{Ejercicio 2.}\label{ejercicio-2.}}
+
+\textbf{Installing \& loading packages ------------------------------------}
 
 Conceptos básicos:
 
-**paquete y libreria** Para usar un paquete/libreria en R, son dos pasos: instalar el paquete y cargar libreria (install.packages() se corre solo una vez para instalar el paquete, library() se corre cada vez que se quiera usar la libreria)
+\textbf{paquete y libreria} Para usar un paquete/libreria en R, son dos pasos: instalar el paquete y cargar libreria (install.packages() se corre solo una vez para instalar el paquete, library() se corre cada vez que se quiera usar la libreria)
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"crayon"}\NormalTok{, }\DataTypeTok{repo=}\StringTok{"http://cran.rstudio.com/"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-```r
-install.packages("crayon", repo="http://cran.rstudio.com/")
-```
-
-```
+\begin{verbatim}
 ## Installing package into '/home/rstudio-user/R/x86_64-pc-linux-gnu-library/3.6'
 ## (as 'lib' is unspecified)
-```
+\end{verbatim}
 
-
-```r
-library(crayon)
-```
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(crayon)}
+\end{Highlighting}
+\end{Shaded}
 
 Para visualizar todos los paquetes se puede ocupar el panel derecho en la pestaña de packages o bien con la funcion: installed.packages()
-  
 
-```r
-installed.packages()
-```
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{installed.packages}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
 
-```
+\begin{verbatim}
 ##              Package       
 ## alluvial     "alluvial"    
 ## askpass      "askpass"     
@@ -1637,6 +1871,1423 @@ installed.packages()
 ## tcltk        NA                    NA      NA     "yes"            "3.6.0"
 ## tools        NA                    NA      NA     "yes"            "3.6.0"
 ## utils        NA                    NA      NA     "yes"            "3.6.0"
-```
+\end{verbatim}
 
+\hypertarget{estructura-de-datos-de-r}{%
+\chapter{Estructura de datos de R}\label{estructura-de-datos-de-r}}
 
+\hypertarget{ayuda-y-vignettes}{%
+\section{Ayuda y vignettes}\label{ayuda-y-vignettes}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Cada función de la paquetería instalada desde el CRAN contiene una sección de ayuda, donde se brinda la descripción de la función, los argumentos de entrada y salida y ejemplos de uso. Con el código: \texttt{help(nombre\_función)} se accede a esta ayuda.
+\item
+  Algunos paquetes contienen viñetas o \textbf{vignettes} que es una documentación más detallada del paquete. Para acceder a estas viñetas se utiliza el código: \texttt{vignette("nombre\_paquete")}
+\item
+  Si se requiere información rápida de visualización, desarrollo de paquetes, conceptos básicos y avanzados de R, markdown, shiny, etc, los \href{https://www.rstudio.com/resources/cheatsheets/}{Cheat sheets de RStudio} son una fuente fácil y rápida.
+\item
+  Si se requiere mayor documentación acerca de R, estos libros son muy útiles:
+\end{enumerate}
+
+\begin{itemize}
+\item
+  \href{http://r4ds.had.co.nz/}{R for data science}. Contiene documentación de la paquetería del tidyverse e información útil para manejo de datos.
+\item
+  \href{http://hadley.nz/}{ggplot2: elegant graphics for data analysis}. Contiene documentación de ggplot, una librería basada en el \emph{grammar of graphics} para visualización
+\item
+  \href{http://adv-r.had.co.nz/}{Advanced R}. contiene información a detalle de como funciona R.
+\item
+  \href{http://r-pkgs.had.co.nz/}{R packages}: contiene información que permite la creación y publicación de paquetes en R.
+\end{itemize}
+
+\hypertarget{namespaces}{%
+\section{Namespaces}\label{namespaces}}
+
+Como el nombre lo sugiere, un \emph{namespace} es un espacio de nombres para las funciones. En la situación óptima, cada desarrollador de paquete no debería definir nombres de funciones ya existentes, pero en la realidad es que hay paquetes que tienen funciones que se llama de la misma manera que funciones de otros paquetes (y como no hacerlo, ¡si hay más de 10,000 paquetes en el CRAN!) Ahora, ¿Cómo sabrá R a que función estamos haciendo referencia?
+
+Para esto, es muy util saber el namespace de cada paquete. Por ejemplo, una función llamada summarize se encuentra en los paquetes Hmisc y plyr (y tiene distinta funcionalidad cada función), y si están cargados los dos, ¿Cómo hacemos referencia a cada una de estas funciones? Con el namespace:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Hacer referencia a la funcion summarize() del paquete Hmisc}
+\NormalTok{Hmisc}\OperatorTok{::}\KeywordTok{summarize}\NormalTok{()}
+\CommentTok{# Hacer referencia a la funcion summarize() del paquete plyr}
+\NormalTok{plyr}\OperatorTok{::}\KeywordTok{summarize}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{paqueteruxeda-uxfatil-para-el-anuxe1lisis-de-datos}{%
+\section{Paquetería útil para el análisis de datos}\label{paqueteruxeda-uxfatil-para-el-anuxe1lisis-de-datos}}
+
+Gran parte del poder de R proviene de los paquetes que se pueden instalar desde el CRAN. De los paquetes más útiles para analizar datos son los siguientes:
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.30\columnwidth}\raggedright
+Importar datos\strut
+\end{minipage} & \begin{minipage}[b]{0.30\columnwidth}\raggedright
+Tratar datos\strut
+\end{minipage} & \begin{minipage}[b]{0.30\columnwidth}\raggedright
+Desarrollo de paquetes\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textbf{ggplot2}: visualizar datos\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textbf{readr}: importar .csv y fwf\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textbf{devtools} desarrollo de paquetes\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textbf{dplyr}: manipular datos\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textbf{readxl}: importar .xlsx y .xls\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textbf{roxygen2} desarrollo de documentación\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textbf{tidyr}: ordenar datos\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textbf{haven}: importar SAP, SPSS y Stata\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textbf{testthat} para pruebas unitarias\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textbf{stringr}: trabajar con texto\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textbf{httr}: comunicarse con APIs web\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textbf{lubridate}: trabajar con fechas\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+\textbf{rvest}: scrapping websites\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{estructuras-de-datos-en-r}{%
+\section{Estructuras de datos en R}\label{estructuras-de-datos-en-r}}
+
+En R, al igual que otros lenguajes de programación, hay distintos tipos de estructuras de datos. Las estructuras de datos básicas en R pueden ser organizadas de acuerdo a la dimensionalidad (1d, 2d, nd) y si contienen datos homogéneos o heterogéneos (Es importante destacar que R no tiene datos de 0-dimensional (escalares). Los que parecen ser escalares son de hecho vectores de longitud uno).
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Dim & Homogeneo & Heterogeneo\tabularnewline
+\midrule
+\endhead
+1d & vector atómico & lista\tabularnewline
+2d & matriz & Data Frame\tabularnewline
+nd & array &\tabularnewline
+\bottomrule
+\end{longtable}
+
+Datos homogéneos:
+
+\hypertarget{vectores-atuxf3micos}{%
+\subsection{Vectores atómicos}\label{vectores-atuxf3micos}}
+
+Son estructuras de datos homogéneas de una dimensión. Hay cuatro tipos de vectores básicos: lógicos, entero, numéricos y de caracteres.
+
+Operaciones:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Creación}: Son creados con la expresión \textbf{\texttt{c()}}
+\item
+  \textbf{Selección de elementos}: Se realiza con \textbf{\texttt{{[}\ {]}}}, indicando el índice dentro de los corchetes (es posible extraer un valor 3. indexando con números negativos)
+\item
+  \textbf{Agregar nuevo valor}: Se asigna un nuevo valor en el índice asignado.
+\item
+  \textbf{Cambiar un valor}: Se asigna el nuevo valor sobre un índice ya existente.
+\item
+  \textbf{Buscar un valor}: Usando la función \textbf{\texttt{match(vector,\ valor\_buscado)}} se obtiene un vector lógico indicando si la posición es el valor buscado.
+\item
+  \textbf{Operaciones aritméticas}: suma, multiplicación
+\end{enumerate}
+
+Algunas funciones comunes sobre vectores:
+
+\begin{itemize}
+\item
+  \texttt{length}: número de elementos en el vector
+\item
+  \texttt{class}: clase del vector
+\item
+  \texttt{summary}: resumen de información del vector
+\item
+  \texttt{unique}: valores únicos del vector
+\item
+  \texttt{table}: tabla de frecuencias para cada elemento del vector
+\item
+  \texttt{sum}: suma de los elementos del vector
+\item
+  \texttt{mean}: promedio de elementos del vector
+\item
+  \texttt{sd}: desviación estándar de los elementos del vector
+\item
+  \texttt{cumsum}: suma acumulada de elemento anterior del vector
+\end{itemize}
+
+\hypertarget{matrices-y-arrays.}{%
+\subsection{Matrices y arrays.}\label{matrices-y-arrays.}}
+
+Son estructuras de datos con más de una dimensión. Al igual que el vector, solamente puede contener un tipo de datos en específico. Al tener dos dimensiones, para acceder a un elemento se tiene que indexar sobre los renglones y las columnas.
+
+Operaciones:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Creación}: Son creados con la expresión \textbf{\texttt{matrix()}}
+\item
+  \textbf{Selección de elementos}: Se realiza con \textbf{\texttt{{[}\ ,\ {]}}}, indicando el índice de los renglones y las columnas dentro de los corchetes (es posible extraer un valor indexando con números negativos)
+\item
+  \textbf{Agregar nuevo valor}: Se asigna un nuevo valor en los índice asignados.
+\item
+  \textbf{Cambiar un valor}: Se asigna el nuevo valor sobre un índices ya existente.
+\item
+  \textbf{Buscar un valor}: Usando la función \textbf{\texttt{match(matriz,\ valor\_buscado)}} se obtiene un vector numérico indicando si la posición es el valor buscado.
+\item
+  \textbf{Operaciones aritméticas}: suma, multiplicación
+\end{enumerate}
+
+Algunas funciones comunes sobre matrices:
+
+\begin{itemize}
+\item
+  \texttt{dim}: dimensión de una matriz
+\item
+  \texttt{nrow}: número de renglones de la matriz
+\item
+  \texttt{rownames}: devuelve el nombre de los renglones
+\item
+  \texttt{rbind}: une los renglones de dos matrices del mismo tipo con el mismo número de columnas
+\item
+  \texttt{ncol}: número de columnas de la matriz
+\item
+  \texttt{colnames}: devuelve el nombre de las columnas
+\item
+  \texttt{cbind}: une las columnas de dos matrices del mismo tipo con el mismo número de renglones
+\item
+  \texttt{t}: para obtener la matriz transpuesta
+\item
+  \texttt{diag}: depende del argumento,
+
+  \begin{itemize}
+  \item
+    Si se da un vector como argumento, regresa una matriz diagonal con los elementos del
+    vector como las entradas de la diagonal.
+  \item
+    Si se da una matriz como argumento, regresa un vector que contiene
+    los elementos de la diagonal de la matriz.
+  \item
+    Si se da un valor numérico, regresa la matriz
+    identidad multiplicada por dicho valor.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{listas.}{%
+\subsection{Listas.}\label{listas.}}
+
+Una lista puede contener elementos de distinto tipo. Por ejemplo, un elemento puede ser numérico, otro puede ser una cadena de texto y otro un elemento booleano. Inclusive, un elemento de una lista puede ser otra lista.
+
+Operaciones:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Creación}: Son creados con la expresión \textbf{\texttt{list()}}
+\item
+  \textbf{Selección de elementos}: Se realiza con \textbf{\texttt{{[}{[}\ {]}{]}}}, indicando el índice dentro de los corchetes (\textbf{NO} es posible extraer un valor indexando con números negativos)
+\item
+  \textbf{Agregar nuevo valor}: Se asigna un nuevo valor en el índice asignado y usando \textbf{\texttt{{[}{[}\ {]}{]}}}.
+\item
+  \textbf{Cambiar un valor}: Se asigna el nuevo valor sobre un indice ya existente y usando \textbf{\texttt{{[}{[}\ {]}{]}}}.
+\item
+  \textbf{Buscar un valor}: Usando la función \textbf{\texttt{match(vector,\ valor\_buscado)}} se obtiene un vector lógico indicando si la posición es el valor buscado.
+\end{enumerate}
+
+Algunas funciones comunes sobre listas:
+
+\begin{itemize}
+\item
+  \texttt{length}: número de elementos en la lista
+\item
+  \texttt{class}: devuelve la clase lista
+\item
+  \texttt{unique}: valores únicos del vector
+\item
+  \texttt{unlist}: vuelve un vector la lista. (tener cuidado por que cambia el formato de los datos)
+\end{itemize}
+
+\hypertarget{data.frames}{%
+\subsection{Data.frames}\label{data.frames}}
+
+Un \textbf{data.frame} es un conjunto de vectores del mismo tamaño agrupados en una tabla. Son estructuras rectangulares donde cada columna tiene elementos de la misma clase, pero entre columnas pueden tener diferentes clases.
+
+Operaciones:
+1. \textbf{Creación}: Son creados con la expresión \textbf{\texttt{data.frame()}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  \textbf{Selección de elementos}: Se puede seleccionar una columna entera con el símbolo \textbf{\texttt{\$}} y el nombre de la columna: \textbf{\texttt{dataframe\$variable\_nombre}}, se puede seleccionar un elemento en particular al igual que una matriz.
+\item
+  \textbf{Agregar una nueva columna}: Se puede asignar una nuevo vector del mismo tamaño como una columna nueva.
+  \textbf{\texttt{dataframe\$variable\_nombra\ =\ \ vector\_nuevo}}
+\end{enumerate}
+
+Algunas funciones comunes sobre data frames:
+
+\begin{itemize}
+\item
+  \texttt{dim}: dimensión de una data.frame
+\item
+  \texttt{nrow}: número de renglones de un data.frame
+\item
+  \texttt{rownames}: devuelve el nombre de los renglones
+\item
+  \texttt{rbind}: une los renglones de dos data.frames del mismo tipo con el mismo número de columas
+\item
+  \texttt{ncol}: número de columnas de un data.frame
+\item
+  \texttt{colnames}: devuelve el nombre de las columnas
+\item
+  \texttt{cbind}: une las columnas de dos data.frames del mismo tipo con el mismo número de renglones
+\item
+  \texttt{summary}: se obtiene el resumen de los datos.
+\end{itemize}
+
+\hypertarget{funciones-condicionales-e-iteraciones}{%
+\section{Funciones, condicionales e iteraciones:}\label{funciones-condicionales-e-iteraciones}}
+
+Al igual que en otros lenguajes de programación, existen
+
+\hypertarget{funciones}{%
+\subsection{Funciones}\label{funciones}}
+
+Una función en R es muy parecido a una función común. Recibe unos parámetros de entrada, los cuales usa para arrojar otros de salida. Los objetos creados dentro de la función son \emph{locales}, es decir, solamente existen dentro del \emph{scope} de la función. Si se quiere exportar algún valor, o lista se tiene que mencionar explicitamente. (Por default, las funciones en R devuelven la última linea del código siempre y cuando no sea una asignación). La sintaxis es la siguiente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ mi_funcion <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(valor)\{}
+\NormalTok{   valor_exportado <-}\StringTok{ }\DecValTok{5}
+\NormalTok{   valor_no_exportado <-}\StringTok{ }\NormalTok{valor}
+\NormalTok{   valor_exportado}
+\NormalTok{ \}}
+ \KeywordTok{mi_funcion}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\hypertarget{condicionales}{%
+\subsection{Condicionales}\label{condicionales}}
+
+Otra estructura muy explotada en los lenguajes de programación son los condicionales. Los principales en R son \texttt{dplyr::if\_else} y \texttt{dplyr::case\_when}. El primero evalua si una expresión es verdadera o falsa y da distinto resultado en caso de ser verdadero y uno en caso de ser falso. El segundo vectoriza multiples condicionales \texttt{if}. Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{5}\OperatorTok{:}\DecValTok{5}\NormalTok{, }\OtherTok{NA}\NormalTok{)}
+\KeywordTok{if_else}\NormalTok{(x }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{, }\OtherTok{NA_integer_}\NormalTok{, x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] NA NA NA NA NA  0  1  2  3  4  5 NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{if_else}\NormalTok{(x }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{, }\StringTok{"negativo"}\NormalTok{, }\StringTok{"positivo"}\NormalTok{, }\StringTok{"faltante"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "negativo" "negativo" "negativo" "negativo" "negativo" "positivo"
+##  [7] "positivo" "positivo" "positivo" "positivo" "positivo" "faltante"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{edad <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\KeywordTok{case_when}\NormalTok{(}
+\NormalTok{  edad }\OperatorTok{>}\StringTok{ }\DecValTok{35} \OperatorTok{~}\StringTok{ "adulto"}\NormalTok{,}
+\NormalTok{  edad }\OperatorTok{>}\StringTok{ }\DecValTok{20} \OperatorTok{~}\StringTok{ "adulto joven"}\NormalTok{,}
+\NormalTok{  edad }\OperatorTok{>}\StringTok{ }\DecValTok{10} \OperatorTok{~}\StringTok{ "adolescente"}\NormalTok{,}
+  \OtherTok{TRUE} \OperatorTok{~}\StringTok{ "niño"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "niño" "niño" "niño" "niño" "niño" "niño" "niño" "niño" "niño" "niño"
+\end{verbatim}
+
+\hypertarget{iteraciones}{%
+\subsection{Iteraciones}\label{iteraciones}}
+
+Las iteraciones en cualquier lenguaje de programación son básicamente replicar un código múltiples veces con el mismo o distintos argumentos. En R los más básicos son los ciclos \texttt{for}, \texttt{while} y \texttt{repeat}:
+\includegraphics{figures/chapter3/3-for.png}
+Como se observa en la imagen, el ciclo \textbf{for} se ejecuta n veces con n conocido (o bien, sobre un vector ya conocido). Por otra parte, un ciclo \textbf{while} se ejecuta mientras una condición se cumpla, por lo que teóricamente puede seguir iterando mientras no se cumpla dicha condición. Finalmente, en el ciclo \textbf{repeat} se repite el código hasta que explicitamente se salga del código con un comando llamado \textbf{break}. Los dos comandos faltantes son \textbf{next} y \textbf{break}. El primero sirve para terminal la iteración actual y continuar con la siguiente, mientras que el segundo sirve para salir por completo del ciclo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ejemplos de for:}
+\ControlFlowTok{for}\NormalTok{ (numero }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{)\{}
+  \KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"El número es"}\NormalTok{, numero))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "El número es 1"
+## [1] "El número es 2"
+## [1] "El número es 3"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (anio }\ControlFlowTok{in} \KeywordTok{c}\NormalTok{(}\DecValTok{2015}\NormalTok{,}\DecValTok{2016}\NormalTok{,}\DecValTok{2017}\NormalTok{,}\DecValTok{2018}\NormalTok{))\{}
+  \KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"El año es"}\NormalTok{, anio))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "El año es 2015"
+## [1] "El año es 2016"
+## [1] "El año es 2017"
+## [1] "El año es 2018"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ejemplo de while}
+\NormalTok{i <-}\StringTok{ }\DecValTok{1}
+\ControlFlowTok{while}\NormalTok{ (i }\OperatorTok{<}\StringTok{ }\DecValTok{6}\NormalTok{) \{}
+  \KeywordTok{print}\NormalTok{(i)}
+\NormalTok{  i =}\StringTok{ }\NormalTok{i}\OperatorTok{+}\DecValTok{1}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ejemplo de repeat (con break)}
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}
+\ControlFlowTok{repeat}\NormalTok{ \{}
+  \KeywordTok{print}\NormalTok{(x)}
+\NormalTok{  x =}\StringTok{ }\NormalTok{x}\OperatorTok{+}\DecValTok{1}
+  \ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{==}\StringTok{ }\DecValTok{6}\NormalTok{)\{}
+  \ControlFlowTok{break}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ejemplo de repeat (con break y next)}
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}
+\ControlFlowTok{repeat}\NormalTok{ \{}
+  \ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{==}\StringTok{ }\DecValTok{3}\NormalTok{)\{}
+\NormalTok{    x =}\StringTok{ }\NormalTok{x}\OperatorTok{+}\DecValTok{1}
+    \ControlFlowTok{next}
+\NormalTok{  \}}
+  \KeywordTok{print}\NormalTok{(x)}
+\NormalTok{  x =}\StringTok{ }\NormalTok{x}\OperatorTok{+}\DecValTok{1}
+  \ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{==}\StringTok{ }\DecValTok{6}\NormalTok{)\{}
+  \ControlFlowTok{break}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+## [1] 2
+## [1] 4
+## [1] 5
+\end{verbatim}
+
+\hypertarget{ejercicios-de-practica-1}{%
+\section{Ejercicios de practica}\label{ejercicios-de-practica-1}}
+
+\hypertarget{ejercicio-3}{%
+\subsection{Ejercicio 3}\label{ejercicio-3}}
+
+Tipo de datos: String, double, integer, boolean
+Vector Atomico: vector con elementos del mismo tipo (string, double, entero)
+Matrix: vector de dos dimensiones con elementos del mismo tipo (string, double, entero)
+Lista: unidimensional elementos de distinto tipo (string, double, entero)
+Dataframe: multidimensional que nos permite almacenar una tabla o base de datos en R. Se compone de columnas y renglones
+
+Tipos de dato:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{soy_string <-}\StringTok{ "Hola soy una cadena de texto"}
+\NormalTok{soy_double <-}\StringTok{ }\FloatTok{5.3}
+\NormalTok{soy_integer <-}\StringTok{ }\DecValTok{5}
+\NormalTok{soy_boolean <-}\StringTok{ }\OtherTok{TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+Vector atómico:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{soy_vector_atomico <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)  }
+\KeywordTok{var}\NormalTok{(soy_vector_atomico)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(soy_vector_atomico)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(soy_vector_atomico)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+Matriz:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{soy_matrix <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{), }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\KeywordTok{mean}\NormalTok{(matrix)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in mean.default(matrix): argument is not numeric or logical: returning
+## NA
+\end{verbatim}
+
+\begin{verbatim}
+## [1] NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(matrix)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## NULL
+\end{verbatim}
+
+Lista:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{soy_lista <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{, }\StringTok{"texto"}\NormalTok{, }\FloatTok{1.5}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\KeywordTok{length}\NormalTok{(soy_lista)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{unique}\NormalTok{(soy_lista)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] "texto"
+## 
+## [[3]]
+## [1] 1.5
+\end{verbatim}
+
+Dataframe:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{soy_data_frame <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{col1 =} \KeywordTok{c}\NormalTok{(}\StringTok{"text1"}\NormalTok{, }\StringTok{"text2"}\NormalTok{), }\DataTypeTok{col2 =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{dim}\NormalTok{(soy_data_frame)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{colnames}\NormalTok{(soy_data_frame)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "col1" "col2"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(soy_data_frame)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     col1        col2     
+##  text1:1   Min.   :1.00  
+##  text2:1   1st Qu.:1.25  
+##            Median :1.50  
+##            Mean   :1.50  
+##            3rd Qu.:1.75  
+##            Max.   :2.00
+\end{verbatim}
+
+Operaciones comunes dataframe:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(mtcars, }\DecValTok{5}\NormalTok{) }\CommentTok{# obtiene primeros 5 registros}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(mtcars, }\DecValTok{5}\NormalTok{) }\CommentTok{# obtiene ultimos 5 registros}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 mpg cyl  disp  hp drat    wt qsec vs am gear carb
+## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2
+## Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.5  0  1    5    4
+## Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.5  0  1    5    6
+## Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8
+## Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2
+\end{verbatim}
+
+al operador \%\textgreater{}\% (en paquete magrittr) se le conoce como pipe, sirve para pasar datos (en un substituto de anidación):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"magrittr"}\NormalTok{, }\DataTypeTok{repo=}\StringTok{"http://cran.rstudio.com/"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Installing package into '/home/rstudio-user/R/x86_64-pc-linux-gnu-library/3.6'
+## (as 'lib' is unspecified)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(magrittr)}
+\KeywordTok{tail}\NormalTok{(}\KeywordTok{head}\NormalTok{(mtcars, }\DecValTok{10}\NormalTok{), }\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             mpg cyl  disp  hp drat   wt  qsec vs am gear carb
+## Valiant    18.1   6 225.0 105 2.76 3.46 20.22  1  0    3    1
+## Duster 360 14.3   8 360.0 245 3.21 3.57 15.84  0  0    3    4
+## Merc 240D  24.4   4 146.7  62 3.69 3.19 20.00  1  0    4    2
+## Merc 230   22.8   4 140.8  95 3.92 3.15 22.90  1  0    4    2
+## Merc 280   19.2   6 167.6 123 3.92 3.44 18.30  1  0    4    4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars }\OperatorTok{%>%}\StringTok{ }\KeywordTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{tail}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             mpg cyl  disp  hp drat   wt  qsec vs am gear carb
+## Valiant    18.1   6 225.0 105 2.76 3.46 20.22  1  0    3    1
+## Duster 360 14.3   8 360.0 245 3.21 3.57 15.84  0  0    3    4
+## Merc 240D  24.4   4 146.7  62 3.69 3.19 20.00  1  0    4    2
+## Merc 230   22.8   4 140.8  95 3.92 3.15 22.90  1  0    4    2
+## Merc 280   19.2   6 167.6 123 3.92 3.44 18.30  1  0    4    4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars }\OperatorTok{%>%}\StringTok{ }\KeywordTok{head}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars }\OperatorTok{%>%}\StringTok{ }\KeywordTok{tail}\NormalTok{(}\DecValTok{5}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 mpg cyl  disp  hp drat    wt qsec vs am gear carb
+## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2
+## Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.5  0  1    5    4
+## Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.5  0  1    5    6
+## Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8
+## Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2
+\end{verbatim}
+
+\hypertarget{importar-datos}{%
+\chapter{Importar datos}\label{importar-datos}}
+
+Una parte importante al usar R es importar datos desde un archivo externo de datos. Las extensiones más comunes de estos archivos son separados por coma: \texttt{*.csv}, archivos de excel \texttt{*.xlsx}, \texttt{*.xls}, archivos de SPSS \texttt{*.sav}, archivos de STATA \texttt{*.dta} o archivos de SAS \texttt{*.sas}
+
+\hypertarget{archivos-.csv}{%
+\section{\texorpdfstring{Archivos \textbf{.csv}}{Archivos .csv}}\label{archivos-.csv}}
+
+Importar archivos desde csv con R se puede realizar de tres maneras: Con la función: \texttt{utils::read.csv()}, con la función \texttt{readr::read\_csv()} y con la funcion \texttt{data.table::fread()}.
+
+La función más rápida es \texttt{fread()}del paquete \texttt{data.table}, seguida de la función \texttt{read\_csv} y después la función \texttt{read.csv}. Las ventajas de la función \texttt{read\_csv} es que el parsing de las columnas es más facil; es decir, detecta mejor si es una columna numérica, si tiene formato de fecha, de caracter, etc. Por otra parte la única ventaja de la función \texttt{read.csv} es que viene incluida en la paquetería \textbf{core} de R.
+
+En mi opinión, si se tiene una cantidad moderada de datos y se quiere hacer análisis de datos, la función óptima es \texttt{read\_csv}.
+
+\hypertarget{archivos-.xlsx-y-.xls}{%
+\section{\texorpdfstring{Archivos \textbf{.xlsx y .xls}}{Archivos .xlsx y .xls}}\label{archivos-.xlsx-y-.xls}}
+
+Para leer archivos \texttt{xlsx} y \texttt{xls} también hay distintas opciones, entre ellas los paquetes \texttt{XLConnect}, \texttt{xlsx}, \texttt{gdata} y \texttt{readxl}. Cada uno de estos paquetes tiene distintas funcionalidades y provienen de diferentes paradigmas, pero la opción que les recomendaría es la función \texttt{read\_excel()} del paquete \texttt{readxl}.
+
+La instalación del paquete es muy rápida y tiene compatibilidad con otros paquetes de análisis de datos de R. Esta función trabaja de la siguiente manera:
+
+readxl::read\_excel()
+
+\hypertarget{otros-formatos-de-archivos-.sav-.data-.sas}{%
+\section{\texorpdfstring{Otros formatos de archivos \textbf{.sav}, \textbf{.data}, \textbf{.sas}}{Otros formatos de archivos .sav, .data, .sas}}\label{otros-formatos-de-archivos-.sav-.data-.sas}}
+
+Al igual que las dos subsecciones pasadas, hay distintos paquetes para leer archivos de SPSS, STATA y SAS, pero una de las mejores opciones es el paquete \texttt{haven}. Este paquete permite importar y exportar estos archivos facilmente:
+
+haven::read\_spss()
+
+haven::read\_stata()
+
+haven::read\_sas()
+
+Una de los principales motivos de la selección de estos paquetes es que son compatibles con una colección de paquetes que se les llama el tidyverse, el cual fue diseñado por Hadley Wickham, el CEO de RStudio. Esta colección está diseñada bajo la misma gramática, filosofía y estructuras de datos. En estas notas hay una sección especial dedicada a esta colección de paquetes.
+
+\hypertarget{ejercicios-de-pruxe1ctica}{%
+\section{Ejercicios de práctica}\label{ejercicios-de-pruxe1ctica}}
+
+\hypertarget{ejercicio-4}{%
+\subsection{Ejercicio 4}\label{ejercicio-4}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readr)}
+\NormalTok{readr}\OperatorTok{::}\KeywordTok{write_csv}\NormalTok{(mtcars, }\StringTok{"mtcars.csv"}\NormalTok{)}
+\NormalTok{file <-}\StringTok{ }\NormalTok{readr}\OperatorTok{::}\KeywordTok{read_csv}\NormalTok{(}\StringTok{"mtcars.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   mpg = col_double(),
+##   cyl = col_double(),
+##   disp = col_double(),
+##   hp = col_double(),
+##   drat = col_double(),
+##   wt = col_double(),
+##   qsec = col_double(),
+##   vs = col_double(),
+##   am = col_double(),
+##   gear = col_double(),
+##   carb = col_double()
+## )
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{readr}\OperatorTok{::}\KeywordTok{write_delim}\NormalTok{(mtcars, }\StringTok{"mtcars.txt"}\NormalTok{, }\DataTypeTok{delim =} \StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\NormalTok{file <-}\StringTok{ }\NormalTok{readr}\OperatorTok{::}\KeywordTok{read_delim}\NormalTok{(}\StringTok{"mtcars.txt"}\NormalTok{, }\DataTypeTok{delim =} \StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   mpg = col_double(),
+##   cyl = col_double(),
+##   disp = col_double(),
+##   hp = col_double(),
+##   drat = col_double(),
+##   wt = col_double(),
+##   qsec = col_double(),
+##   vs = col_double(),
+##   am = col_double(),
+##   gear = col_double(),
+##   carb = col_double()
+## )
+\end{verbatim}
+
+\hypertarget{ejercicio-5}{%
+\subsection{Ejercicio 5}\label{ejercicio-5}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readxl)}
+\KeywordTok{library}\NormalTok{(writexl)}
+
+\NormalTok{writexl}\OperatorTok{::}\KeywordTok{write_xlsx}\NormalTok{(mtcars, }\StringTok{"mtcars.xlsx"}\NormalTok{)}
+\NormalTok{file <-}\StringTok{ }\NormalTok{readxl}\OperatorTok{::}\KeywordTok{read_excel}\NormalTok{(}\StringTok{"mtcars.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ejercicio-6}{%
+\subsection{Ejercicio 6}\label{ejercicio-6}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(haven)}
+
+\NormalTok{haven}\OperatorTok{::}\KeywordTok{write_sas}\NormalTok{(mtcars, }\StringTok{"mtcars.sas7bdat"}\NormalTok{)}
+\NormalTok{file <-}\StringTok{ }\NormalTok{haven}\OperatorTok{::}\KeywordTok{read_sas}\NormalTok{(}\StringTok{"mtcars.sas7bdat"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{intro-a-visualizaciuxf3n-de-datos}{%
+\chapter{Intro a visualización de datos}\label{intro-a-visualizaciuxf3n-de-datos}}
+
+\hypertarget{motivaciuxf3n}{%
+\section{Motivación}\label{motivaciuxf3n}}
+
+R tiene un framework para crear gráficas que (creo yo) es de los más versátiles para cosas estáticas. Este framework es llamado ggplot. Además de ese framework cuenta con otros como lattice o base, pero en general están en desuso.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(alluvial)}
+\KeywordTok{library}\NormalTok{(ggalluvial)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: ggplot2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(magrittr)}
+\KeywordTok{data}\NormalTok{(vaccinations)}
+\NormalTok{cbPalette <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"#999999"}\NormalTok{, }\StringTok{"#E69F00"}\NormalTok{, }\StringTok{"#56B4E9"}\NormalTok{, }\StringTok{"#009E73"}\NormalTok{, }\StringTok{"#F0E442"}\NormalTok{,}
+               \StringTok{"#0072B2"}\NormalTok{, }\StringTok{"#D55E00"}\NormalTok{, }\StringTok{"#CC79A7"}\NormalTok{)}
+\KeywordTok{levels}\NormalTok{(vaccinations}\OperatorTok{$}\NormalTok{response) <-}\StringTok{ }\KeywordTok{rev}\NormalTok{(}\KeywordTok{levels}\NormalTok{(vaccinations}\OperatorTok{$}\NormalTok{response))}
+\NormalTok{vaccinations }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}
+  \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ survey, }
+      \DataTypeTok{fill =}\NormalTok{ response,}
+      \DataTypeTok{stratum =}\NormalTok{ response, }
+      \DataTypeTok{alluvium =}\NormalTok{ subject,}
+      \DataTypeTok{weight =}\NormalTok{ freq)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_flow}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_stratum}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{.8}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\DataTypeTok{stat =} \StringTok{"stratum"}\NormalTok{, }\DataTypeTok{infer.label =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{size =} \FloatTok{2.5}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{, }
+                     \DataTypeTok{panel.background =} \KeywordTok{element_rect}\NormalTok{(}\DataTypeTok{fill =} \OtherTok{NA}\NormalTok{),}
+                     \DataTypeTok{panel.grid.major.y =} \KeywordTok{element_line}\NormalTok{(}\DataTypeTok{size =} \DecValTok{1}\NormalTok{),}
+                     \DataTypeTok{panel.grid.major.x =} \KeywordTok{element_line}\NormalTok{(}\DataTypeTok{size =} \DecValTok{0}\NormalTok{),}
+                     \DataTypeTok{panel.grid.minor =} \KeywordTok{element_line}\NormalTok{(}\DataTypeTok{size =} \DecValTok{0}\NormalTok{),}
+                     \DataTypeTok{axis.line =} \KeywordTok{element_line}\NormalTok{(}\DataTypeTok{size =} \DecValTok{0}\NormalTok{),}
+                     \DataTypeTok{panel.border =} \KeywordTok{element_rect}\NormalTok{(}\DataTypeTok{size =} \DecValTok{0}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{( }\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(cbPalette, }\StringTok{"#999999"}\NormalTok{, }\StringTok{"#999999"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Respuestas en encuestas de vacunación en tres puntos en el tiempo"}\NormalTok{, }
+       \DataTypeTok{x =} \StringTok{"encuesta"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"numero de personas"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+Si notan, el texto para crear la grafíca es largo y parece dificil, pero con practica todos estos comandos se vuelven intuitivos. Para esta intro a visualización de datos, solamente veremos diferentes tipos de gráficas y en capitulos siguientes profundizaremos en creación de gráficas. Además veremos conceptos básicos de bases de datos.
+
+\hypertarget{formato-largo-y-ancho-de-bases}{%
+\section{Formato largo y ancho de bases}\label{formato-largo-y-ancho-de-bases}}
+
+En procesamiento de bases comunmente se utilizan dos tipos de layout (largo/long, ancho/wide). En el formato wide, se tiene un renglon por cada data point y multiples columnas que contienen los atributos. En el formato long, cada punto se repite n veces de acuerdo al nùmero de atributos. R viene con algunos databases integrados, mtcars es uno de ellos.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  tidyr::gather() pasa de formato ancho a largo
+\item
+  tidyr::spread() pasa de formato largo a ancho
+\end{enumerate}
+
+Ejemplo de formato ancho:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'tidyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:magrittr':
+## 
+##     extract
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wide_db <-}\StringTok{ }
+\StringTok{  }\NormalTok{mtcars }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{car_type =} \KeywordTok{row.names}\NormalTok{(.)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(car_type }\OperatorTok{==}\StringTok{ "Camaro Z28"}\NormalTok{) }
+
+\NormalTok{wide_db}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    mpg cyl disp  hp drat   wt  qsec vs am gear carb   car_type
+## 1 13.3   8  350 245 3.73 3.84 15.41  0  0    3    4 Camaro Z28
+\end{verbatim}
+
+Ejemplo de formato largo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{long_db <-}\StringTok{ }
+\StringTok{  }\NormalTok{wide_db }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{gather}\NormalTok{(attribute, value, mpg}\OperatorTok{:}\NormalTok{carb)}
+\NormalTok{long_db}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      car_type attribute  value
+## 1  Camaro Z28       mpg  13.30
+## 2  Camaro Z28       cyl   8.00
+## 3  Camaro Z28      disp 350.00
+## 4  Camaro Z28        hp 245.00
+## 5  Camaro Z28      drat   3.73
+## 6  Camaro Z28        wt   3.84
+## 7  Camaro Z28      qsec  15.41
+## 8  Camaro Z28        vs   0.00
+## 9  Camaro Z28        am   0.00
+## 10 Camaro Z28      gear   3.00
+## 11 Camaro Z28      carb   4.00
+\end{verbatim}
+
+El formato que comunmente estamos acostumbrados es el ancho, pero para R y procesamiento de datos es más común y mejor práctica trabajar sobre formatos largos.
+
+\hypertarget{tidyverse}{%
+\section{tidyverse}\label{tidyverse}}
+
+Tidyverse es una colección de paquetes/librerias que sirven para el análisis de datos, este consiste en un grupo de paquetes para facilitar el trabajo con datos.
+
+\hypertarget{ggplot}{%
+\section{ggplot}\label{ggplot}}
+
+ggplot es el paquete de visualización de datos que consiste en distintos elementos. Hay que diferenciar entre los distintos conceptos:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  ggplot2 es una libreria que trabaja por `capas' y trabaja sobre formatos largos de base de datos
+\item
+  ggplot(): es la base de la gráfica. Inicializa una grafica vacia.
+\item
+  aes(): se les llama los aesthetics. Es lo que define en que valor de x, y, color, relleno, tamaño tendrá la gráfica
+\end{enumerate}
+
+Todas las funciones de ggplot que inician con geom\_ definen distintos tipos de gráficas.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  geom\_point(): Te define una grafica de puntos (o scatterplot).
+\item
+  geom\_bar(): Te define una grafica de barras (o barplot)
+\item
+  geom\_histogram(): Te define un histograma
+\item
+  geom\_line(): Te define una gráfica de linea
+\item
+  geom\_boxplot(): Te define gráfica de boxplot
+\end{enumerate}
+
+Asi como muchos otros tipos de gráfica. A cada gráfica le podemos añadir o modificar cuestiones del formato.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  theme(): dentro de esta funcion podemos agregar o modificar particularidades de la grafica
+\end{enumerate}
+
+Además, se le puede modificar el texto de la gráfica
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\tightlist
+\item
+  labs(): te permite modificar el texto del eje x, eje y, titulo, subtitulo, caption, etc
+\end{enumerate}
+
+\hypertarget{scatterplot}{%
+\subsection{Scatterplot}\label{scatterplot}}
+
+Sin formato
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{mtcars }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{car_type =} \KeywordTok{row.names}\NormalTok{(.)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\CommentTok{# crea un empty plot}
+\StringTok{    }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ car_type, }\DataTypeTok{y =}\NormalTok{ carb, }\DataTypeTok{color =}\NormalTok{ carb)) }\OperatorTok{+}\StringTok{ }\CommentTok{# vamos agregando capas }
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\CommentTok{# agregamos formato }
+\StringTok{    }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Automoviles por nùmero de cilindros"}\NormalTok{, }
+         \DataTypeTok{subtitle =} \StringTok{"Se pueden añadir distintos elementos a la grafica"}\NormalTok{,}
+         \DataTypeTok{caption =} \StringTok{"Tambien se pueden añadir pies de nota"}\NormalTok{,}
+         \DataTypeTok{x =} \StringTok{"Tipo de automovil"}\NormalTok{,}
+         \DataTypeTok{y =} \StringTok{"Númerop de cilindros"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{# tambièn se pueden agregar elementos extra}
+\StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\CommentTok{# incluso se puede sobreescribir los elementos definidos previamente}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+Con formato
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{car_type =} \KeywordTok{row.names}\NormalTok{(.)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ car_type, }\DataTypeTok{y =}\NormalTok{ carb, }\DataTypeTok{color =} \KeywordTok{factor}\NormalTok{(carb), }\DataTypeTok{size =}\NormalTok{ carb)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{),}
+        \DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Automoviles por nùmero de cilindros"}\NormalTok{, }
+       \DataTypeTok{subtitle =} \StringTok{"Se pueden añadir distintos elementos a la grafica"}\NormalTok{,}
+       \DataTypeTok{caption =} \StringTok{"Tambien se pueden añadir pies de nota"}\NormalTok{,}
+       \DataTypeTok{x =} \StringTok{"Tipo de automovil"}\NormalTok{,}
+       \DataTypeTok{y =} \StringTok{"Número de cilindros"}\NormalTok{,}
+       \DataTypeTok{color =} \StringTok{"Número de cilindros"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{guides}\NormalTok{(}\DataTypeTok{size =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\hypertarget{barplot}{%
+\subsection{Barplot}\label{barplot}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{car_type =} \KeywordTok{row.names}\NormalTok{(.)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{factor}\NormalTok{(carb), }\DataTypeTok{fill =} \KeywordTok{factor}\NormalTok{(carb)), }
+           \DataTypeTok{stat =} \StringTok{"count"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"dodgerblue4"}\NormalTok{, }\StringTok{"firebrick4"}\NormalTok{, }\StringTok{"goldenrod3"}\NormalTok{, }\StringTok{"darkslategray4"}\NormalTok{, }\StringTok{"deeppink4"}\NormalTok{, }\StringTok{"chartreuse4"}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{),}
+        \DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Automoviles por nùmero de cilindros"}\NormalTok{, }
+       \DataTypeTok{subtitle =} \StringTok{"Se pueden añadir distintos elementos a la grafica"}\NormalTok{,}
+       \DataTypeTok{caption =} \StringTok{"Tambien se pueden añadir pies de nota"}\NormalTok{,}
+       \DataTypeTok{x =} \StringTok{"Tipo de automovil"}\NormalTok{,}
+       \DataTypeTok{y =} \StringTok{"Número de cilindros"}\NormalTok{,}
+       \DataTypeTok{color =} \StringTok{"Número de cilindros"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{guides}\NormalTok{(}\DataTypeTok{size =} \OtherTok{FALSE}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\hypertarget{ejercicios-de-pruxe1ctica-1}{%
+\section{Ejercicios de práctica}\label{ejercicios-de-pruxe1ctica-1}}
+
+\hypertarget{ejercicio-7}{%
+\subsection{Ejercicio 7}\label{ejercicio-7}}
+
+\begin{itemize}
+\tightlist
+\item
+  tidyr::gather() pasa de formato ancho a largo
+\item
+  tidyr::spread() pasa de formato largo a ancho
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyr)}
+\NormalTok{wide_db <-}\StringTok{ }
+\StringTok{  }\NormalTok{mtcars }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{car_type =} \KeywordTok{row.names}\NormalTok{(.)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(car_type }\OperatorTok{==}\StringTok{ "Camaro Z28"}\NormalTok{) }
+
+\NormalTok{wide_db }\OperatorTok{%>%}\StringTok{ }\NormalTok{head}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    mpg cyl disp  hp drat   wt  qsec vs am gear carb   car_type
+## 1 13.3   8  350 245 3.73 3.84 15.41  0  0    3    4 Camaro Z28
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{long_db <-}\StringTok{ }
+\StringTok{  }\NormalTok{wide_db }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{gather}\NormalTok{(attribute, value, mpg}\OperatorTok{:}\NormalTok{carb)}
+
+\NormalTok{long_db }\OperatorTok{%>%}\StringTok{ }\NormalTok{head}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     car_type attribute  value
+## 1 Camaro Z28       mpg  13.30
+## 2 Camaro Z28       cyl   8.00
+## 3 Camaro Z28      disp 350.00
+## 4 Camaro Z28        hp 245.00
+## 5 Camaro Z28      drat   3.73
+## 6 Camaro Z28        wt   3.84
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wide_db <-}\StringTok{ }
+\StringTok{  }\NormalTok{long_db }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{spread}\NormalTok{(attribute, value)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ejercicio-8}{%
+\subsection{Ejercicio 8}\label{ejercicio-8}}
+
+Analiza como se transiciona del siguiente chunk de código:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{mtcars }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{car_type =} \KeywordTok{row.names}\NormalTok{(.)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\CommentTok{# crea un empty plot}
+\StringTok{    }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ car_type, }\DataTypeTok{y =}\NormalTok{ carb, }\DataTypeTok{color =}\NormalTok{ carb)) }\OperatorTok{+}\StringTok{ }\CommentTok{# vamos agregando capas }
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\CommentTok{# agregamos formato }
+\StringTok{    }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Automoviles por nùmero de cilindros"}\NormalTok{, }
+         \DataTypeTok{subtitle =} \StringTok{"Se pueden añadir distintos elementos a la grafica"}\NormalTok{,}
+         \DataTypeTok{caption =} \StringTok{"Tambien se pueden añadir pies de nota"}\NormalTok{,}
+         \DataTypeTok{x =} \StringTok{"Tipo de automovil"}\NormalTok{,}
+         \DataTypeTok{y =} \StringTok{"Númerop de cilindros"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{# tambièn se pueden agregar elementos extra}
+\StringTok{  }\KeywordTok{theme_minimal}\NormalTok{() }\CommentTok{# incluso se puede sobreescribir los elementos definidos previamente}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\hypertarget{ejercicio-9}{%
+\subsection{Ejercicio 9}\label{ejercicio-9}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{car_type =} \KeywordTok{row.names}\NormalTok{(.)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ car_type, }\DataTypeTok{y =}\NormalTok{ carb, }\DataTypeTok{color =} \KeywordTok{factor}\NormalTok{(carb), }\DataTypeTok{size =}\NormalTok{ carb)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{),}
+        \DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Automoviles por nùmero de cilindros"}\NormalTok{, }
+       \DataTypeTok{subtitle =} \StringTok{"Se pueden añadir distintos elementos a la grafica"}\NormalTok{,}
+       \DataTypeTok{caption =} \StringTok{"Tambien se pueden añadir pies de nota"}\NormalTok{,}
+       \DataTypeTok{x =} \StringTok{"Tipo de automovil"}\NormalTok{,}
+       \DataTypeTok{y =} \StringTok{"Número de cilindros"}\NormalTok{,}
+       \DataTypeTok{color =} \StringTok{"Número de cilindros"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{guides}\NormalTok{(}\DataTypeTok{size =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\hypertarget{estaduxedstica-buxe1sica}{%
+\chapter{Estadística básica}\label{estaduxedstica-buxe1sica}}
+
+Para esta sección de estadística básica veremos funciones asociadas a distribuciones. Estas son de 4 tipos para varios tipos de distribución:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# dnorm, dt, dchisq, df funcion de distribución de la normal, t-student, chisquared, f }
+\CommentTok{# Nos dice la 'altura' en los puntos dados. Para distribuciones continuas no es muy util, pero para discretas si}
+\KeywordTok{dnorm}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{100}\NormalTok{, }\DecValTok{-1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{100}\NormalTok{),}\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.0000000 0.2419707 0.3989423 0.2419707 0.0000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dbinom}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{size =} \DecValTok{2}\NormalTok{, }\DataTypeTok{prob =} \FloatTok{.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.25 0.50 0.25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# qnorm, qt, qchisq, qf la funcion quantile de las distribuciones. Recibe como argumento la probabilidad y devuelve el valor del quantil}
+\KeywordTok{qnorm}\NormalTok{(}\DataTypeTok{p =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,.}\DecValTok{5}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{) }\CommentTok{# en que valor te acumula 0%, 50% y 100%}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -Inf    0  Inf
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# pnorm, pt, pchisq, pf la funcion inversa a la quantile. cuanta probabilidad te acumula en los valores dados}
+\KeywordTok{pnorm}\NormalTok{(}\DataTypeTok{q =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\OtherTok{Inf}\NormalTok{, }\DecValTok{0}\NormalTok{, }\OtherTok{Inf}\NormalTok{), }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.0 0.5 1.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# rnorm, rt, rchisq, rf te devuelve random samples de la distribución en cuestión}
+\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1.51010630  0.37789850  0.47795861  1.73064133 -1.37950997 -1.70918656
+##  [7]  0.61482037 -0.06169038 -1.06827546  1.01925245
+\end{verbatim}
+
+\hypertarget{ejercicios-de-pruxe1ctica-2}{%
+\section{Ejercicios de práctica}\label{ejercicios-de-pruxe1ctica-2}}
+
+\hypertarget{ejercicio-10}{%
+\subsection{Ejercicio 10}\label{ejercicio-10}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages ------------------ tidyverse 1.3.0 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.0     v purrr   0.3.3
+## v tibble  3.0.0     v dplyr   0.8.5
+## v tidyr   1.0.2     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts --------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{10}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DataTypeTok{by =} \FloatTok{.01}\NormalTok{))) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}
+      \DataTypeTok{normal =} \KeywordTok{dnorm}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{),}
+      \DataTypeTok{t_student =} \KeywordTok{dt}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{df =} \DecValTok{10}\NormalTok{),}
+      \DataTypeTok{chi_sq =} \KeywordTok{dchisq}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{df =} \DecValTok{10}\NormalTok{),}
+      \DataTypeTok{unif =} \KeywordTok{dunif}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{min =} \KeywordTok{min}\NormalTok{(x), }\DataTypeTok{max =} \KeywordTok{max}\NormalTok{(x))}
+\NormalTok{      ) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{gather}\NormalTok{(distribucion, valor, normal}\OperatorTok{:}\NormalTok{unif) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ valor, }\DataTypeTok{color =}\NormalTok{ distribucion))}\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_line}\NormalTok{()}\OperatorTok{+}
+\StringTok{    }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{distribucion, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Chap04_basic_stats_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\hypertarget{distribution-function}{%
+\subsection{Distribution function}\label{distribution-function}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{q =} \KeywordTok{c}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{10}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DataTypeTok{by =} \FloatTok{.01}\NormalTok{))) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}
+      \DataTypeTok{normal =} \KeywordTok{pnorm}\NormalTok{(}\DataTypeTok{q =}\NormalTok{ q, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{),}
+      \DataTypeTok{t_student =} \KeywordTok{pt}\NormalTok{(}\DataTypeTok{q =}\NormalTok{ q, }\DataTypeTok{df =} \DecValTok{10}\NormalTok{),}
+      \DataTypeTok{chi_sq =} \KeywordTok{pchisq}\NormalTok{(}\DataTypeTok{q =}\NormalTok{ q, }\DataTypeTok{df =} \DecValTok{1}\NormalTok{),}
+      \DataTypeTok{unif =} \KeywordTok{punif}\NormalTok{(}\DataTypeTok{q =}\NormalTok{ q, }\DataTypeTok{min =} \KeywordTok{min}\NormalTok{(q), }\DataTypeTok{max =} \KeywordTok{max}\NormalTok{(q))}
+\NormalTok{    ) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{gather}\NormalTok{(distribucion, valor, normal}\OperatorTok{:}\NormalTok{unif) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ q, }\DataTypeTok{y =}\NormalTok{ valor, }\DataTypeTok{color =}\NormalTok{ distribucion))}\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_line}\NormalTok{()}\OperatorTok{+}
+\StringTok{    }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{distribucion, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Chap04_basic_stats_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\hypertarget{quantile-function}{%
+\subsection{Quantile function}\label{quantile-function}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{q =} \KeywordTok{c}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\FloatTok{0.01}\NormalTok{, }\FloatTok{.99}\NormalTok{, }\DataTypeTok{by =} \FloatTok{.01}\NormalTok{))) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}
+      \DataTypeTok{normal =} \KeywordTok{qnorm}\NormalTok{(}\DataTypeTok{p =}\NormalTok{ q, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{),}
+      \DataTypeTok{t_student =} \KeywordTok{qt}\NormalTok{(}\DataTypeTok{p =}\NormalTok{ q, }\DataTypeTok{df =} \DecValTok{10}\NormalTok{),}
+      \DataTypeTok{chi_sq =} \KeywordTok{qchisq}\NormalTok{(}\DataTypeTok{p =}\NormalTok{ q, }\DataTypeTok{df =} \DecValTok{1}\NormalTok{),}
+      \DataTypeTok{unif =} \KeywordTok{qunif}\NormalTok{(}\DataTypeTok{p =}\NormalTok{ q, }\DataTypeTok{min =} \KeywordTok{min}\NormalTok{(q), }\DataTypeTok{max =} \KeywordTok{max}\NormalTok{(q))}
+\NormalTok{    ) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{gather}\NormalTok{(distribucion, valor, normal}\OperatorTok{:}\NormalTok{unif) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ q, }\DataTypeTok{y =}\NormalTok{ valor, }\DataTypeTok{color =}\NormalTok{ distribucion))}\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_line}\NormalTok{()}\OperatorTok{+}
+\StringTok{    }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{distribucion, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Chap04_basic_stats_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\hypertarget{random-function}{%
+\subsection{Random function}\label{random-function}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data.frame}\NormalTok{(}
+      \DataTypeTok{normal =} \KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10000}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{),}
+      \DataTypeTok{t_student =} \KeywordTok{rt}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10000}\NormalTok{, }\DataTypeTok{df =} \DecValTok{10}\NormalTok{),}
+      \DataTypeTok{chi_sq =} \KeywordTok{rchisq}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10000}\NormalTok{, }\DataTypeTok{df =} \DecValTok{1}\NormalTok{),}
+      \DataTypeTok{unif =} \KeywordTok{runif}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10000}\NormalTok{, }\DataTypeTok{min =} \DecValTok{-3}\NormalTok{, }\DataTypeTok{max =} \DecValTok{3}\NormalTok{)}
+\NormalTok{    ) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{gather}\NormalTok{(distribucion, valor, normal}\OperatorTok{:}\NormalTok{unif) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ valor, }\DataTypeTok{fill =}\NormalTok{ distribucion))}\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_density}\NormalTok{()}\OperatorTok{+}
+\StringTok{    }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{distribucion, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Chap04_basic_stats_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\bibliography{book.bib}
+
+\end{document}

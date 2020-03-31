@@ -1,5 +1,5 @@
 ---
-title: "06_estimacion_intervalos"
+title: "Importar datos"
 author: "Salvador Garcia"
 output:   
   html_document:
@@ -39,3 +39,70 @@ haven::read_sas()
 
 Una de los principales motivos de la selección de estos paquetes es que son compatibles con una colección de paquetes que se les llama el tidyverse, el cual fue diseñado por Hadley Wickham, el CEO de RStudio. Esta colección está diseñada bajo la misma gramática, filosofía y estructuras de datos. En estas notas hay una sección especial dedicada a esta colección de paquetes.
 
+
+## Ejercicios de práctica
+### Ejercicio 4
+
+```r
+library(readr)
+readr::write_csv(mtcars, "mtcars.csv")
+file <- readr::read_csv("mtcars.csv")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   mpg = col_double(),
+##   cyl = col_double(),
+##   disp = col_double(),
+##   hp = col_double(),
+##   drat = col_double(),
+##   wt = col_double(),
+##   qsec = col_double(),
+##   vs = col_double(),
+##   am = col_double(),
+##   gear = col_double(),
+##   carb = col_double()
+## )
+```
+
+```r
+readr::write_delim(mtcars, "mtcars.txt", delim = "\t")
+file <- readr::read_delim("mtcars.txt", delim = "\t")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   mpg = col_double(),
+##   cyl = col_double(),
+##   disp = col_double(),
+##   hp = col_double(),
+##   drat = col_double(),
+##   wt = col_double(),
+##   qsec = col_double(),
+##   vs = col_double(),
+##   am = col_double(),
+##   gear = col_double(),
+##   carb = col_double()
+## )
+```
+
+### Ejercicio 5
+
+```r
+library(readxl)
+library(writexl)
+
+writexl::write_xlsx(mtcars, "mtcars.xlsx")
+file <- readxl::read_excel("mtcars.xlsx")
+```
+
+### Ejercicio 6
+
+```r
+library(haven)
+
+haven::write_sas(mtcars, "mtcars.sas7bdat")
+file <- haven::read_sas("mtcars.sas7bdat")
+```

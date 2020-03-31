@@ -2,6 +2,7 @@ book_filename: "bookdown-start"
 chapter_name: "Chapter "
 repo: 
 output_dir: docs
-rmd_files: ["index.Rmd", "Chap01_introduction.Rmd", "Chap02_data_import.Rmd"]
+rmd_files: ["index.Rmd", "Chap01_introduction.Rmd", "Chap02_data_import.Rmd", 
+            "Chap03_intro_data_visualization.Rmd", "Chap04_basic_stats.Rmd"]
 clean: [packages.bib, bookdown.bbl]
 new_session: yes

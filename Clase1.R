@@ -1,4 +1,4 @@
-# 1.1.1) R Projects & Paths -----------------------------------------------
+# Ejercicio 1) R Projects & Paths -----------------------------------------------
 {
   # Directorio de trabajo (PATH)
   # Es donde se guardan por default los archivos y donde se leen por default. Podemos dividirlo como: 
@@ -8,9 +8,9 @@
 }
 
 getwd() # obtiene el path absoluto por default
-setwd("/cloud/project/") # permite hacer overwrite del path por default
+setwd("/cloud/project/class_2020_R") # permite hacer overwrite del path por default
 
-# 1.1.2) Installing & loading packages ------------------------------------
+# Ejercicio 2) Installing & loading packages ------------------------------------
 {
   # Para usar un paquete/libreria en R, son dos pasos: instalar y cargar libreria
   # Paso 1 (instalar paquete/libreria) - solo se corre una vez: install.packages("package")
@@ -18,26 +18,108 @@ setwd("/cloud/project/") # permite hacer overwrite del path por default
   # Para visualizar todos los paquetes se puede ocupar el panel derecho en la pestaña de packages o bien con la funcion: installed.packages()
 }
 
-install.packages("tidyr")
+install.packages("tidyr", repo="http://cran.rstudio.com/")
 library(tidyr) 
 installed.packages()
 
-# 1.1.3) Dataframes -------------------------------------------------------
+# Ejercicio 3) Estructura de datos -------------------------------------------------------
 {
-  # Un dataframe es una estructura de datos que nos permite almacenar una tabla o base de datos en R. Se compone de columnas y renglones   
+  # Tipo de datos: String, double, integer, boolean
+  # Vector Atomico: vector con elementos del mismo tipo (string, double, entero)
+  # Matrix: vector de dos dimensiones con elementos del mismo tipo (string, double, entero)
+  # Lista: unidimensional elementos de distinto tipo (string, double, entero)
+  # Dataframe: multidimensional que nos permite almacenar una tabla o base de datos en R. Se compone de columnas y renglones   
+}  
+
+soy_string <- "Hola soy una cadena de texto"
+soy_double <- 5.3
+soy_integer <- 5
+soy_boolean <- TRUE
+
+# vector atomico
+soy_vector_atomico <- c(1,2,3)  
+var(soy_vector_atomico)
+mean(soy_vector_atomico)
+length(soy_vector_atomico)
+
+
+# matrix
+soy_matrix <- matrix(c(1,2,3,4), ncol = 2)
+mean(matrix)
+cov(matrix)
+dim(matrix)
+
+# list
+soy_lista <- list(1, "texto", 1.5, 1)
+length(soy_lista)
+unique(soy_lista)
+
+# dataframe
+soy_data_frame <- data.frame(col1 = c("text1", "text2"), col2 = c(1,2))
+dim(soy_data_frame)
+colnames(soy_data_frame)
+summary(soy_data_frame)
+
+# operaciones comunes con dataframes:
   # head(): obtiene primeros 5 registros
   # tail(): obtiene ultimos 5 registros
   # View(): visualiza de manera mas amigable la tabla
   # %>%: se le conoce como pipe, sirve para pasar datos (en un substituto de anidación)
-}
 
+install.packages("magrittr", repo="http://cran.rstudio.com/")
+library(magrittr)
 tail(head(mtcars, 10), 5)
 mtcars %>% head(10) %>% tail(5)
 mtcars %>% head(5)
 mtcars %>% tail(5) 
 mtcars %>% View() 
 
-# 1.1.4) Long & wide database formats [tidyr package] ---------------------
+
+# Ejercicio 4) From flatfiles (csv, txt) [readr package]  
+{
+  # readr es una libreria para leer datos rectangulares (en forma de tabla)
+  # readr::read_csv(): te permite leer datos desde un comma separated file (*.csv), 
+  # readr::read_delim(): te permite leer datos de un file delimitado por un separador (tabulador, punto y coma, etc)
+  # readr::write_csv(): te permite escribir archivos a un csv.
+  # readr::write_delim(): te permite escribir archivos delimitados por un separador
+}
+
+library(readr)
+readr::write_csv(mtcars, "mtcars.csv")
+file <- readr::read_csv("mtcars.csv")
+
+readr::write_delim(mtcars, "mtcars.txt", delim = "\t")
+file <- readr::read_delim("mtcars.txt", delim = "\t")
+
+
+# Ejercicio 5) From excel [readxl package] --------------------------------------
+{
+  # para leer/escribir archivos de excel, se usan las librerias readxl y writexl
+  # write_xlsx(): te permite escribir archivos de xlsx
+  # read_xlsx(): te permite leer de archivos xlsx
+}
+
+library(readxl)
+library(writexl)
+
+writexl::write_xlsx(mtcars, "mtcars.xlsx")
+file <- readxl::read_excel("mtcars.xlsx")
+
+# Ejercicio 6) From other source of data [haven package]  -----------------------
+{
+  # la libreria haven te permite escribir y leer archivos más complicados (por ejemplo de sas, spss, stata)
+  # siguen la misma estructura que los paquetes pasados:
+  # write_sas(): te permite escribir archivos .sas7bdat (de sas)
+  # read_sas(): te permite leer archivos .sas7bdat (de sas)
+}
+library(haven)
+
+haven::write_sas(mtcars, "mtcars.sas7bdat")
+file <- haven::read_sas("mtcars.sas7bdat")
+
+
+
+# Ejercicio 7) Long & wide database formats [tidyr package] ---------------------
 {
   # En procesamiento de bases comunmente se utilizan dos tipos de layout (largo/long, ancho/wide). 
   # En el formato wide, se tiene un renglon por cada data point y multiples columnas que contienen los atributos
@@ -65,79 +147,7 @@ wide_db <-
   long_db %>% 
   tidyr::spread(attribute, value)
 
-# 1.1.5) The tidyverse ----------------------------------------------------
-{
-  # tidyverse es una colección de paquetes/librerias que sirven para el análisis de datos.  
-}
-
-library(tidyverse)
-
-
-# 1.1.6) Pipes [magrittr package] -----------------------------------------
-{
-  # El pipe sirve para tener conceptualmente en una misma pieza de código una serie de pasos. 
-  # En el ejemplo de la sección 1.1.4 se puede ver ejemplificado  
-}
-
-wide_db %>% 
-  tidyr::gather(attribute, value, mpg:carb) %>% 
-  tidyr::spread(attribute, value)
-
-# 1.1.7) R benchmarking ---------------------------------------------------
-{
-  # Hay una gran discusiòn acerca del performance entre lenguajes de programación R/python.
-  # Ambas herramientas pueden realizar analisis muy similares, pero en cuanto a performance python supera a R. 
-  # Además, Python es un lenguaje multipurpose y con un mayor número de adeptos (permite realizar paginas web/automatizaciones/etc)
-  # Otra ventaja de Python es que permite tener en productivo aplicaciones con buen performance.
-  # A mi parecer, R tiene una curva de aprendizaje más suave y tiene un soporte de Rstudio casi nativo. Además, 
-  # para su uso básico permite realizar analisis de datos y estadística muy sencillo y contiene una libreria muy intuitiva para graficas (ggplot2)
-  # Para mayor documentación del performance de R vs Python vs C puede consultar:
-  # http://r.cs.purdue.edu/pub/ecoop12.pdf  
-}
-
-# 1.2.1) From flatfiles (csv, txt) [readr package]  
-{
-  # readr es una libreria para leer datos rectangulares (en forma de tabla)
-  # readr::read_csv(): te permite leer datos desde un comma separated file (*.csv), 
-  # readr::read_delim(): te permite leer datos de un file delimitado por un separador (tabulador, punto y coma, etc)
-  # readr::write_csv(): te permite escribir archivos a un csv.
-  # readr::write_delim(): te permite escribir archivos delimitados por un separador
-}
-
-library(readr)
-readr::write_csv(mtcars, "mtcars.csv")
-file <- readr::read_csv("mtcars.csv")
-
-readr::write_delim(mtcars, "mtcars.txt", delim = "\t")
-file <- readr::read_delim("mtcars.txt", delim = "\t")
-
-
-# 1.2.2) From excel [readxl package] --------------------------------------
-{
-  # para leer/escribir archivos de excel, se usan las librerias readxl y writexl
-  # write_xlsx(): te permite escribir archivos de xlsx
-  # read_xlsx(): te permite leer de archivos xlsx
-}
-
-library(readxl)
-library(writexl)
-
-writexl::write_xlsx(mtcars, "mtcars.xlsx")
-file <- readxl::read_excel("mtcars.xlsx")
-
-# 1.2.3) From other source of data [haven package]  -----------------------
-{
-  # la libreria haven te permite escribir y leer archivos más complicados (por ejemplo de sas, spss, stata)
-  # siguen la misma estructura que los paquetes pasados:
-  # write_sas(): te permite escribir archivos .sas7bdat (de sas)
-  # read_sas(): te permite leer archivos .sas7bdat (de sas)
-}
-library(haven)
-
-haven::write_sas(mtcars, "mtcars.sas7bdat")
-file <- haven::read_sas("mtcars.sas7bdat")
-
-# 1.3.1) Framework for data visualization [ggplot2 package] ---------------
+# Ejercicio 8) Framework for data visualization [ggplot2 package] ---------------
 {
   # R cuenta con distintos formas de realizar gráficas. Las más comunes y menos estéticas son a
   # través de los paquetes 'base' y 'lattice'. Estos paquetes son antiguos y están entrando en
@@ -177,7 +187,7 @@ mtcars %>%
          y = "Númerop de cilindros") + # tambièn se pueden agregar elementos extra
   theme_minimal() # incluso se puede sobreescribir los elementos definidos previamente
 
-# 1.3.2) Basic plots: Scatterplot, Barplot  ----------------------
+# Ejercicio 9) Basic plots: Scatterplot, Barplot  ----------------------
 {
   # Para un scatterplot debemos definir la x,y dentro de los aesthetics (recuerden que los aesthetics son variables)
   # del data.frame.
@@ -235,13 +245,14 @@ mtcars %>%
   guides(size = FALSE)+
   theme()
 
-# 1.4.1) Density function (dnorm, dunif, dt, dchisq) ----------------------
+# Ejercicio 10) funciones de densidad, distribucion, quantil y random samples
+## 1.4.1) Density function (dnorm, dunif, dt, dchisq) ----------------------
 
 {
   # En R también se puede calcular la funcion de densidad de una lista de distribuciones:
   # https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html
 }
-
+library(tidyverse)
   data.frame(x = c(seq(-10, 10, by = .01))) %>% 
     mutate(
       normal = dnorm(x = x, mean = 0, sd = 1),
@@ -257,7 +268,7 @@ mtcars %>%
   
   
 
-# 1.4.2) Distribution function (pnrom, punif, pt, pchisq)  ----------------
+# Distribution function (pnrom, punif, pt, pchisq)  ----------------
 
   data.frame(q = c(seq(-10, 10, by = .01))) %>% 
     mutate(
@@ -273,7 +284,7 @@ mtcars %>%
     theme_minimal()
     
     
-# 1.4.3) Quantile function (qnorm, qunif, qt, qchisq) ---------------------
+# Quantile function (qnorm, qunif, qt, qchisq) ---------------------
 
   data.frame(q = c(seq(0.01, .99, by = .01))) %>% 
     mutate(
@@ -288,7 +299,7 @@ mtcars %>%
     facet_wrap(~distribucion, ncol = 2)+
     theme_minimal()
 
-#   1.4.4) Random samples (rnorm, runif, rt, rchisq)
+# Random samples (rnorm, runif, rt, rchisq)
 
     data.frame(
       normal = rnorm(n = 10000, mean = 0, sd = 1),

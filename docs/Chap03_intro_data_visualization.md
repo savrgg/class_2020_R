@@ -14,9 +14,17 @@ output:
 
 R tiene un framework para crear gráficas que (creo yo) es de los más versátiles para cosas estáticas. Este framework es llamado ggplot. Además de ese framework cuenta con otros como lattice o base, pero en general están en desuso. 
 
-```{r}
+
+```r
 library(alluvial)
 library(ggalluvial)
+```
+
+```
+## Loading required package: ggplot2
+```
+
+```r
 library(magrittr)
 data(vaccinations)
 cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442",
@@ -44,6 +52,8 @@ vaccinations %>% ggplot(
        x = "encuesta", y = "numero de personas")
 ```
 
+![](Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-1-1.pdf)<!-- --> 
+
 
 Si notan, el texto para crear la grafíca es largo y parece dificil, pero con practica todos estos comandos se vuelven intuitivos. Para esta intro a visualización de datos, solamente veremos diferentes tipos de gráficas y en capitulos siguientes profundizaremos en creación de gráficas. Además veremos conceptos básicos de bases de datos.
 
@@ -54,8 +64,23 @@ En procesamiento de bases comunmente se utilizan dos tipos de layout (largo/long
 2. tidyr::spread() pasa de formato largo a ancho
 
 Ejemplo de formato ancho:
-```{r}
+
+```r
 library(tidyr)
+```
+
+```
+## 
+## Attaching package: 'tidyr'
+```
+
+```
+## The following object is masked from 'package:magrittr':
+## 
+##     extract
+```
+
+```r
 wide_db <- 
   mtcars %>% 
   dplyr::mutate(car_type = row.names(.)) %>% 
@@ -64,14 +89,35 @@ wide_db <-
 wide_db
 ```
 
+```
+##    mpg cyl disp  hp drat   wt  qsec vs am gear carb   car_type
+## 1 13.3   8  350 245 3.73 3.84 15.41  0  0    3    4 Camaro Z28
+```
+
 
 Ejemplo de formato largo:
 
-```{r}
+
+```r
 long_db <- 
   wide_db %>% 
   tidyr::gather(attribute, value, mpg:carb)
 long_db
+```
+
+```
+##      car_type attribute  value
+## 1  Camaro Z28       mpg  13.30
+## 2  Camaro Z28       cyl   8.00
+## 3  Camaro Z28      disp 350.00
+## 4  Camaro Z28        hp 245.00
+## 5  Camaro Z28      drat   3.73
+## 6  Camaro Z28        wt   3.84
+## 7  Camaro Z28      qsec  15.41
+## 8  Camaro Z28        vs   0.00
+## 9  Camaro Z28        am   0.00
+## 10 Camaro Z28      gear   3.00
+## 11 Camaro Z28      carb   4.00
 ```
 
 El formato que comunmente estamos acostumbrados es el ancho, pero para R y procesamiento de datos es más común y mejor práctica trabajar sobre formatos largos.
@@ -105,7 +151,8 @@ Además, se le puede modificar el texto de la gráfica
 ### Scatterplot
 
 Sin formato
-```{r}
+
+```r
 library(ggplot2)
 
 mtcars %>% 
@@ -121,8 +168,11 @@ mtcars %>%
   theme_minimal() # incluso se puede sobreescribir los elementos definidos previamente
 ```
 
+![](Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
+
 Con formato
-```{r}
+
+```r
 mtcars %>% 
   dplyr::mutate(car_type = row.names(.)) %>%
   ggplot() + 
@@ -139,8 +189,11 @@ mtcars %>%
   guides(size = FALSE)
 ```
 
+![](Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
+
 ### Barplot
-```{r}
+
+```r
 mtcars %>% 
   dplyr::mutate(car_type = row.names(.)) %>%
   ggplot() + 
@@ -160,6 +213,8 @@ mtcars %>%
   theme()
 ```
 
+![](Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
+
 
 
 ## Ejercicios de práctica
@@ -167,8 +222,29 @@ mtcars %>%
 - tidyr::gather() pasa de formato ancho a largo
 - tidyr::spread() pasa de formato largo a ancho
 
-```{r}
+
+```r
 library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
 library(tidyr)
 wide_db <- 
   mtcars %>% 
@@ -178,7 +254,13 @@ wide_db <-
 wide_db %>% head
 ```
 
-```{r}
+```
+##    mpg cyl disp  hp drat   wt  qsec vs am gear carb   car_type
+## 1 13.3   8  350 245 3.73 3.84 15.41  0  0    3    4 Camaro Z28
+```
+
+
+```r
 long_db <- 
   wide_db %>% 
   tidyr::gather(attribute, value, mpg:carb)
@@ -186,7 +268,18 @@ long_db <-
 long_db %>% head
 ```
 
-```{r}
+```
+##     car_type attribute  value
+## 1 Camaro Z28       mpg  13.30
+## 2 Camaro Z28       cyl   8.00
+## 3 Camaro Z28      disp 350.00
+## 4 Camaro Z28        hp 245.00
+## 5 Camaro Z28      drat   3.73
+## 6 Camaro Z28        wt   3.84
+```
+
+
+```r
 wide_db <- 
   long_db %>% 
   tidyr::spread(attribute, value)
@@ -195,7 +288,8 @@ wide_db <-
 ### Ejercicio 8
 
 Analiza como se transiciona del siguiente chunk de código:
-```{r}
+
+```r
 library(ggplot2)
 
 mtcars %>% 
@@ -211,10 +305,13 @@ mtcars %>%
   theme_minimal() # incluso se puede sobreescribir los elementos definidos previamente
 ```
 
+![](Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-10-1.pdf)<!-- --> 
+
 
 ### Ejercicio 9
 
-```{r}
+
+```r
 mtcars %>% 
   dplyr::mutate(car_type = row.names(.)) %>%
   ggplot() + 
@@ -230,4 +327,6 @@ mtcars %>%
        color = "Número de cilindros") +
   guides(size = FALSE)
 ```
+
+![](Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-11-1.pdf)<!-- --> 
 

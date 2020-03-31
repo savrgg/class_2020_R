@@ -1,5 +1,5 @@
 ---
-title: "06_estimacion_intervalos"
+title: "Introduccion"
 author: "Salvador Garcia"
 output:   
   html_document:
@@ -371,10 +371,136 @@ repeat {
 
 ## Ejercicios de practica
 
-### Ejercicio 1
+### Ejercicio 3
 
-Un dataframe es una estructura de datos que nos permite almacenar una tabla o base de datos en R. Se compone de columnas y renglones   
+Tipo de datos: String, double, integer, boolean
+Vector Atomico: vector con elementos del mismo tipo (string, double, entero)
+Matrix: vector de dos dimensiones con elementos del mismo tipo (string, double, entero)
+Lista: unidimensional elementos de distinto tipo (string, double, entero)
+Dataframe: multidimensional que nos permite almacenar una tabla o base de datos en R. Se compone de columnas y renglones   
 
+Tipos de dato:
+
+```r
+soy_string <- "Hola soy una cadena de texto"
+soy_double <- 5.3
+soy_integer <- 5
+soy_boolean <- TRUE
+```
+
+Vector atómico:
+
+```r
+soy_vector_atomico <- c(1,2,3)  
+var(soy_vector_atomico)
+```
+
+```
+## [1] 1
+```
+
+```r
+mean(soy_vector_atomico)
+```
+
+```
+## [1] 2
+```
+
+```r
+length(soy_vector_atomico)
+```
+
+```
+## [1] 3
+```
+
+Matriz:
+
+```r
+soy_matrix <- matrix(c(1,2,3,4), ncol = 2)
+mean(matrix)
+```
+
+```
+## Warning in mean.default(matrix): argument is not numeric or logical: returning
+## NA
+```
+
+```
+## [1] NA
+```
+
+```r
+dim(matrix)
+```
+
+```
+## NULL
+```
+
+Lista:
+
+```r
+soy_lista <- list(1, "texto", 1.5, 1)
+length(soy_lista)
+```
+
+```
+## [1] 4
+```
+
+```r
+unique(soy_lista)
+```
+
+```
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] "texto"
+## 
+## [[3]]
+## [1] 1.5
+```
+
+
+Dataframe:
+
+```r
+soy_data_frame <- data.frame(col1 = c("text1", "text2"), col2 = c(1,2))
+dim(soy_data_frame)
+```
+
+```
+## [1] 2 2
+```
+
+```r
+colnames(soy_data_frame)
+```
+
+```
+## [1] "col1" "col2"
+```
+
+```r
+summary(soy_data_frame)
+```
+
+```
+##     col1        col2     
+##  text1:1   Min.   :1.00  
+##  text2:1   1st Qu.:1.25  
+##            Median :1.50  
+##            Mean   :1.50  
+##            3rd Qu.:1.75  
+##            Max.   :2.00
+```
+
+
+Operaciones comunes dataframe:
 
 ```r
 head(mtcars, 5) # obtiene primeros 5 registros
@@ -409,7 +535,7 @@ install.packages("magrittr", repo="http://cran.rstudio.com/")
 ```
 
 ```
-## Installing package into '/usr/local/lib/R/3.6/site-library'
+## Installing package into '/home/rstudio-user/R/x86_64-pc-linux-gnu-library/3.6'
 ## (as 'lib' is unspecified)
 ```
 

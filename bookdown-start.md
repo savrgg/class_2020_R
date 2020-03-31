@@ -1640,3 +1640,1215 @@ installed.packages()
 ```
 
 
+
+<!--chapter:end:index.Rmd-->
+
+---
+title: "Introduccion"
+author: "Salvador Garcia"
+output:   
+  html_document:
+    toc: true
+    theme: united
+    toc_depth: 1
+
+---
+
+# Estructura de datos de R
+
+## Ayuda y vignettes
+
+1. Cada función de la paquetería instalada desde el CRAN contiene una sección de ayuda, donde se brinda la descripción de la función, los argumentos de entrada y salida y ejemplos de uso. Con el código: `help(nombre_función)` se accede a esta ayuda. 
+
+2. Algunos paquetes contienen viñetas o **vignettes** que es una documentación más detallada del paquete. Para acceder a estas viñetas se utiliza el código: `vignette("nombre_paquete")`
+
+3. Si se requiere información rápida de visualización, desarrollo de paquetes, conceptos básicos y avanzados de R, markdown, shiny, etc, los [Cheat sheets de RStudio](https://www.rstudio.com/resources/cheatsheets/) son una fuente fácil y rápida.
+
+4. Si se requiere mayor documentación acerca de R, estos libros son muy útiles:
+
+  + [R for data science](http://r4ds.had.co.nz/). Contiene documentación de la paquetería del tidyverse e información útil para manejo de datos.
+  
+  + [ggplot2: elegant graphics for data analysis](http://hadley.nz/). Contiene documentación de ggplot, una librería basada en el *grammar of graphics* para visualización 
+  
+  + [Advanced R](http://adv-r.had.co.nz/). contiene información a detalle de como funciona R.
+  
+  + [R packages](http://r-pkgs.had.co.nz/): contiene información que permite la creación y publicación de paquetes en R.
+
+
+## Namespaces
+Como el nombre lo sugiere, un *namespace* es un espacio de nombres para las funciones. En la situación óptima, cada desarrollador de paquete no debería definir nombres de funciones ya existentes, pero en la realidad es que hay paquetes que tienen funciones que se llama de la misma manera que funciones de otros paquetes (y como no hacerlo, ¡si hay más de 10,000 paquetes en el CRAN!) Ahora, ¿Cómo sabrá R a que función estamos haciendo referencia?
+
+Para esto, es muy util saber el namespace de cada paquete. Por ejemplo, una función llamada summarize se encuentra en los paquetes Hmisc y plyr (y tiene distinta funcionalidad cada función), y si están cargados los dos, ¿Cómo hacemos referencia a cada una de estas funciones? Con el namespace:
+
+
+
+```r
+# Hacer referencia a la funcion summarize() del paquete Hmisc
+Hmisc::summarize()
+# Hacer referencia a la funcion summarize() del paquete plyr
+plyr::summarize()
+```
+
+## Paquetería útil para el análisis de datos
+Gran parte del poder de R proviene de los paquetes que se pueden instalar desde el CRAN. De los paquetes más útiles para analizar datos son los siguientes:
+
+Importar datos       |  Tratar datos    | Desarrollo de paquetes
+---------------------------  | --------------------------- | ---------------------------
+**ggplot2**: visualizar datos | **readr**: importar .csv y fwf | **devtools** desarrollo de paquetes
+**dplyr**: manipular datos | **readxl**: importar .xlsx y .xls | **roxygen2** desarrollo de documentación
+**tidyr**: ordenar datos | **haven**: importar SAP, SPSS y Stata | **testthat** para pruebas unitarias
+**stringr**: trabajar con texto | **httr**: comunicarse con APIs web | 
+**lubridate**: trabajar con fechas | **rvest**: scrapping websites | 
+
+
+## Estructuras de datos en R
+
+En R, al igual que otros lenguajes de programación, hay distintos tipos de estructuras de datos. Las estructuras de datos básicas en R pueden ser organizadas de acuerdo a la dimensionalidad (1d, 2d, nd) y si contienen datos homogéneos o heterogéneos (Es importante destacar que R no tiene datos de 0-dimensional (escalares). Los que parecen ser escalares son de hecho vectores de longitud uno).
+
+Dim  | Homogeneo     | Heterogeneo
+-------- | --------------------------  | --------------------------
+1d           | vector atómico | lista
+2d       | matriz | Data Frame
+nd       | array
+
+Datos homogéneos:
+
+### Vectores atómicos
+
+Son estructuras de datos homogéneas de una dimensión. Hay cuatro tipos de vectores básicos: lógicos, entero, numéricos y de caracteres.
+
+Operaciones:
+
+1. **Creación**: Son creados con la expresión **`c()`**
+
+2. **Selección de elementos**: Se realiza con **`[ ]`**, indicando el índice dentro de los corchetes (es posible extraer un valor 3. indexando con números negativos)
+
+4. **Agregar nuevo valor**: Se asigna un nuevo valor en el índice asignado.
+
+5. **Cambiar un valor**: Se asigna el nuevo valor sobre un índice ya existente.
+
+6. **Buscar un valor**: Usando la función **`match(vector, valor_buscado)`** se obtiene un vector lógico indicando si la posición es el valor buscado.
+
+7. **Operaciones aritméticas**: suma, multiplicación
+
+Algunas funciones comunes sobre vectores:
+
+* `length`: número de elementos en el vector
+
+* `class`: clase del vector
+
+* `summary`: resumen de información del vector
+
+* `unique`: valores únicos del vector
+
+* `table`: tabla de frecuencias para cada elemento del vector
+
+* `sum`: suma de los elementos del vector
+
+* `mean`: promedio de elementos del vector
+
+* `sd`: desviación estándar de los elementos del vector
+
+* `cumsum`: suma acumulada de elemento anterior del vector
+
+### Matrices y arrays.
+
+Son estructuras de datos con más de una dimensión. Al igual que el vector, solamente puede contener un tipo de datos en específico. Al tener dos dimensiones, para acceder a un elemento se tiene que indexar sobre los renglones y las columnas. 
+
+Operaciones:
+
+1. **Creación**: Son creados con la expresión **`matrix()`**
+
+2. **Selección de elementos**: Se realiza con **`[ , ]`**, indicando el índice de los renglones y las columnas dentro de los corchetes (es posible extraer un valor indexando con números negativos)
+
+3. **Agregar nuevo valor**: Se asigna un nuevo valor en los índice asignados.
+
+4. **Cambiar un valor**: Se asigna el nuevo valor sobre un índices ya existente.
+
+5. **Buscar un valor**: Usando la función **`match(matriz, valor_buscado)`** se obtiene un vector numérico indicando si la posición es el valor buscado.
+
+6. **Operaciones aritméticas**: suma, multiplicación
+
+Algunas funciones comunes sobre matrices:
+
+* `dim`: dimensión de una matriz 
+
+* `nrow`: número de renglones de la matriz
+
+* `rownames`: devuelve el nombre de los renglones
+
+* `rbind`: une los renglones de dos matrices del mismo tipo con el mismo número de columnas
+
+* `ncol`: número de columnas de la matriz
+
+* `colnames`: devuelve el nombre de las columnas
+
+* `cbind`: une las columnas de dos matrices del mismo tipo con el mismo número de renglones
+
+* `t`: para obtener la matriz transpuesta
+
+* `diag`: depende del argumento,
+
+    - Si se da un vector como argumento, regresa una matriz diagonal con los elementos del 
+      vector como las entradas de la diagonal.
+      
+    - Si se da una matriz como argumento, regresa un vector que contiene
+      los elementos de la diagonal de la matriz. 
+      
+    - Si se da un valor numérico, regresa la matriz 
+      identidad multiplicada por dicho valor. 
+
+### Listas.
+Una lista puede contener elementos de distinto tipo. Por ejemplo, un elemento puede ser numérico, otro puede ser una cadena de texto y otro un elemento booleano. Inclusive, un elemento de una lista puede ser otra lista.
+
+Operaciones:
+
+1. **Creación**: Son creados con la expresión **`list()`**
+
+2. **Selección de elementos**: Se realiza con **`[[ ]]`**, indicando el índice dentro de los corchetes (**NO** es posible extraer un valor indexando con números negativos)
+
+3. **Agregar nuevo valor**: Se asigna un nuevo valor en el índice asignado y usando **`[[ ]]`**.
+
+4. **Cambiar un valor**: Se asigna el nuevo valor sobre un indice ya existente y usando **`[[ ]]`**.
+
+5. **Buscar un valor**: Usando la función **`match(vector, valor_buscado)`** se obtiene un vector lógico indicando si la posición es el valor buscado.
+
+Algunas funciones comunes sobre listas:
+
+* `length`: número de elementos en la lista
+
+* `class`: devuelve la clase lista
+
+* `unique`: valores únicos del vector
+
+* `unlist`: vuelve un vector la lista. (tener cuidado por que cambia el formato de los datos)
+
+### Data.frames
+
+Un **data.frame** es un conjunto de vectores del mismo tamaño agrupados en una tabla. Son estructuras rectangulares donde cada columna tiene elementos de la misma clase, pero entre columnas pueden tener diferentes clases.
+
+
+Operaciones:
+1. **Creación**: Son creados con la expresión **`data.frame()`**
+
+2. **Selección de elementos**: Se puede seleccionar una columna entera con el símbolo **`$`** y el nombre de la columna: **`dataframe$variable_nombre`**, se puede seleccionar un elemento en particular al igual que una matriz.
+
+3. **Agregar una nueva columna**: Se puede asignar una nuevo vector del mismo tamaño como una columna nueva.
+**`dataframe$variable_nombra =  vector_nuevo`**
+
+Algunas funciones comunes sobre data frames:
+
+* `dim`: dimensión de una data.frame 
+
+* `nrow`: número de renglones de un data.frame
+
+* `rownames`: devuelve el nombre de los renglones
+
+* `rbind`: une los renglones de dos data.frames del mismo tipo con el mismo número de columas
+
+* `ncol`: número de columnas de un data.frame
+
+* `colnames`: devuelve el nombre de las columnas
+
+* `cbind`: une las columnas de dos data.frames del mismo tipo con el mismo número de renglones
+
+* `summary`: se obtiene el resumen de los datos.
+
+## Funciones, condicionales e iteraciones:
+Al igual que en otros lenguajes de programación, existen 
+
+### Funciones
+
+Una función en R es muy parecido a una función común. Recibe unos parámetros de entrada, los cuales usa para arrojar otros de salida. Los objetos creados dentro de la función son *locales*, es decir, solamente existen dentro del *scope* de la función. Si se quiere exportar algún valor, o lista se tiene que mencionar explicitamente. (Por default, las funciones en R devuelven la última linea del código siempre y cuando no sea una asignación). La sintaxis es la siguiente:
+
+
+```r
+ mi_funcion <- function(valor){
+   valor_exportado <- 5
+   valor_no_exportado <- valor
+   valor_exportado
+ }
+ mi_funcion(10)
+```
+
+```
+## [1] 5
+```
+
+### Condicionales
+
+Otra estructura muy explotada en los lenguajes de programación son los condicionales. Los principales en R son `dplyr::if_else` y `dplyr::case_when`. El primero evalua si una expresión es verdadera o falsa y da distinto resultado en caso de ser verdadero y uno en caso de ser falso. El segundo vectoriza multiples condicionales `if`. Por ejemplo:
+
+
+
+
+```r
+library(dplyr)
+```
+
+
+```r
+x <- c(-5:5, NA)
+if_else(x < 0, NA_integer_, x)
+```
+
+```
+##  [1] NA NA NA NA NA  0  1  2  3  4  5 NA
+```
+
+```r
+if_else(x < 0, "negativo", "positivo", "faltante")
+```
+
+```
+##  [1] "negativo" "negativo" "negativo" "negativo" "negativo" "positivo"
+##  [7] "positivo" "positivo" "positivo" "positivo" "positivo" "faltante"
+```
+
+
+```r
+edad <- 1:10
+case_when(
+  edad > 35 ~ "adulto",
+  edad > 20 ~ "adulto joven",
+  edad > 10 ~ "adolescente",
+  TRUE ~ "niño"
+)
+```
+
+```
+##  [1] "niño" "niño" "niño" "niño" "niño" "niño" "niño" "niño" "niño" "niño"
+```
+
+
+### Iteraciones
+
+Las iteraciones en cualquier lenguaje de programación son básicamente replicar un código múltiples veces con el mismo o distintos argumentos. En R los más básicos son los ciclos `for`, `while` y `repeat`:
+![](figures/chapter3/3-for.png)
+Como se observa en la imagen, el ciclo **for** se ejecuta n veces con n conocido (o bien, sobre un vector ya conocido). Por otra parte, un ciclo **while** se ejecuta mientras una condición se cumpla, por lo que teóricamente puede seguir iterando mientras no se cumpla dicha condición. Finalmente, en el ciclo **repeat** se repite el código hasta que explicitamente se salga del código con un comando llamado **break**. Los dos comandos faltantes son **next** y **break**. El primero sirve para terminal la iteración actual y continuar con la siguiente, mientras que el segundo sirve para salir por completo del ciclo.
+
+
+```r
+# ejemplos de for:
+for (numero in 1:3){
+  print(paste("El número es", numero))
+}
+```
+
+```
+## [1] "El número es 1"
+## [1] "El número es 2"
+## [1] "El número es 3"
+```
+
+```r
+for (anio in c(2015,2016,2017,2018)){
+  print(paste("El año es", anio))
+}
+```
+
+```
+## [1] "El año es 2015"
+## [1] "El año es 2016"
+## [1] "El año es 2017"
+## [1] "El año es 2018"
+```
+
+```r
+# ejemplo de while
+i <- 1
+while (i < 6) {
+  print(i)
+  i = i+1
+}
+```
+
+```
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+```
+
+```r
+# ejemplo de repeat (con break)
+x <- 1
+repeat {
+  print(x)
+  x = x+1
+  if (x == 6){
+  break
+  }
+}
+```
+
+```
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+```
+
+```r
+# ejemplo de repeat (con break y next)
+x <- 1
+repeat {
+  if (x == 3){
+    x = x+1
+    next
+  }
+  print(x)
+  x = x+1
+  if (x == 6){
+  break
+  }
+}
+```
+
+```
+## [1] 1
+## [1] 2
+## [1] 4
+## [1] 5
+```
+
+## Ejercicios de practica
+
+### Ejercicio 3
+
+Tipo de datos: String, double, integer, boolean
+Vector Atomico: vector con elementos del mismo tipo (string, double, entero)
+Matrix: vector de dos dimensiones con elementos del mismo tipo (string, double, entero)
+Lista: unidimensional elementos de distinto tipo (string, double, entero)
+Dataframe: multidimensional que nos permite almacenar una tabla o base de datos en R. Se compone de columnas y renglones   
+
+Tipos de dato:
+
+```r
+soy_string <- "Hola soy una cadena de texto"
+soy_double <- 5.3
+soy_integer <- 5
+soy_boolean <- TRUE
+```
+
+Vector atómico:
+
+```r
+soy_vector_atomico <- c(1,2,3)  
+var(soy_vector_atomico)
+```
+
+```
+## [1] 1
+```
+
+```r
+mean(soy_vector_atomico)
+```
+
+```
+## [1] 2
+```
+
+```r
+length(soy_vector_atomico)
+```
+
+```
+## [1] 3
+```
+
+Matriz:
+
+```r
+soy_matrix <- matrix(c(1,2,3,4), ncol = 2)
+mean(matrix)
+```
+
+```
+## Warning in mean.default(matrix): argument is not numeric or logical: returning
+## NA
+```
+
+```
+## [1] NA
+```
+
+```r
+dim(matrix)
+```
+
+```
+## NULL
+```
+
+Lista:
+
+```r
+soy_lista <- list(1, "texto", 1.5, 1)
+length(soy_lista)
+```
+
+```
+## [1] 4
+```
+
+```r
+unique(soy_lista)
+```
+
+```
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] "texto"
+## 
+## [[3]]
+## [1] 1.5
+```
+
+
+Dataframe:
+
+```r
+soy_data_frame <- data.frame(col1 = c("text1", "text2"), col2 = c(1,2))
+dim(soy_data_frame)
+```
+
+```
+## [1] 2 2
+```
+
+```r
+colnames(soy_data_frame)
+```
+
+```
+## [1] "col1" "col2"
+```
+
+```r
+summary(soy_data_frame)
+```
+
+```
+##     col1        col2     
+##  text1:1   Min.   :1.00  
+##  text2:1   1st Qu.:1.25  
+##            Median :1.50  
+##            Mean   :1.50  
+##            3rd Qu.:1.75  
+##            Max.   :2.00
+```
+
+
+Operaciones comunes dataframe:
+
+```r
+head(mtcars, 5) # obtiene primeros 5 registros
+```
+
+```
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+```
+
+```r
+tail(mtcars, 5) # obtiene ultimos 5 registros
+```
+
+```
+##                 mpg cyl  disp  hp drat    wt qsec vs am gear carb
+## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2
+## Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.5  0  1    5    4
+## Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.5  0  1    5    6
+## Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8
+## Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2
+```
+  
+al operador %>% (en paquete magrittr) se le conoce como pipe, sirve para pasar datos (en un substituto de anidación):
+
+```r
+install.packages("magrittr", repo="http://cran.rstudio.com/")
+```
+
+```
+## Installing package into '/home/rstudio-user/R/x86_64-pc-linux-gnu-library/3.6'
+## (as 'lib' is unspecified)
+```
+
+
+```r
+library(magrittr)
+tail(head(mtcars, 10), 5)
+```
+
+```
+##             mpg cyl  disp  hp drat   wt  qsec vs am gear carb
+## Valiant    18.1   6 225.0 105 2.76 3.46 20.22  1  0    3    1
+## Duster 360 14.3   8 360.0 245 3.21 3.57 15.84  0  0    3    4
+## Merc 240D  24.4   4 146.7  62 3.69 3.19 20.00  1  0    4    2
+## Merc 230   22.8   4 140.8  95 3.92 3.15 22.90  1  0    4    2
+## Merc 280   19.2   6 167.6 123 3.92 3.44 18.30  1  0    4    4
+```
+
+```r
+mtcars %>% head(10) %>% tail(5)
+```
+
+```
+##             mpg cyl  disp  hp drat   wt  qsec vs am gear carb
+## Valiant    18.1   6 225.0 105 2.76 3.46 20.22  1  0    3    1
+## Duster 360 14.3   8 360.0 245 3.21 3.57 15.84  0  0    3    4
+## Merc 240D  24.4   4 146.7  62 3.69 3.19 20.00  1  0    4    2
+## Merc 230   22.8   4 140.8  95 3.92 3.15 22.90  1  0    4    2
+## Merc 280   19.2   6 167.6 123 3.92 3.44 18.30  1  0    4    4
+```
+
+```r
+mtcars %>% head(5)
+```
+
+```
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+```
+
+```r
+mtcars %>% tail(5) 
+```
+
+```
+##                 mpg cyl  disp  hp drat    wt qsec vs am gear carb
+## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2
+## Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.5  0  1    5    4
+## Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.5  0  1    5    6
+## Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8
+## Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2
+```
+
+
+<!--chapter:end:Chap01_introduction.Rmd-->
+
+---
+title: "Importar datos"
+author: "Salvador Garcia"
+output:   
+  html_document:
+    toc: true
+    theme: united
+    toc_depth: 1
+
+---
+
+# Importar datos
+Una parte importante al usar R es importar datos desde un archivo externo de datos. Las extensiones más comunes de estos archivos son separados por coma: `*.csv`, archivos de excel `*.xlsx`, `*.xls`, archivos de SPSS `*.sav`, archivos de STATA `*.dta` o archivos de SAS `*.sas`
+
+## Archivos **.csv**
+Importar archivos desde csv con R se puede realizar de tres maneras: Con la función: `utils::read.csv()`, con la función `readr::read_csv()` y con la funcion `data.table::fread()`. 
+
+La función más rápida es `fread()`del paquete `data.table`, seguida de la función `read_csv` y después la función `read.csv`. Las ventajas de la función `read_csv` es que el parsing de las columnas es más facil; es decir, detecta mejor si es una columna numérica, si tiene formato de fecha, de caracter, etc. Por otra parte la única ventaja de la función `read.csv` es que viene incluida en la paquetería **core** de R.
+
+En mi opinión, si se tiene una cantidad moderada de datos y se quiere hacer análisis de datos, la función óptima es `read_csv`.
+
+## Archivos **.xlsx y .xls**
+
+Para leer archivos `xlsx` y `xls` también hay distintas opciones, entre ellas los paquetes `XLConnect`, `xlsx`, `gdata` y `readxl`. Cada uno de estos paquetes tiene distintas funcionalidades y provienen de diferentes paradigmas, pero la opción que les recomendaría es la función `read_excel()` del paquete `readxl`.
+
+La instalación del paquete es muy rápida y tiene compatibilidad con otros paquetes de análisis de datos de R. Esta función trabaja de la siguiente manera:
+
+readxl::read_excel()
+
+## Otros formatos de archivos **.sav**, **.data**, **.sas**
+
+Al igual que las dos subsecciones pasadas, hay distintos paquetes para leer archivos de SPSS, STATA y SAS, pero una de las mejores opciones es el paquete `haven`. Este paquete permite importar y exportar estos archivos facilmente:
+
+haven::read_spss()
+
+haven::read_stata()
+
+haven::read_sas()
+
+Una de los principales motivos de la selección de estos paquetes es que son compatibles con una colección de paquetes que se les llama el tidyverse, el cual fue diseñado por Hadley Wickham, el CEO de RStudio. Esta colección está diseñada bajo la misma gramática, filosofía y estructuras de datos. En estas notas hay una sección especial dedicada a esta colección de paquetes.
+
+
+## Ejercicios de práctica
+### Ejercicio 4
+
+```r
+library(readr)
+readr::write_csv(mtcars, "mtcars.csv")
+file <- readr::read_csv("mtcars.csv")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   mpg = col_double(),
+##   cyl = col_double(),
+##   disp = col_double(),
+##   hp = col_double(),
+##   drat = col_double(),
+##   wt = col_double(),
+##   qsec = col_double(),
+##   vs = col_double(),
+##   am = col_double(),
+##   gear = col_double(),
+##   carb = col_double()
+## )
+```
+
+```r
+readr::write_delim(mtcars, "mtcars.txt", delim = "\t")
+file <- readr::read_delim("mtcars.txt", delim = "\t")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   mpg = col_double(),
+##   cyl = col_double(),
+##   disp = col_double(),
+##   hp = col_double(),
+##   drat = col_double(),
+##   wt = col_double(),
+##   qsec = col_double(),
+##   vs = col_double(),
+##   am = col_double(),
+##   gear = col_double(),
+##   carb = col_double()
+## )
+```
+
+### Ejercicio 5
+
+```r
+library(readxl)
+library(writexl)
+
+writexl::write_xlsx(mtcars, "mtcars.xlsx")
+file <- readxl::read_excel("mtcars.xlsx")
+```
+
+### Ejercicio 6
+
+```r
+library(haven)
+
+haven::write_sas(mtcars, "mtcars.sas7bdat")
+file <- haven::read_sas("mtcars.sas7bdat")
+```
+
+<!--chapter:end:Chap02_data_import.Rmd-->
+
+---
+title: "Intro data visualization"
+author: "Salvador Garcia"
+output:   
+  html_document:
+    toc: true
+    theme: united
+    toc_depth: 1
+
+---
+# Intro a visualización de datos
+
+## Motivación
+
+R tiene un framework para crear gráficas que (creo yo) es de los más versátiles para cosas estáticas. Este framework es llamado ggplot. Además de ese framework cuenta con otros como lattice o base, pero en general están en desuso. 
+
+
+```r
+library(alluvial)
+library(ggalluvial)
+```
+
+```
+## Loading required package: ggplot2
+```
+
+```r
+library(magrittr)
+data(vaccinations)
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442",
+               "#0072B2", "#D55E00", "#CC79A7")
+levels(vaccinations$response) <- rev(levels(vaccinations$response))
+vaccinations %>% ggplot(
+  aes(x = survey, 
+      fill = response,
+      stratum = response, 
+      alluvium = subject,
+      weight = freq)) +
+  geom_flow() +
+  geom_stratum(alpha = .8) +
+  geom_text(stat = "stratum", infer.label = TRUE, size = 2.5) +
+  theme_bw() + theme(legend.position = "none", 
+                     panel.background = element_rect(fill = NA),
+                     panel.grid.major.y = element_line(size = 1),
+                     panel.grid.major.x = element_line(size = 0),
+                     panel.grid.minor = element_line(size = 0),
+                     axis.line = element_line(size = 0),
+                     panel.border = element_rect(size = 0)) +
+  scale_fill_manual( values = c(cbPalette, "#999999", "#999999")) +
+  theme(legend.position = "none") +
+  labs(title = "Respuestas en encuestas de vacunación en tres puntos en el tiempo", 
+       x = "encuesta", y = "numero de personas")
+```
+
+![](Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-1-1.pdf)<!-- --> 
+
+
+Si notan, el texto para crear la grafíca es largo y parece dificil, pero con practica todos estos comandos se vuelven intuitivos. Para esta intro a visualización de datos, solamente veremos diferentes tipos de gráficas y en capitulos siguientes profundizaremos en creación de gráficas. Además veremos conceptos básicos de bases de datos.
+
+## Formato largo y ancho de bases
+En procesamiento de bases comunmente se utilizan dos tipos de layout (largo/long, ancho/wide). En el formato wide, se tiene un renglon por cada data point y multiples columnas que contienen los atributos. En el formato long, cada punto se repite n veces de acuerdo al nùmero de atributos. R viene con algunos databases integrados, mtcars es uno de ellos.
+
+1. tidyr::gather() pasa de formato ancho a largo
+2. tidyr::spread() pasa de formato largo a ancho
+
+Ejemplo de formato ancho:
+
+```r
+library(tidyr)
+```
+
+```
+## 
+## Attaching package: 'tidyr'
+```
+
+```
+## The following object is masked from 'package:magrittr':
+## 
+##     extract
+```
+
+```r
+wide_db <- 
+  mtcars %>% 
+  dplyr::mutate(car_type = row.names(.)) %>% 
+  dplyr::filter(car_type == "Camaro Z28") 
+
+wide_db
+```
+
+```
+##    mpg cyl disp  hp drat   wt  qsec vs am gear carb   car_type
+## 1 13.3   8  350 245 3.73 3.84 15.41  0  0    3    4 Camaro Z28
+```
+
+
+Ejemplo de formato largo:
+
+
+```r
+long_db <- 
+  wide_db %>% 
+  tidyr::gather(attribute, value, mpg:carb)
+long_db
+```
+
+```
+##      car_type attribute  value
+## 1  Camaro Z28       mpg  13.30
+## 2  Camaro Z28       cyl   8.00
+## 3  Camaro Z28      disp 350.00
+## 4  Camaro Z28        hp 245.00
+## 5  Camaro Z28      drat   3.73
+## 6  Camaro Z28        wt   3.84
+## 7  Camaro Z28      qsec  15.41
+## 8  Camaro Z28        vs   0.00
+## 9  Camaro Z28        am   0.00
+## 10 Camaro Z28      gear   3.00
+## 11 Camaro Z28      carb   4.00
+```
+
+El formato que comunmente estamos acostumbrados es el ancho, pero para R y procesamiento de datos es más común y mejor práctica trabajar sobre formatos largos.
+
+## tidyverse
+Tidyverse es una colección de paquetes/librerias que sirven para el análisis de datos, este consiste en un grupo de paquetes para facilitar el trabajo con datos.
+
+## ggplot
+ggplot es el paquete de visualización de datos que consiste en distintos elementos. Hay que diferenciar entre los distintos conceptos:
+
+1. ggplot2 es una libreria que trabaja por 'capas' y trabaja sobre formatos largos de base de datos
+2. ggplot(): es la base de la gráfica. Inicializa una grafica vacia.
+3. aes(): se les llama los aesthetics. Es lo que define en que valor de x, y, color, relleno, tamaño tendrá la gráfica
+  
+Todas las funciones de ggplot que inician con geom_ definen distintos tipos de gráficas.
+
+4. geom_point(): Te define una grafica de puntos (o scatterplot). 
+5. geom_bar(): Te define una grafica de barras (o barplot)
+6. geom_histogram(): Te define un histograma
+7. geom_line(): Te define una gráfica de linea
+8. geom_boxplot(): Te define gráfica de boxplot
+
+Asi como muchos otros tipos de gráfica. A cada gráfica le podemos añadir o modificar cuestiones del formato.
+
+9. theme(): dentro de esta funcion podemos agregar o modificar particularidades de la grafica
+ 
+Además, se le puede modificar el texto de la gráfica
+
+10. labs(): te permite modificar el texto del eje x, eje y, titulo, subtitulo, caption, etc
+
+### Scatterplot
+
+Sin formato
+
+```r
+library(ggplot2)
+
+mtcars %>% 
+  dplyr::mutate(car_type = row.names(.)) %>%
+  ggplot() + # crea un empty plot
+    geom_point(aes(x = car_type, y = carb, color = carb)) + # vamos agregando capas 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + # agregamos formato 
+    labs(title = "Automoviles por nùmero de cilindros", 
+         subtitle = "Se pueden añadir distintos elementos a la grafica",
+         caption = "Tambien se pueden añadir pies de nota",
+         x = "Tipo de automovil",
+         y = "Númerop de cilindros") + # tambièn se pueden agregar elementos extra
+  theme_minimal() # incluso se puede sobreescribir los elementos definidos previamente
+```
+
+![](Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
+
+Con formato
+
+```r
+mtcars %>% 
+  dplyr::mutate(car_type = row.names(.)) %>%
+  ggplot() + 
+  geom_point(aes(x = car_type, y = carb, color = factor(carb), size = carb)) +
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        legend.position = "bottom") +
+  labs(title = "Automoviles por nùmero de cilindros", 
+       subtitle = "Se pueden añadir distintos elementos a la grafica",
+       caption = "Tambien se pueden añadir pies de nota",
+       x = "Tipo de automovil",
+       y = "Número de cilindros",
+       color = "Número de cilindros") +
+  guides(size = FALSE)
+```
+
+![](Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
+
+### Barplot
+
+```r
+mtcars %>% 
+  dplyr::mutate(car_type = row.names(.)) %>%
+  ggplot() + 
+  geom_bar(aes(x = factor(carb), fill = factor(carb)), 
+           stat = "count") +
+  theme_minimal() +
+  scale_fill_manual(values = c("dodgerblue4", "firebrick4", "goldenrod3", "darkslategray4", "deeppink4", "chartreuse4"))+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        legend.position = "bottom") +
+  labs(title = "Automoviles por nùmero de cilindros", 
+       subtitle = "Se pueden añadir distintos elementos a la grafica",
+       caption = "Tambien se pueden añadir pies de nota",
+       x = "Tipo de automovil",
+       y = "Número de cilindros",
+       color = "Número de cilindros") +
+  guides(size = FALSE)+
+  theme()
+```
+
+![](Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
+
+
+
+## Ejercicios de práctica
+### Ejercicio 7
+- tidyr::gather() pasa de formato ancho a largo
+- tidyr::spread() pasa de formato largo a ancho
+
+
+```r
+library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
+library(tidyr)
+wide_db <- 
+  mtcars %>% 
+  dplyr::mutate(car_type = row.names(.)) %>% 
+  dplyr::filter(car_type == "Camaro Z28") 
+
+wide_db %>% head
+```
+
+```
+##    mpg cyl disp  hp drat   wt  qsec vs am gear carb   car_type
+## 1 13.3   8  350 245 3.73 3.84 15.41  0  0    3    4 Camaro Z28
+```
+
+
+```r
+long_db <- 
+  wide_db %>% 
+  tidyr::gather(attribute, value, mpg:carb)
+
+long_db %>% head
+```
+
+```
+##     car_type attribute  value
+## 1 Camaro Z28       mpg  13.30
+## 2 Camaro Z28       cyl   8.00
+## 3 Camaro Z28      disp 350.00
+## 4 Camaro Z28        hp 245.00
+## 5 Camaro Z28      drat   3.73
+## 6 Camaro Z28        wt   3.84
+```
+
+
+```r
+wide_db <- 
+  long_db %>% 
+  tidyr::spread(attribute, value)
+```
+
+### Ejercicio 8
+
+Analiza como se transiciona del siguiente chunk de código:
+
+```r
+library(ggplot2)
+
+mtcars %>% 
+  dplyr::mutate(car_type = row.names(.)) %>%
+  ggplot() + # crea un empty plot
+    geom_point(aes(x = car_type, y = carb, color = carb)) + # vamos agregando capas 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) + # agregamos formato 
+    labs(title = "Automoviles por nùmero de cilindros", 
+         subtitle = "Se pueden añadir distintos elementos a la grafica",
+         caption = "Tambien se pueden añadir pies de nota",
+         x = "Tipo de automovil",
+         y = "Númerop de cilindros") + # tambièn se pueden agregar elementos extra
+  theme_minimal() # incluso se puede sobreescribir los elementos definidos previamente
+```
+
+![](Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-10-1.pdf)<!-- --> 
+
+
+### Ejercicio 9
+
+
+```r
+mtcars %>% 
+  dplyr::mutate(car_type = row.names(.)) %>%
+  ggplot() + 
+  geom_point(aes(x = car_type, y = carb, color = factor(carb), size = carb)) +
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        legend.position = "bottom") +
+  labs(title = "Automoviles por nùmero de cilindros", 
+       subtitle = "Se pueden añadir distintos elementos a la grafica",
+       caption = "Tambien se pueden añadir pies de nota",
+       x = "Tipo de automovil",
+       y = "Número de cilindros",
+       color = "Número de cilindros") +
+  guides(size = FALSE)
+```
+
+![](Chap03_intro_data_visualization_files/figure-latex/unnamed-chunk-11-1.pdf)<!-- --> 
+
+
+<!--chapter:end:Chap03_intro_data_visualization.Rmd-->
+
+---
+title: "Estadística basica"
+author: "Salvador Garcia"
+output:   
+  html_document:
+    toc: true
+    theme: united
+    toc_depth: 1
+
+---
+# Estadística básica
+
+Para esta sección de estadística básica veremos funciones asociadas a distribuciones. Estas son de 4 tipos para varios tipos de distribución:
+
+
+```r
+# dnorm, dt, dchisq, df funcion de distribución de la normal, t-student, chisquared, f 
+# Nos dice la 'altura' en los puntos dados. Para distribuciones continuas no es muy util, pero para discretas si
+dnorm(x = c(-100, -1, 0, 1, 100),mean = 0, sd = 1)
+```
+
+```
+## [1] 0.0000000 0.2419707 0.3989423 0.2419707 0.0000000
+```
+
+```r
+dbinom(x = c(0,1,2), size = 2, prob = .5)
+```
+
+```
+## [1] 0.25 0.50 0.25
+```
+
+
+```r
+# qnorm, qt, qchisq, qf la funcion quantile de las distribuciones. Recibe como argumento la probabilidad y devuelve el valor del quantil
+qnorm(p = c(0,.5,1), mean = 0, sd = 1) # en que valor te acumula 0%, 50% y 100%
+```
+
+```
+## [1] -Inf    0  Inf
+```
+
+
+```r
+# pnorm, pt, pchisq, pf la funcion inversa a la quantile. cuanta probabilidad te acumula en los valores dados
+pnorm(q = c(-Inf, 0, Inf), mean = 0, sd = 1)
+```
+
+```
+## [1] 0.0 0.5 1.0
+```
+
+
+```r
+# rnorm, rt, rchisq, rf te devuelve random samples de la distribución en cuestión
+rnorm(n = 10, mean = 0, sd = 1)
+```
+
+```
+##  [1]  1.51010630  0.37789850  0.47795861  1.73064133 -1.37950997 -1.70918656
+##  [7]  0.61482037 -0.06169038 -1.06827546  1.01925245
+```
+
+## Ejercicios de práctica
+### Ejercicio 10
+
+```r
+library(tidyverse)
+```
+
+```
+## -- Attaching packages ------------------ tidyverse 1.3.0 --
+```
+
+```
+## v ggplot2 3.3.0     v purrr   0.3.3
+## v tibble  3.0.0     v dplyr   0.8.5
+## v tidyr   1.0.2     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0
+```
+
+```
+## -- Conflicts --------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+```
+
+```r
+  data.frame(x = c(seq(-10, 10, by = .01))) %>% 
+    mutate(
+      normal = dnorm(x = x, mean = 0, sd = 1),
+      t_student = dt(x = x, df = 10),
+      chi_sq = dchisq(x = x, df = 10),
+      unif = dunif(x = x, min = min(x), max = max(x))
+      ) %>% 
+    gather(distribucion, valor, normal:unif) %>% 
+    ggplot(aes(x = x, y = valor, color = distribucion))+
+    geom_line()+
+    facet_wrap(~distribucion, ncol = 2)+
+    theme_minimal()
+```
+
+![](Chap04_basic_stats_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
+
+
+### Distribution function
+
+```r
+data.frame(q = c(seq(-10, 10, by = .01))) %>% 
+    mutate(
+      normal = pnorm(q = q, mean = 0, sd = 1),
+      t_student = pt(q = q, df = 10),
+      chi_sq = pchisq(q = q, df = 1),
+      unif = punif(q = q, min = min(q), max = max(q))
+    ) %>% 
+    gather(distribucion, valor, normal:unif) %>% 
+    ggplot(aes(x = q, y = valor, color = distribucion))+
+    geom_line()+
+    facet_wrap(~distribucion, ncol = 2)+
+    theme_minimal()
+```
+
+![](Chap04_basic_stats_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
+ 
+### Quantile function
+
+
+```r
+data.frame(q = c(seq(0.01, .99, by = .01))) %>% 
+    mutate(
+      normal = qnorm(p = q, mean = 0, sd = 1),
+      t_student = qt(p = q, df = 10),
+      chi_sq = qchisq(p = q, df = 1),
+      unif = qunif(p = q, min = min(q), max = max(q))
+    ) %>% 
+    gather(distribucion, valor, normal:unif) %>% 
+    ggplot(aes(x = q, y = valor, color = distribucion))+
+    geom_line()+
+    facet_wrap(~distribucion, ncol = 2)+
+    theme_minimal()
+```
+
+![](Chap04_basic_stats_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
+
+### Random function
+
+```r
+data.frame(
+      normal = rnorm(n = 10000, mean = 0, sd = 1),
+      t_student = rt(n = 10000, df = 10),
+      chi_sq = rchisq(n = 10000, df = 1),
+      unif = runif(n = 10000, min = -3, max = 3)
+    ) %>% 
+    gather(distribucion, valor, normal:unif) %>% 
+    ggplot(aes(x = valor, fill = distribucion))+
+    geom_density()+
+    facet_wrap(~distribucion, ncol = 2)+
+    theme_minimal()
+```
+
+![](Chap04_basic_stats_files/figure-latex/unnamed-chunk-8-1.pdf)<!-- --> 
+
+<!--chapter:end:Chap04_basic_stats.Rmd-->
+
