@@ -306,16 +306,18 @@ Un dataframe es una estructura de datos que nos permite almacenar una tabla o ba
 ```{r}
 head(mtcars, 5) # obtiene primeros 5 registros
 tail(mtcars, 5) # obtiene ultimos 5 registros
-View(mtcars) # visualiza de manera mas amigable la tabla
 ```
   
-al operador %>% se le conoce como pipe, sirve para pasar datos (en un substituto de anidación):
+al operador %>% (en paquete magrittr) se le conoce como pipe, sirve para pasar datos (en un substituto de anidación):
+```{r}
+install.packages("magrittr", repo="http://cran.rstudio.com/")
+```
 
 ```{r}
+library(magrittr)
 tail(head(mtcars, 10), 5)
 mtcars %>% head(10) %>% tail(5)
 mtcars %>% head(5)
 mtcars %>% tail(5) 
-mtcars %>% View() 
 ```
 

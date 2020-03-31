@@ -371,3 +371,99 @@ repeat {
 
 ## Ejercicios de practica
 
+### Ejercicio 1
+
+Un dataframe es una estructura de datos que nos permite almacenar una tabla o base de datos en R. Se compone de columnas y renglones   
+
+
+```r
+head(mtcars, 5) # obtiene primeros 5 registros
+```
+
+```
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+```
+
+```r
+tail(mtcars, 5) # obtiene ultimos 5 registros
+```
+
+```
+##                 mpg cyl  disp  hp drat    wt qsec vs am gear carb
+## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2
+## Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.5  0  1    5    4
+## Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.5  0  1    5    6
+## Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8
+## Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2
+```
+  
+al operador %>% (en paquete magrittr) se le conoce como pipe, sirve para pasar datos (en un substituto de anidación):
+
+```r
+install.packages("magrittr", repo="http://cran.rstudio.com/")
+```
+
+```
+## Installing package into '/usr/local/lib/R/3.6/site-library'
+## (as 'lib' is unspecified)
+```
+
+
+```r
+library(magrittr)
+tail(head(mtcars, 10), 5)
+```
+
+```
+##             mpg cyl  disp  hp drat   wt  qsec vs am gear carb
+## Valiant    18.1   6 225.0 105 2.76 3.46 20.22  1  0    3    1
+## Duster 360 14.3   8 360.0 245 3.21 3.57 15.84  0  0    3    4
+## Merc 240D  24.4   4 146.7  62 3.69 3.19 20.00  1  0    4    2
+## Merc 230   22.8   4 140.8  95 3.92 3.15 22.90  1  0    4    2
+## Merc 280   19.2   6 167.6 123 3.92 3.44 18.30  1  0    4    4
+```
+
+```r
+mtcars %>% head(10) %>% tail(5)
+```
+
+```
+##             mpg cyl  disp  hp drat   wt  qsec vs am gear carb
+## Valiant    18.1   6 225.0 105 2.76 3.46 20.22  1  0    3    1
+## Duster 360 14.3   8 360.0 245 3.21 3.57 15.84  0  0    3    4
+## Merc 240D  24.4   4 146.7  62 3.69 3.19 20.00  1  0    4    2
+## Merc 230   22.8   4 140.8  95 3.92 3.15 22.90  1  0    4    2
+## Merc 280   19.2   6 167.6 123 3.92 3.44 18.30  1  0    4    4
+```
+
+```r
+mtcars %>% head(5)
+```
+
+```
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+```
+
+```r
+mtcars %>% tail(5) 
+```
+
+```
+##                 mpg cyl  disp  hp drat    wt qsec vs am gear carb
+## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2
+## Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.5  0  1    5    4
+## Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.5  0  1    5    6
+## Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8
+## Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2
+```
+
