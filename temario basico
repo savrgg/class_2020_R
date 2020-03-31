@@ -1,0 +1,62 @@
+
+# Clase 1: 
+# 1.1) Introduction
+#   1.1.1) R Projects & Paths
+#   1.1.2) Installing & loading packages
+#   1.1.3) Dataframes
+#   1.1.4) Long & wide database formats [tidyr package]
+#   1.1.5) The tidyverse
+#   1.1.6) Pipes [magrittr package]
+#   1.1.7) R benchmarking
+# 1.2) Data import
+#   1.2.1) From flatfiles (csv, txt) [readr package] 
+#   1.2.2) From excel [readxl package]
+#   1.2.3) From other source of data [haven package] 
+# 1.3) Intro to data visualization
+#   1.3.1) Framework for data visualization [ggplot2 package]
+#   1.3.2) Basic plots: Scatterplot, Barplot
+# 1.4) Funciones básicas de estadística
+#   1.4.1) Density function (dnorm, dunif, dt, dchisq)
+#   1.4.2) Distribution function (pnrom, punif, pt, pchisq) 
+#   1.4.3) Quantile function (qnorm, qunif, qt, qchisq)
+#   1.4.4) Random samples (rnorm, runif, rt, rchisq)
+
+# Clase 2: 
+# 2.1) More advanced plots
+#   2.1.1) Heatmap
+#   2.1.2) Circular barplot
+#   2.1.3) Maps
+#   2.1.4) Boxplot
+# 2.2) Interactive graphs (plotly package)
+#   2.2.1) Basic interactive graphs
+# 2.3) Interactive dashboards (shiny/shinydashboard packages)
+#   2.3.1) Basic interactive dashboards
+#   2.3.2) BI tools comparison
+
+# Clase 3: 
+# 3.1) Data transformation (dplyr package)
+#   3.1.1) Basic operations: Select
+#   3.1.2) Basic operations: Mutate
+#   3.1.3) Basic operations: Filter
+#   3.1.4) Basic operations: Arrange
+#   3.1.5) Basic operations: Group by - mutate
+#   3.1.6) Basic operations: Group by - summarise
+#   3.1.7) Basic operations: Group by - mutate
+# 3.2) Variables transformations
+#   3.2.1) missing values
+#   3.2.2) string transformation (stringr package)
+#   3.2.3) factor transformation (forcats package)
+#   3.2.4) dates/times transformation (lubridate/hms/zoo packages)
+
+# Clase 4:
+#   4.1) Basic statistics (stats package)
+#     4.1.1) basic distributions
+#     4.1.2) basic estimators
+#     4.1.3) more complex statistics
+#   4.2) Basic forecast understanding
+#     4.2.1) ts object
+#     4.2.2) Time series pattern
+#     4.2.3) Error measures
+#   4.3) More advanced forecast methods [forecast package]
+#     4.3.1) Basic forecast funcions
+

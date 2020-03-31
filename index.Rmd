@@ -24,9 +24,9 @@ Este curso está diseñado como un curso introductorio al lenguaje de programaci
 
 ## Paquetes y librerias de R
 
-La primer diferencia para entender R, es entender la diferencia entre paquete y libreria. Paquete es el grupo de codigos que descargamos de internet y libreria es un paqute que se encuentra instalado y listo para usar.  
+La primer diferencia para entender R, es entender la diferencia entre paquete y libreria. Paquete es el grupo de codigos que descargamos de internet y libreria es un paquete que se encuentra instalado y listo para usar.  
 
-1. La paquetería básica de R está basada en librerías en Fortran y C, creando *wrappers* que hacen referencia a las funciones originales. Por ejemplo, al calcular distintas factorizaciones de matrices (LU, Chol, QR, SVD, Schur) son calculadas utilizando la librería de *LAPACK*.
+1. La paquetería básica de R está basada en librerías en Fortran y C (lenguajes de programación low level), creando *wrappers* que hacen referencia a las funciones originales. Por ejemplo, al calcular distintas factorizaciones de matrices (LU, Chol, QR, SVD, Schur) son calculadas utilizando la librería de *LAPACK*.
 
 2. Algunas paqueterías requieren que el software este instalado en el sistema. Por ejemplo:
 
@@ -117,4 +117,49 @@ Además de las librerías **core** de R, se pueden instalar nuevos paquetes desd
 El CRAN es un repositorio central que contiene todos los paquetes disponibles en R. El CRAN está replicado a través de espejos (*mirrors*) en todo el mundo, esto con el fin de brindar disponibilidad y baja latencia al descargar los paquetes. Para instalar un paquete desde el CRAN se tiene que usar la función: `install_packages("nombre_paquete")`, usando comillas alrededor del nombre del paquete. Adicional al CRAN, hay usuarios que desarrollan paquetes y los hostean en *Github*, principalmente cuando son paquetes en desarrollo o versiones nuevas (algunas veces no estables). Para poder instalar paquetes desde github, se necesita la función `install_github("nombre_paquete")` de la librería devtools.
 
 Una vez instalado el paquete, el conjunto de funciones, los datos y el código compilado son almacenados en una librería que no se carga automáticamente; por lo tanto, en caso de hacer referencia a una función del paquete se mostrará un error. Por esto, es muy importante que una vez instalado el paquete se utilice la función `library("nombre_paquete")` cada vez que se inicie una sesión. (Imaginen que tienen 1000 paquetes instalados, es poco practico siempre poder acceder a todas las funciones de cada uno de los paquetes en todo momento. Por esto, solamente es recomendable solo cargar las librerías que se ocuparán en el proyecto a desarrollar.)
+
+## Ejercicios de practica
+
+
+### Ejercicio 1.
+
+**R Projects & Paths -----------------------------------------------**
+
+Conceptos básicos:
+
+**Directorio de trabajo (PATH)**: Es donde se guardan por default los archivos y donde se leen por default. 
+
+**Path absoluto**: especifica la ruta desde el root del sistema (por ejemplo: C:\Users\salvador\projecto1\archivo1.csv)
+
+**Path relativo** es relativo a la carpeta (por ejemplo: archivo1.csv)
+Al inicializar un proyecto, todo se usa a través de un path relativo
+
+```{r}
+getwd() # obtiene el path absoluto por default
+```
+
+```{r}
+setwd(".") # permite hacer overwrite del path por default
+```
+### Ejercicio 2.
+**Installing & loading packages ------------------------------------**
+
+Conceptos básicos:
+
+**paquete y libreria** Para usar un paquete/libreria en R, son dos pasos: instalar el paquete y cargar libreria (install.packages() se corre solo una vez para instalar el paquete, library() se corre cada vez que se quiera usar la libreria)
+
+```{r}
+install.packages("broom", repo="http://cran.rstudio.com/")
+```
+
+```{r}
+library(broom)
+```
+
+Para visualizar todos los paquetes se puede ocupar el panel derecho en la pestaña de packages o bien con la funcion: installed.packages()
+  
+```{r}
+installed.packages()
+```
+
 

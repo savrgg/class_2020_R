@@ -297,3 +297,25 @@ repeat {
 }
 ```
 
+## Ejercicios de practica
+
+### Ejercicio 1
+
+Un dataframe es una estructura de datos que nos permite almacenar una tabla o base de datos en R. Se compone de columnas y renglones   
+
+```{r}
+head(mtcars, 5) # obtiene primeros 5 registros
+tail(mtcars, 5) # obtiene ultimos 5 registros
+View(mtcars) # visualiza de manera mas amigable la tabla
+```
+  
+al operador %>% se le conoce como pipe, sirve para pasar datos (en un substituto de anidación):
+
+```{r}
+tail(head(mtcars, 10), 5)
+mtcars %>% head(10) %>% tail(5)
+mtcars %>% head(5)
+mtcars %>% tail(5) 
+mtcars %>% View() 
+```
+
