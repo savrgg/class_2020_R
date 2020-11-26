@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Estadística básica | Estadística basica</title>
+  <title>Chapter 6 Pruebas de hipótesis | Estadística basica</title>
   <meta name="description" content="Notas para el curso de R para Estadística 2 - Primavera 2020" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Estadística básica | Estadística basica" />
+  <meta property="og:title" content="Chapter 6 Pruebas de hipótesis | Estadística basica" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Estadística básica | Estadística basica" />
+  <meta name="twitter:title" content="Chapter 6 Pruebas de hipótesis | Estadística basica" />
   
   <meta name="twitter:description" content="Notas para el curso de R para Estadística 2 - Primavera 2020" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="intro-a-visualización-de-datos.html"/>
-<link rel="next" href="pruebas-de-hipótesis.html"/>
+<link rel="prev" href="estadística-básica.html"/>
+
 <script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -245,99 +245,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="estadística-básica" class="section level1" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Estadística básica</h1>
-<p>Para esta sección de estadística básica veremos funciones asociadas a distribuciones. Estas son de 4 tipos para varios tipos de distribución:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="estadística-básica.html#cb1-1" aria-hidden="true"></a><span class="co"># dnorm, dt, dchisq, df funcion de distribución de la normal, t-student, chisquared, f </span></span>
-<span id="cb1-2"><a href="estadística-básica.html#cb1-2" aria-hidden="true"></a><span class="co"># Nos dice la &#39;altura&#39; en los puntos dados. Para distribuciones continuas no es muy util, pero para discretas si</span></span>
-<span id="cb1-3"><a href="estadística-básica.html#cb1-3" aria-hidden="true"></a><span class="kw">dnorm</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">100</span>, <span class="dv">-1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">100</span>),<span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## [1] 0.0000000 0.2419707 0.3989423 0.2419707 0.0000000</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="estadística-básica.html#cb3-1" aria-hidden="true"></a><span class="kw">dbinom</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">prob =</span> <span class="fl">.5</span>)</span></code></pre></div>
-<pre><code>## [1] 0.25 0.50 0.25</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="estadística-básica.html#cb5-1" aria-hidden="true"></a><span class="co"># qnorm, qt, qchisq, qf la funcion quantile de las distribuciones. Recibe como argumento la probabilidad y devuelve el valor del quantil</span></span>
-<span id="cb5-2"><a href="estadística-básica.html#cb5-2" aria-hidden="true"></a><span class="kw">qnorm</span>(<span class="dt">p =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>,<span class="dv">1</span>), <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>) <span class="co"># en que valor te acumula 0%, 50% y 100%</span></span></code></pre></div>
-<pre><code>## [1] -Inf    0  Inf</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="estadística-básica.html#cb7-1" aria-hidden="true"></a><span class="co"># pnorm, pt, pchisq, pf la funcion inversa a la quantile. cuanta probabilidad te acumula en los valores dados</span></span>
-<span id="cb7-2"><a href="estadística-básica.html#cb7-2" aria-hidden="true"></a><span class="kw">pnorm</span>(<span class="dt">q =</span> <span class="kw">c</span>(<span class="op">-</span><span class="ot">Inf</span>, <span class="dv">0</span>, <span class="ot">Inf</span>), <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## [1] 0.0 0.5 1.0</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="estadística-básica.html#cb9-1" aria-hidden="true"></a><span class="co"># rnorm, rt, rchisq, rf te devuelve random samples de la distribución en cuestión</span></span>
-<span id="cb9-2"><a href="estadística-básica.html#cb9-2" aria-hidden="true"></a><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>##  [1] -1.5246655  0.3983001 -1.7484004  0.6999737 -0.6193572  0.4017081
-##  [7]  0.5857146  0.4030496 -0.7242786  0.5453385</code></pre>
-<div id="ejercicios-de-práctica-2" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Ejercicios de práctica</h2>
-<div id="ejercicio-10" class="section level3" number="5.1.1">
-<h3><span class="header-section-number">5.1.1</span> Ejercicio 10</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="estadística-básica.html#cb11-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
-## ✓ tibble  3.0.4     ✓ dplyr   1.0.2
-## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
-## ✓ readr   1.4.0     ✓ forcats 0.5.0</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="estadística-básica.html#cb15-1" aria-hidden="true"></a>  <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="fl">.01</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb15-2"><a href="estadística-básica.html#cb15-2" aria-hidden="true"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
-<span id="cb15-3"><a href="estadística-básica.html#cb15-3" aria-hidden="true"></a>      <span class="dt">normal =</span> <span class="kw">dnorm</span>(<span class="dt">x =</span> x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>),</span>
-<span id="cb15-4"><a href="estadística-básica.html#cb15-4" aria-hidden="true"></a>      <span class="dt">t_student =</span> <span class="kw">dt</span>(<span class="dt">x =</span> x, <span class="dt">df =</span> <span class="dv">10</span>),</span>
-<span id="cb15-5"><a href="estadística-básica.html#cb15-5" aria-hidden="true"></a>      <span class="dt">chi_sq =</span> <span class="kw">dchisq</span>(<span class="dt">x =</span> x, <span class="dt">df =</span> <span class="dv">10</span>),</span>
-<span id="cb15-6"><a href="estadística-básica.html#cb15-6" aria-hidden="true"></a>      <span class="dt">unif =</span> <span class="kw">dunif</span>(<span class="dt">x =</span> x, <span class="dt">min =</span> <span class="kw">min</span>(x), <span class="dt">max =</span> <span class="kw">max</span>(x))</span>
-<span id="cb15-7"><a href="estadística-básica.html#cb15-7" aria-hidden="true"></a>      ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb15-8"><a href="estadística-básica.html#cb15-8" aria-hidden="true"></a><span class="st">    </span><span class="kw">gather</span>(distribucion, valor, normal<span class="op">:</span>unif) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb15-9"><a href="estadística-básica.html#cb15-9" aria-hidden="true"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> valor, <span class="dt">color =</span> distribucion))<span class="op">+</span></span>
-<span id="cb15-10"><a href="estadística-básica.html#cb15-10" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_line</span>()<span class="op">+</span></span>
-<span id="cb15-11"><a href="estadística-básica.html#cb15-11" aria-hidden="true"></a><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>distribucion, <span class="dt">ncol =</span> <span class="dv">2</span>)<span class="op">+</span></span>
-<span id="cb15-12"><a href="estadística-básica.html#cb15-12" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Chap04_basic_stats_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div id="pruebas-de-hipótesis" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Pruebas de hipótesis</h1>
+<p>Las pruebas de hipótesis se componen de 4 elementos:</p>
+<ol style="list-style-type: decimal">
+<li>Hipótesis Nula</li>
+<li>Hipótesis Alternativa</li>
+<li>Estadístico de Prueba</li>
+<li>Región de Rechazo</li>
+</ol>
+<div id="ejemplo-de-estadístico-z" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Ejemplo de estadístico Z</h2>
+<div id="diferencia-de-medias" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Diferencia de Medias</h3>
 </div>
-<div id="distribution-function" class="section level3" number="5.1.2">
-<h3><span class="header-section-number">5.1.2</span> Distribution function</h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="estadística-básica.html#cb16-1" aria-hidden="true"></a><span class="kw">data.frame</span>(<span class="dt">q =</span> <span class="kw">c</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="fl">.01</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb16-2"><a href="estadística-básica.html#cb16-2" aria-hidden="true"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
-<span id="cb16-3"><a href="estadística-básica.html#cb16-3" aria-hidden="true"></a>      <span class="dt">normal =</span> <span class="kw">pnorm</span>(<span class="dt">q =</span> q, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>),</span>
-<span id="cb16-4"><a href="estadística-básica.html#cb16-4" aria-hidden="true"></a>      <span class="dt">t_student =</span> <span class="kw">pt</span>(<span class="dt">q =</span> q, <span class="dt">df =</span> <span class="dv">10</span>),</span>
-<span id="cb16-5"><a href="estadística-básica.html#cb16-5" aria-hidden="true"></a>      <span class="dt">chi_sq =</span> <span class="kw">pchisq</span>(<span class="dt">q =</span> q, <span class="dt">df =</span> <span class="dv">1</span>),</span>
-<span id="cb16-6"><a href="estadística-básica.html#cb16-6" aria-hidden="true"></a>      <span class="dt">unif =</span> <span class="kw">punif</span>(<span class="dt">q =</span> q, <span class="dt">min =</span> <span class="kw">min</span>(q), <span class="dt">max =</span> <span class="kw">max</span>(q))</span>
-<span id="cb16-7"><a href="estadística-básica.html#cb16-7" aria-hidden="true"></a>    ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb16-8"><a href="estadística-básica.html#cb16-8" aria-hidden="true"></a><span class="st">    </span><span class="kw">gather</span>(distribucion, valor, normal<span class="op">:</span>unif) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb16-9"><a href="estadística-básica.html#cb16-9" aria-hidden="true"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> q, <span class="dt">y =</span> valor, <span class="dt">color =</span> distribucion))<span class="op">+</span></span>
-<span id="cb16-10"><a href="estadística-básica.html#cb16-10" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_line</span>()<span class="op">+</span></span>
-<span id="cb16-11"><a href="estadística-básica.html#cb16-11" aria-hidden="true"></a><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>distribucion, <span class="dt">ncol =</span> <span class="dv">2</span>)<span class="op">+</span></span>
-<span id="cb16-12"><a href="estadística-básica.html#cb16-12" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Chap04_basic_stats_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div id="diferencia-de-proporciones" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Diferencia de Proporciones</h3>
+<strong>CDE: 5.2.15</strong>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-9" class="exercise"><strong>Exercise 6.1  </strong></span>En un estudio reciente, se investigó el efecto de la ingesta de una cierta sustancia en el desarrollo de cáncer pulmonar. Se encontró que de 488 hombres que habían ingerido una baja cantidad de esta sustancia, 14 desarrollaron cáncer pulmonar. En un grupo del mismo tamaño en el que el consumo de esta sustancia era mayor, sólo 5 personas desarrollaron cáncer pulmonar.
+a) ¿Pruebe si la ingesta alta de esa sustancia reduce el riesgo de cáncer pulmonar en los hombres? Emplee <span class="math inline">\(\alpha = 0.01\)</span>
 </div>
-<div id="quantile-function" class="section level3" number="5.1.3">
-<h3><span class="header-section-number">5.1.3</span> Quantile function</h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="estadística-básica.html#cb17-1" aria-hidden="true"></a><span class="kw">data.frame</span>(<span class="dt">q =</span> <span class="kw">c</span>(<span class="kw">seq</span>(<span class="fl">0.01</span>, <span class="fl">.99</span>, <span class="dt">by =</span> <span class="fl">.01</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb17-2"><a href="estadística-básica.html#cb17-2" aria-hidden="true"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
-<span id="cb17-3"><a href="estadística-básica.html#cb17-3" aria-hidden="true"></a>      <span class="dt">normal =</span> <span class="kw">qnorm</span>(<span class="dt">p =</span> q, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>),</span>
-<span id="cb17-4"><a href="estadística-básica.html#cb17-4" aria-hidden="true"></a>      <span class="dt">t_student =</span> <span class="kw">qt</span>(<span class="dt">p =</span> q, <span class="dt">df =</span> <span class="dv">10</span>),</span>
-<span id="cb17-5"><a href="estadística-básica.html#cb17-5" aria-hidden="true"></a>      <span class="dt">chi_sq =</span> <span class="kw">qchisq</span>(<span class="dt">p =</span> q, <span class="dt">df =</span> <span class="dv">1</span>),</span>
-<span id="cb17-6"><a href="estadística-básica.html#cb17-6" aria-hidden="true"></a>      <span class="dt">unif =</span> <span class="kw">qunif</span>(<span class="dt">p =</span> q, <span class="dt">min =</span> <span class="kw">min</span>(q), <span class="dt">max =</span> <span class="kw">max</span>(q))</span>
-<span id="cb17-7"><a href="estadística-básica.html#cb17-7" aria-hidden="true"></a>    ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb17-8"><a href="estadística-básica.html#cb17-8" aria-hidden="true"></a><span class="st">    </span><span class="kw">gather</span>(distribucion, valor, normal<span class="op">:</span>unif) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb17-9"><a href="estadística-básica.html#cb17-9" aria-hidden="true"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> q, <span class="dt">y =</span> valor, <span class="dt">color =</span> distribucion))<span class="op">+</span></span>
-<span id="cb17-10"><a href="estadística-básica.html#cb17-10" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_line</span>()<span class="op">+</span></span>
-<span id="cb17-11"><a href="estadística-básica.html#cb17-11" aria-hidden="true"></a><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>distribucion, <span class="dt">ncol =</span> <span class="dv">2</span>)<span class="op">+</span></span>
-<span id="cb17-12"><a href="estadística-básica.html#cb17-12" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Chap04_basic_stats_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>X: Antes, Y: Después</p>
+<p><span class="math inline">\(\hat{p_X} = 14/488 = 0.0287\)</span></p>
+<p><span class="math inline">\(\hat{p_Y} = 5/488 = 0.0102\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Hipótesis Nula: <span class="math inline">\(H_0: \mu_X-\mu_Y = 0\)</span></p></li>
+<li><p>Hipótesis Alternativa: <span class="math inline">\(H_1: \mu_X-\mu_Y&lt; 0\)</span></p></li>
+<li><p>Estadístico de Prueba: <span class="math inline">\(Z =\frac{(\hat{p_X}-\hat{p_Y}) - (p_X-p_Y)}{\sqrt{\frac{(\hat{p_X})(1-\hat{p_X})}{n}+\frac{(\hat{p_Y})(1-\hat{p_Y})}{m}}} = \frac{(0.0287-0.0102) - (0)}{\sqrt{\frac{(0.0287)(1-0.0287)}{488}+\frac{(0.0102)(1-0.0102)}{488}}} = 2.0894\)</span></p></li>
+<li><p>Región de Rechazo: <span class="math inline">\(RR = \{Z &lt; Z_{0.01}\} = \{Z &lt; qnorm(.01)\} = \{Z &lt; -2.3263\}\)</span></p></li>
+</ol>
+<p><img src="Chap04_basic_stats_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><strong>No Rechazamos H_0</strong></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Obtenga el nivel de significancia descriptivo o valor p</li>
+</ol>
+<p>valor-p = <span class="math inline">\(pnorm(-2.09) = 0.0183089\)</span></p>
 </div>
-<div id="random-function" class="section level3" number="5.1.4">
-<h3><span class="header-section-number">5.1.4</span> Random function</h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="estadística-básica.html#cb18-1" aria-hidden="true"></a><span class="kw">data.frame</span>(</span>
-<span id="cb18-2"><a href="estadística-básica.html#cb18-2" aria-hidden="true"></a>      <span class="dt">normal =</span> <span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>),</span>
-<span id="cb18-3"><a href="estadística-básica.html#cb18-3" aria-hidden="true"></a>      <span class="dt">t_student =</span> <span class="kw">rt</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">df =</span> <span class="dv">10</span>),</span>
-<span id="cb18-4"><a href="estadística-básica.html#cb18-4" aria-hidden="true"></a>      <span class="dt">chi_sq =</span> <span class="kw">rchisq</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">df =</span> <span class="dv">1</span>),</span>
-<span id="cb18-5"><a href="estadística-básica.html#cb18-5" aria-hidden="true"></a>      <span class="dt">unif =</span> <span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">min =</span> <span class="dv">-3</span>, <span class="dt">max =</span> <span class="dv">3</span>)</span>
-<span id="cb18-6"><a href="estadística-básica.html#cb18-6" aria-hidden="true"></a>    ) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb18-7"><a href="estadística-básica.html#cb18-7" aria-hidden="true"></a><span class="st">    </span><span class="kw">gather</span>(distribucion, valor, normal<span class="op">:</span>unif) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb18-8"><a href="estadística-básica.html#cb18-8" aria-hidden="true"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> valor, <span class="dt">fill =</span> distribucion))<span class="op">+</span></span>
-<span id="cb18-9"><a href="estadística-básica.html#cb18-9" aria-hidden="true"></a><span class="st">    </span><span class="kw">geom_density</span>()<span class="op">+</span></span>
-<span id="cb18-10"><a href="estadística-básica.html#cb18-10" aria-hidden="true"></a><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>distribucion, <span class="dt">ncol =</span> <span class="dv">2</span>)<span class="op">+</span></span>
-<span id="cb18-11"><a href="estadística-básica.html#cb18-11" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Chap04_basic_stats_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
+<div id="ejemplo-de-estadistico-t" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Ejemplo de estadistico T</h2>
+<div id="diferencia-de-medias-pareada" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Diferencia de medias pareada</h3>
+<strong>CDE: 5.2.16</strong>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-12" class="exercise"><strong>Exercise 6.2  </strong></span>Supóngase que, un psicólogo piensa que la edad influye en el coeficiente de inteligencia (IQ). Se toma una muestra aleatoria de 100 personas de mediana edad, de quienes se conoce su IQ a la edad de 16 años y actualmente. De restar, los coeficientes de su juventud de los coeficientes actuales, se obtuvo una diferencia promedio de 6 puntos, con una desviación estándar muestral de 7 puntos. Utilice <span class="math inline">\(\alpha = .01\)</span> para probar la hipotesis de que el IQ aumenta con la edad.
+</div>
+<p>X: IQ a los 16 años
+Y: IQ actual
+<span class="math inline">\(\bar{D}: \bar{Y}-\bar{X} = 6\)</span>
+<span class="math inline">\(S_{\bar{D}} = 7\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Hipótesis Nula: <span class="math inline">\(H_0: \mu_D = 0\)</span></p></li>
+<li><p>Hipótesis Alternativa: <span class="math inline">\(H_1: \mu_D &gt; 0\)</span></p></li>
+<li><p>Estadístico de Prueba: <span class="math inline">\(T =\frac{\bar{D} - \mu_{\bar{D}}}{\sqrt{\frac{{S_{\bar{D}^2}}}{n}}} = \frac{6 - 0}{\sqrt{\frac{7^2}{100}}} = 8.5714\)</span></p></li>
+<li><p>Región de Rechazo: <span class="math inline">\(RR = \{T &lt; T_{99, 0.01}\} = \{T &lt; qt(.99,99)\} = \{Z &lt; 2.3646\}\)</span></p></li>
+</ol>
+<p><img src="Chap04_basic_stats_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><strong>Rechazamos H_0</strong></p>
+<p>valor-p = <span class="math inline">\(pt(8.5714, 99, lower.tail = F) \sim 0\)</span></p>
+</div>
+</div>
+<div id="ejemplo-de-estadistico-j" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Ejemplo de estadistico J</h2>
+<strong>CDE: 5.2.23</strong>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-15" class="exercise"><strong>Exercise 6.3  </strong></span>La Policía Federal de Caminos desea probar un radar detector de velocidades. Para esto hace circular frente al radar 61 patrullas a una velocidad de 110 Km/h. según su correspondiente velocímetro. De las 61 lecturas del radar obtiene <span class="math inline">\(s^2 = 1.69\)</span>. Según la PFC el radar es aceptable si <span class="math inline">\(\sigma &lt;2km/h\)</span>. Adopte el punto de vista que el error grave es comprar el radar cuando en realidad el error de medición está por arriba del límite.
+a) Formule las hipótesis H0 y H1 apropiadas a este problema.
+b) Pruebe las hipótesis de a) con un nivel de significancia del 1%.
+c) De una cota superior para el valor de P.
+d) Verifique que la decisión de b) concuerda con la estimación de c)
+</div>
+<ol style="list-style-type: decimal">
+<li><p>Hipótesis Nula: <span class="math inline">\(H_0: \sigma^2 = 4\)</span></p></li>
+<li><p>Hipótesis Alternativa: <span class="math inline">\(H_1: \sigma^2 &lt; 4\)</span></p></li>
+<li><p>Estadístico de Prueba: <span class="math inline">\(J =\frac{(n-1)S^2}{\sigma^2} = \frac{(61-1) 1.69}{4}= 25.35\)</span></p></li>
+<li><p>Región de Rechazo: <span class="math inline">\(RR = \{J &lt; J_{0.01,60}\} = \{J &lt; qchisq(.01,60)\} = \{J &lt; 37.4849\}\)</span></p></li>
+</ol>
+<p><img src="Chap04_basic_stats_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><strong>Rechazamos H_0</strong></p>
+<p>valor-p = <span class="math inline">\(pchisq(25.35, 60) \sim 0\)</span></p>
+</div>
+<div id="ejemplo-de-estadistico-f" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Ejemplo de estadistico F</h2>
+<strong>CDE: 5.2.18</strong>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-17" class="exercise"><strong>Exercise 6.4  </strong></span>La estabilidad de las mediciones de las características de un producto manufacturado es importante para mantener su calidad. En realidad, es mejor tener, a veces, una pequeña variación en el valor medio de alguna característica importante de un producto y tener una media del proceso un poco fuera del “blanco”, que tener una amplia variación con una media que se ajuste perfectamente a las necesidades. La última situación puede producir un porcentaje mayor de productos defectuosos que la primera. Un fabricante de lámparas eléctricas sospechoso que una de sus líneas de producción estaba fabricando bombillas con una alta variación en su vida útil. Para probar su teoría comparó la vida útil de <span class="math inline">\(n = 40\)</span> lámparas, muestreadas al azar, de la línea que supuestamente no trabajaba bien, y <span class="math inline">\(m = 40\)</span> de la línea que parecía estar “bajo control”. Las medias y las varianzas de las muestras para las dos líneas eran:
+a) ¿Proporcionan los datos evidencia suficiente para indicar que las bombillas (o focos), producidos por la línea que supuestamente trabaja mal poseen una mayor varianza en la vida útil que las lámparas producidas por la línea que supuestamente estaba bajo control? Utilice <span class="math inline">\(\alpha = 0.05\)</span>.
+b) Encuentre el nivel de significancia descriptivo que se ha observado para la prueba e interprete su valor.
+</div>
+<ol style="list-style-type: decimal">
+<li><p>Hipótesis Nula: <span class="math inline">\(H_0: \sigma^2_1 = \sigma^2_2 \Rightarrow \frac{\sigma^2_1}{\sigma^2_2} = 1\)</span></p></li>
+<li><p>Hipótesis Alternativa: <span class="math inline">\(H_1: \sigma^2_1 &gt; \sigma^2_2 \Rightarrow \frac{\sigma^2_1}{\sigma^2_2} &gt; 1\)</span></p></li>
+<li><p>Estadístico de Prueba: <span class="math inline">\(F =\frac{S_2^2 \sigma^2_1}{S_1^2\sigma^2_2} = \frac{37000}{92000} = 0.4021739\)</span></p></li>
+<li><p>Región de Rechazo: <span class="math inline">\(RR = \{F &gt; F_{0.05,39,39}\} = \{F &gt; qf(.95,39,39)\} = \{F &gt; 1.704465\}\)</span></p></li>
+</ol>
+<p><img src="Chap04_basic_stats_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><strong>No Rechazamos H_0</strong></p>
+<p>valor-p = <span class="math inline">\(pf(0.4021739, 39, 39, lower.tail = F) \sim 0.997279\)</span></p>
+
 </div>
 </div>
             </section>
@@ -345,8 +355,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="intro-a-visualización-de-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="pruebas-de-hipótesis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="estadística-básica.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

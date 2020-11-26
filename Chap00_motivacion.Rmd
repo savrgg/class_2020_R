@@ -1,0 +1,16 @@
+---
+title: "Motivación"
+author: "Salvador Garcia"
+date: "11/23/2020"
+output: html_document
+---
+
+Durante este capítulo se exploran distintas aplicaciones de R que les permitirán 
+
+
+# Cats vs Dogs example
+
+```{r setup, include=FALSE}
+image_dir <- "data/
+
+```

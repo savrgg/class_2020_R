@@ -1,0 +1,6 @@
+---
+title: "Soluciones tercer parcial 20:00"
+output:
+  html_document:
+    df_print: paged
+---
