@@ -5,12 +5,102 @@ date: "11/23/2020"
 output: html_document
 ---
 
-Durante este capítulo se exploran distintas aplicaciones de R que les permitirán 
+Durante este capítulo se exploran distintas aplicaciones de R 
 
+# Motivación 
 
-# Cats vs Dogs example
+## Image Recognition: Cats vs Dogs 
 
+Conceptualmente el siguiente código lo podemos dividir en varios componentes:
+
+1. Cargar librerias y funciones auxiliares
+2. Train - Test Split
+3. Definición y entrenamiento de modelo (Keras)
+4. Predicción de nuevos datos
+
+### 1) Cargar librerias y funciones auxiliares
 ```{r setup, include=FALSE}
-image_dir <- "data/
+library(tidyverse)
+library(keras)
+library(imager)
+library(reticulate)
+library(magick)
+library(tensorflow)
 
+use_condaenv('r-reticulate')
+
+source("aux/dogs-vs-cats/train_prep.R")
+source("aux/dogs-vs-cats/test_prep.R")
+source("aux/dogs-vs-cats/extract_features.R")
+source("aux/dogs-vs-cats/reshape_features.R")
+source("aux/dogs-vs-cats/predict_test.R")
+
+cats<- list.files(path = "data/dogs-vs-cats/train/", pattern = "cat.+")
+dogs<- list.files(path = "data/dogs-vs-cats/train/", pattern = "dog.+")
+
+conv_base <- application_inception_v3(
+  weights = "data/dogs-vs-cats/inception_v3_weights_tf_dim_ordering_tf_kernels_notop.h5",
+  include_top = FALSE,
+  input_shape = c(size, size, channels)
+)
+```
+
+### 2) Train - Test Split
+```{r setup, include=FALSE}
+size = 150
+channels = 3
+
+train <- c(cats[1:3000],dogs[1:3000])
+train <- sample(train)
+
+x_test <- test_prep(list.files(path = "data/dogs-vs-cats/test/"), size, channels)
+
+train_datagen <- image_data_generator(rescale = 1/255)           
+batch_size = 50
+
+id <- list.files(path = "data/dogs-vs-cats/test/")
+id<- gsub("dog.|cat.|.jpg", "", id)
+
+x_train <- train_prep(train, size, channels)
+y_train <- as.numeric(grepl("dog.", train, ignore.case = TRUE))
+
+train <- extract_features(x_train, y_train, 6000)
+train$features <- reshape_features(train$features)
+```
+
+### 3) Definición y entrenamiento de modelo (Keras)
+```{r setup, include=FALSE}
+model <- keras_model_sequential() %>%
+  layer_dense(units = 256, activation = "relu",
+              input_shape = 3 * 3 * 2048) %>%
+  layer_dropout(rate = 0.5) %>%
+  layer_dense(units = 1, activation = "sigmoid")
+model %>% compile(
+  loss = "binary_crossentropy",
+  optimizer = optimizer_rmsprop(lr = 1e-4),
+  metrics = c("accuracy")
+)
+
+model %>% fit(
+  train$features, train$labels,
+  epochs = 10
+)
+```
+
+
+### 4) Predicción de nuevos datos
+```{r setup, include=FALSE}
+pred <- predict_test(ts = x_test, id = id, size = 2500)
+
+i = 1899
+name <- paste0("data/dogs-vs-cats/test/",pred$ids[i],".jpg")
+name <- "data/dogs-vs-cats/delfin0_0.jpg"
+img <- magick::image_read(name)
+ifelse(round(pred$predictions[i],digits = 0) == 1, "perro", "gato")
+plot(img)
+
+pred %>% data.frame() %>% 
+  select(ids, predictions) %>% 
+  set_names("id","label") %>% 
+  write.csv("submission.csv", row.names = F)
 ```

@@ -8,6 +8,37 @@ output:
     toc_depth: 1
 
 ---
+
+
+library(crayon)
+library(tidyverse)
+library(Hmisc)
+library(plyr)
+
+px = 14/488
+py = 5/488
+
+# Z (simetrica)
+qnorm(.025, lower.tail = T)
+qnorm(.025, lower.tail = F)
+
+## Valor-p
+pnorm(-1.959964, lower.tail = T)
+
+# T (simetrica)
+qt(.025, df = 11, lower.tail = T)
+qt(.025, df = 11, lower.tail = F)
+
+# J (no simetrica)
+qchisq(.025, df = 11, lower.tail = T)
+qchisq(.025, df = 11, lower.tail = F)
+
+# J (no simetrica)
+qf(.025, df1 = 11, df2 = 38, lower.tail = T)
+qf(.025, df1 = 11, df2 = 38, lower.tail = F)
+
+
+
 # Estadística básica
 
 Para esta sección de estadística básica veremos funciones asociadas a distribuciones. Estas son de 4 tipos para varios tipos de distribución:
@@ -141,13 +172,17 @@ $\hat{p_Y} = 5/488 = 0.0102$
 
 4. Región de Rechazo: $RR = \{Z < Z_{0.01}\} = \{Z < qnorm(.01)\} = \{Z < -2.3263\}$
 
-```{r echo = F, message=F, fig.height=2}
+```{r echo = T, message=F, fig.height=2}
 library(tidyverse)
+
 ggplot(data = data.frame(x = c(-3, 3)), aes(x)) +
   stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1)) + 
-  ylab("")+
   theme_minimal() +
-  geom_vline(xintercept = -2.3263, color = "red")+
+  labs(x = "mi texto en $", 
+       y = "mi texto en €", 
+       title = "mi titulo", 
+       subtitle = "mi subtitulo") +
+  geom_vline(xintercept = -2.3263, color = "red") +
   geom_rect(aes(xmin=-Inf,xmax=-2.3263,ymin=0,ymax=.5),alpha=0.1,fill="red")+
   geom_vline(xintercept = -2.0894, color = "orange")
 ```

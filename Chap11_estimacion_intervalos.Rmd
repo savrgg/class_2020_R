@@ -1,5 +1,5 @@
 ---
-title: "06_estimacion_intervalos"
+title: "20_estimacion_intervalos"
 author: "Salvador Garcia"
 output:   
   html_document:
@@ -11,16 +11,14 @@ output:
 
 # Estimación por intervalos
 
-Durante el tema anterior se abordó la estimación puntual, donde se proporciona un solo valor que nos da una idea de un parámetro $\theta$. A veces un solo valor no es suficiente y es requerido tener un rango de valores donde creemos se encuentra el parámetro. 
+El capítulo anterior abordó **estimación puntual**, que proporciona o estima un solo valor para darnos una idea del parámetro $\theta$. En ocasiones estimar un solo valor no es suficiente por que se requiere tener un rango de valores donde creemos se encuentra el parámetro. 
 
-**Nivel de confianza**: Grado de seguridad que se tiene sobre la veracidad de una afirmación acerca del parámetro (o parámetros) de interés. El nivel de confianza se denota como $1-\alpha$ con $\alpha$ constante entre 0 y 1. 
+**Nivel de confianza**: Grado de seguridad que se tiene sobre la veracidad de una afirmación acerca del parámetro (o parámetros) de interés. El nivel de confianza se denota como $(1-\alpha)$ con $\alpha$ constante entre 0 y 1. 
 
-**Intervalo de confianza (IC)**: Rango de valores en el que se encuentra el verdadero valor del parámetro $\theta$. Este rango de valores es dependiente la nivel de confianza $1-\alpha$. Sean $T_1$ y $T_2$ dos estadísticas tal que:
+**Intervalo de confianza (IC)**: Rango de valores en el que se encuentra el verdadero valor del parámetro $\theta$. Este rango de valores es dependiente la nivel de confianza $(1-\alpha)$. Sean $a$ y $b$ dos valores tal que:
 
-$$P(T_1 < \theta < T_2) = 1 - \alpha$$
-
-Entonces $(T_1, T_2)$ es un intervalo tal que la probabilidad que el verdadero parámetro $\theta$ se encuentre dentro de los valores es $1-\alpha$
-
+$$P(a \leq \theta \leq b) = 1 - \alpha$$
+Entonces $(a, b)$ es un intervalo tal que la probabilidad que el verdadero parámetro $\theta$ se encuentre dentro de los valores es $(1-\alpha)$
 
 ## Estadístico Z - Media (varianza conocida)
 Recordando clases pasadas, se había encontrado la distrubión de los estimadores de la media ($\overline{X}$). De acuerdo si se tenía una varianza conocida o desconocida, el estimador $\overline{X}$ se podía distribuir normalmente o como una distribución t-student respectivamente.

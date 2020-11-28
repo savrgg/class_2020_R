@@ -6,7 +6,6 @@ output:
     toc: true
     theme: united
     toc_depth: 1
-
 ---
 
 # Estructura de datos de R
@@ -256,7 +255,7 @@ case_when(
 ### Iteraciones
 
 Las iteraciones en cualquier lenguaje de programación son básicamente replicar un código múltiples veces con el mismo o distintos argumentos. En R los más básicos son los ciclos `for`, `while` y `repeat`:
-![](figures/chapter3/3-for.png)
+![](figures/chapter01/01-for.png)
 Como se observa en la imagen, el ciclo **for** se ejecuta n veces con n conocido (o bien, sobre un vector ya conocido). Por otra parte, un ciclo **while** se ejecuta mientras una condición se cumpla, por lo que teóricamente puede seguir iterando mientras no se cumpla dicha condición. Finalmente, en el ciclo **repeat** se repite el código hasta que explicitamente se salga del código con un comando llamado **break**. Los dos comandos faltantes son **next** y **break**. El primero sirve para terminal la iteración actual y continuar con la siguiente, mientras que el segundo sirve para salir por completo del ciclo.
 
 ```{r for_while_repeat, eval=T, warning=FALSE}
@@ -296,6 +295,119 @@ repeat {
   }
 }
 ```
+
+
+
+
+#### Familia apply (base package)
+
+Las funciones de la familia *apply: apply(), lapply(), sapply(), mapply()* sirven para iterar sobre datos en matrices, arrays, listas y data.frames con muy pocas lineas de código. 
+
+La manera de usar cada una de estas funciones es la siguiente:
+
+`apply(X, MARGIN, FUN, ...)`: funciona sobre arrays, con *MARGIN* la dimension sobre la cual se aplicara una funcion *FUN*
+
+![](figures/chapter01/01-apply.png)
+
+```{r apply, eval=T, warning=FALSE}
+m <- matrix(c(1:10, 11:20), nrow = 10, ncol = 2)
+apply(m, 1, mean)
+apply(m, 2, mean)
+```
+
+`lapply(X, FUN, ...)`: es muy similar a *apply()*, pero toma una lista como entrada y regresa una lista como salida
+```{r lapply, eval=T, warning=FALSE}
+l <- list(a = 1:10, b = 11:20)
+lapply(l, mean)
+lapply(l, sum)
+```
+
+`sapply(X, FUN, ...)`: es basicamente igual a *lapply()*, pero la salida no es una lista, si no un vector, matriz o array (el que sea más apropiado). En mi opinión, esta función debe evitarse ya que hay incertidumbre en el formato de salida al aplicarla.
+
+```{r sapply, eval=T, warning=FALSE}
+l <- list(a = 1:10, b = 11:20)
+sapply(l, mean)
+```
+
+`mapply(X, FUN, ...)`: es una versión multivariada de *sapply()*. Se aplica la funcion *FUN* al primer elemento de cada argumento, del segundo elemento, del tercer elemento, etc.
+
+```{r mapply, eval=T, warning=FALSE}
+l1 <- list(a = c(1:10), b = c(11:20))
+l2 <- list(c = c(21:30), d = c(31:40))
+mapply(sum, l1$a, l1$b, l2$c, l2$d)
+```
+
+Aunque en cuando a performance no hay ventaja en usar la familia `apply()`, se tienen otras ventajas como:
+
+1. Se crea un código más legible (no se tienen que preocuparse por manejar el output, ni por problemas de corchetes)
+
+2. Se permite crear código más rápido (una vez dominada la familia `apply`) Como se mencionó antes, R esta basádo en vectores, matrices, arrays, lists y data.frames, por lo que esta familia de funciones está diseñada para trabajar con estas estructuras de datos.
+
+Las principales desventajas sobre la familia `apply()` son las siguientes:
+
+1. No son estables en el tipo de salida (no sabes si se generará un vector de carácteres, numérico, de booleanos, etc).
+
+2. No está estandarizado el orden de los argumentos.
+
+Estas debilidades de la familia `apply()` motivaron la creación de otra familia más reciente: la familia `map()` del paquete `purrr`, que se abordará a continuación.
+
+#### familia `map()` (purrr package)
+***
+`map()`, `map_if()`, `map_at()`: itera sobre un vector o lista y retorna una lista.
+```{r libraries purrr, eval=T,  echo=F}
+suppressMessages(library(purrr))
+```
+
+```{r libraries_echo purrr, eval=F,  echo=T}
+library(purrr)
+```
+
+```{r map, eval=T, warning=FALSE}
+
+# ejemplo de map original
+map(c(9, 16, 25), sqrt)
+
+
+# ejemplo de map_if
+es_par <- function(x){
+  !as.logical(x %% 2)
+}
+
+numbers <- list(11, 12, 13, 14)
+
+map_if(numbers, es_par, sqrt)
+
+# ejemplo de map_at
+map_at(numbers, c(1,3), sqrt)
+```
+***
+`map_chr()`, `map_dbl()`, `map_int()`, `map_lgl()`: itera sobre un vector o lista y retorna un vector de caracteres, numérico, de enteros o booleano.
+```{r map_type, eval=T, warning=FALSE}
+# el orden de transformación es lgl -> int -> dbl -> chr 
+
+# por ejemplo un dbl no puede transformarse en un int, pero si en un chr
+map_chr(c(9, 16, 25), sqrt)
+map_dbl(c(9, 16, 25), sqrt)
+
+# por ejemplo un lgl puede transformarse en un int, en un dbl y en un chr
+
+map_chr(c(TRUE, FALSE, TRUE), identity)
+map_dbl(c(TRUE, FALSE, TRUE), identity)
+map_int(c(TRUE, FALSE, TRUE), identity)
+map_lgl(c(TRUE, FALSE, TRUE), identity)
+```
+***
+`map2()`, `pmap()`: Son un variante de la funcion `map()` que permite iterar sobre multiples argumentos en paralelo.
+
+```{r map2, eval=T, warning=FALSE}
+numbers2 <- list(1, 2, 3, 4)
+
+map2(numbers, numbers2, `+`)
+pmap(list(numbers, numbers2, numbers2), sum)
+
+```
+***
+`map_dfr()` y `map_dfc()`: regresa data.frames creados por concatenación de renglones o de columnas (respectivamente)
 
 ## Ejercicios de practica
 
