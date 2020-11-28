@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Pruebas de hipótesis | Estadística basica</title>
+  <title>Chapter 12 Pruebas de hipótesis | Introduccion</title>
   <meta name="description" content="Notas para el curso de R para Estadística 2 - Primavera 2020" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Pruebas de hipótesis | Estadística basica" />
+  <meta property="og:title" content="Chapter 12 Pruebas de hipótesis | Introduccion" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Pruebas de hipótesis | Estadística basica" />
+  <meta name="twitter:title" content="Chapter 12 Pruebas de hipótesis | Introduccion" />
   
   <meta name="twitter:description" content="Notas para el curso de R para Estadística 2 - Primavera 2020" />
   
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="estadística-básica.html"/>
-
+<link rel="next" href="estimación-por-intervalos.html"/>
 <script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -134,97 +134,143 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Curso básico de R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduccion</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduccion</a></li>
+<li class="chapter" data-level="2" data-path="motivación.html"><a href="motivación.html"><i class="fa fa-check"></i><b>2</b> Motivación</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#el-lenguaje-de-programación-r"><i class="fa fa-check"></i><b>1.1</b> El lenguaje de programación R</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#paquetes-y-librerias-de-r"><i class="fa fa-check"></i><b>1.2</b> Paquetes y librerias de R</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#paradigma-de-r"><i class="fa fa-check"></i><b>1.3</b> Paradigma de R</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#proyectos-de-r-y-paths"><i class="fa fa-check"></i><b>1.4</b> Proyectos de R y Paths</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#instalación-de-r"><i class="fa fa-check"></i><b>1.5</b> Instalación de R</a></li>
-<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>1.6</b> Instalación de Rstudio</a></li>
-<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#instalación-de-paquetes-desde-el-cran."><i class="fa fa-check"></i><b>1.7</b> Instalación de paquetes desde el CRAN.</a></li>
-<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#ejercicios-de-practica"><i class="fa fa-check"></i><b>1.8</b> Ejercicios de practica</a>
+<li class="chapter" data-level="2.1" data-path="motivación.html"><a href="motivación.html#image-recognition-cats-vs-dogs"><i class="fa fa-check"></i><b>2.1</b> Image Recognition: Cats vs Dogs</a>
 <ul>
-<li class="chapter" data-level="1.8.1" data-path="index.html"><a href="index.html#ejercicio-1."><i class="fa fa-check"></i><b>1.8.1</b> Ejercicio 1.</a></li>
-<li class="chapter" data-level="1.8.2" data-path="index.html"><a href="index.html#ejercicio-2."><i class="fa fa-check"></i><b>1.8.2</b> Ejercicio 2.</a></li>
+<li class="chapter" data-level="2.1.1" data-path="motivación.html"><a href="motivación.html#cargar-librerias-y-funciones-auxiliares"><i class="fa fa-check"></i><b>2.1.1</b> 1) Cargar librerias y funciones auxiliares</a></li>
+<li class="chapter" data-level="2.1.2" data-path="motivación.html"><a href="motivación.html#train---test-split"><i class="fa fa-check"></i><b>2.1.2</b> 2) Train - Test Split</a></li>
+<li class="chapter" data-level="2.1.3" data-path="motivación.html"><a href="motivación.html#definición-y-entrenamiento-de-modelo-keras"><i class="fa fa-check"></i><b>2.1.3</b> 3) Definición y entrenamiento de modelo (Keras)</a></li>
+<li class="chapter" data-level="2.1.4" data-path="motivación.html"><a href="motivación.html#predicción-de-nuevos-datos"><i class="fa fa-check"></i><b>2.1.4</b> 4) Predicción de nuevos datos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html"><i class="fa fa-check"></i><b>2</b> Estructura de datos de R</a>
+<li class="chapter" data-level="3" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>3</b> Introducción</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#ayuda-y-vignettes"><i class="fa fa-check"></i><b>2.1</b> Ayuda y vignettes</a></li>
-<li class="chapter" data-level="2.2" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#namespaces"><i class="fa fa-check"></i><b>2.2</b> Namespaces</a></li>
-<li class="chapter" data-level="2.3" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#paquetería-útil-para-el-análisis-de-datos"><i class="fa fa-check"></i><b>2.3</b> Paquetería útil para el análisis de datos</a></li>
-<li class="chapter" data-level="2.4" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#estructuras-de-datos-en-r"><i class="fa fa-check"></i><b>2.4</b> Estructuras de datos en R</a>
+<li class="chapter" data-level="3.1" data-path="introducción.html"><a href="introducción.html#el-lenguaje-de-programación-r"><i class="fa fa-check"></i><b>3.1</b> El lenguaje de programación R</a></li>
+<li class="chapter" data-level="3.2" data-path="introducción.html"><a href="introducción.html#paquetes-y-librerias-de-r"><i class="fa fa-check"></i><b>3.2</b> Paquetes y librerias de R</a></li>
+<li class="chapter" data-level="3.3" data-path="introducción.html"><a href="introducción.html#paradigma-de-r"><i class="fa fa-check"></i><b>3.3</b> Paradigma de R</a></li>
+<li class="chapter" data-level="3.4" data-path="introducción.html"><a href="introducción.html#proyectos-de-r-y-paths"><i class="fa fa-check"></i><b>3.4</b> Proyectos de R y Paths</a></li>
+<li class="chapter" data-level="3.5" data-path="introducción.html"><a href="introducción.html#instalación-de-r"><i class="fa fa-check"></i><b>3.5</b> Instalación de R</a></li>
+<li class="chapter" data-level="3.6" data-path="introducción.html"><a href="introducción.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>3.6</b> Instalación de Rstudio</a></li>
+<li class="chapter" data-level="3.7" data-path="introducción.html"><a href="introducción.html#instalación-de-paquetes-desde-el-cran."><i class="fa fa-check"></i><b>3.7</b> Instalación de paquetes desde el CRAN.</a></li>
+<li class="chapter" data-level="3.8" data-path="introducción.html"><a href="introducción.html#ejercicios-de-practica"><i class="fa fa-check"></i><b>3.8</b> Ejercicios de practica</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#vectores-atómicos"><i class="fa fa-check"></i><b>2.4.1</b> Vectores atómicos</a></li>
-<li class="chapter" data-level="2.4.2" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#matrices-y-arrays."><i class="fa fa-check"></i><b>2.4.2</b> Matrices y arrays.</a></li>
-<li class="chapter" data-level="2.4.3" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#listas."><i class="fa fa-check"></i><b>2.4.3</b> Listas.</a></li>
-<li class="chapter" data-level="2.4.4" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#data.frames"><i class="fa fa-check"></i><b>2.4.4</b> Data.frames</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#funciones-condicionales-e-iteraciones"><i class="fa fa-check"></i><b>2.5</b> Funciones, condicionales e iteraciones:</a>
-<ul>
-<li class="chapter" data-level="2.5.1" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#funciones"><i class="fa fa-check"></i><b>2.5.1</b> Funciones</a></li>
-<li class="chapter" data-level="2.5.2" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#condicionales"><i class="fa fa-check"></i><b>2.5.2</b> Condicionales</a></li>
-<li class="chapter" data-level="2.5.3" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#iteraciones"><i class="fa fa-check"></i><b>2.5.3</b> Iteraciones</a></li>
-</ul></li>
-<li class="chapter" data-level="2.6" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#ejercicios-de-practica-1"><i class="fa fa-check"></i><b>2.6</b> Ejercicios de practica</a>
-<ul>
-<li class="chapter" data-level="2.6.1" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#ejercicio-3"><i class="fa fa-check"></i><b>2.6.1</b> Ejercicio 3</a></li>
+<li class="chapter" data-level="3.8.1" data-path="introducción.html"><a href="introducción.html#ejercicio-1."><i class="fa fa-check"></i><b>3.8.1</b> Ejercicio 1.</a></li>
+<li class="chapter" data-level="3.8.2" data-path="introducción.html"><a href="introducción.html#ejercicio-2."><i class="fa fa-check"></i><b>3.8.2</b> Ejercicio 2.</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="importar-datos.html"><a href="importar-datos.html"><i class="fa fa-check"></i><b>3</b> Importar datos</a>
+<li class="chapter" data-level="4" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html"><i class="fa fa-check"></i><b>4</b> Estructura de datos de R</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="importar-datos.html"><a href="importar-datos.html#archivos-.csv"><i class="fa fa-check"></i><b>3.1</b> Archivos <strong>.csv</strong></a></li>
-<li class="chapter" data-level="3.2" data-path="importar-datos.html"><a href="importar-datos.html#archivos-.xlsx-y-.xls"><i class="fa fa-check"></i><b>3.2</b> Archivos <strong>.xlsx y .xls</strong></a></li>
-<li class="chapter" data-level="3.3" data-path="importar-datos.html"><a href="importar-datos.html#otros-formatos-de-archivos-.sav-.data-.sas"><i class="fa fa-check"></i><b>3.3</b> Otros formatos de archivos <strong>.sav</strong>, <strong>.data</strong>, <strong>.sas</strong></a></li>
-<li class="chapter" data-level="3.4" data-path="importar-datos.html"><a href="importar-datos.html#ejercicios-de-práctica"><i class="fa fa-check"></i><b>3.4</b> Ejercicios de práctica</a>
+<li class="chapter" data-level="4.1" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#ayuda-y-vignettes"><i class="fa fa-check"></i><b>4.1</b> Ayuda y vignettes</a></li>
+<li class="chapter" data-level="4.2" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#namespaces"><i class="fa fa-check"></i><b>4.2</b> Namespaces</a></li>
+<li class="chapter" data-level="4.3" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#paquetería-útil-para-el-análisis-de-datos"><i class="fa fa-check"></i><b>4.3</b> Paquetería útil para el análisis de datos</a></li>
+<li class="chapter" data-level="4.4" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#estructuras-de-datos-en-r"><i class="fa fa-check"></i><b>4.4</b> Estructuras de datos en R</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="importar-datos.html"><a href="importar-datos.html#ejercicio-4"><i class="fa fa-check"></i><b>3.4.1</b> Ejercicio 4</a></li>
-<li class="chapter" data-level="3.4.2" data-path="importar-datos.html"><a href="importar-datos.html#ejercicio-5"><i class="fa fa-check"></i><b>3.4.2</b> Ejercicio 5</a></li>
-<li class="chapter" data-level="3.4.3" data-path="importar-datos.html"><a href="importar-datos.html#ejercicio-6"><i class="fa fa-check"></i><b>3.4.3</b> Ejercicio 6</a></li>
+<li class="chapter" data-level="4.4.1" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#vectores-atómicos"><i class="fa fa-check"></i><b>4.4.1</b> Vectores atómicos</a></li>
+<li class="chapter" data-level="4.4.2" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#matrices-y-arrays."><i class="fa fa-check"></i><b>4.4.2</b> Matrices y arrays.</a></li>
+<li class="chapter" data-level="4.4.3" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#listas."><i class="fa fa-check"></i><b>4.4.3</b> Listas.</a></li>
+<li class="chapter" data-level="4.4.4" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#data.frames"><i class="fa fa-check"></i><b>4.4.4</b> Data.frames</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#funciones-condicionales-e-iteraciones"><i class="fa fa-check"></i><b>4.5</b> Funciones, condicionales e iteraciones:</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#funciones"><i class="fa fa-check"></i><b>4.5.1</b> Funciones</a></li>
+<li class="chapter" data-level="4.5.2" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#condicionales"><i class="fa fa-check"></i><b>4.5.2</b> Condicionales</a></li>
+<li class="chapter" data-level="4.5.3" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#iteraciones"><i class="fa fa-check"></i><b>4.5.3</b> Iteraciones</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#ejercicios-de-practica-1"><i class="fa fa-check"></i><b>4.6</b> Ejercicios de practica</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#ejercicio-3"><i class="fa fa-check"></i><b>4.6.1</b> Ejercicio 3</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="intro-a-visualización-de-datos.html"><a href="intro-a-visualización-de-datos.html"><i class="fa fa-check"></i><b>4</b> Intro a visualización de datos</a>
+<li class="chapter" data-level="5" data-path="importar-datos.html"><a href="importar-datos.html"><i class="fa fa-check"></i><b>5</b> Importar datos</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="intro-a-visualización-de-datos.html"><a href="intro-a-visualización-de-datos.html#motivación"><i class="fa fa-check"></i><b>4.1</b> Motivación</a></li>
-<li class="chapter" data-level="4.2" data-path="intro-a-visualización-de-datos.html"><a href="intro-a-visualización-de-datos.html#formato-largo-y-ancho-de-bases"><i class="fa fa-check"></i><b>4.2</b> Formato largo y ancho de bases</a></li>
-<li class="chapter" data-level="4.3" data-path="intro-a-visualización-de-datos.html"><a href="intro-a-visualización-de-datos.html#tidyverse"><i class="fa fa-check"></i><b>4.3</b> tidyverse</a></li>
-<li class="chapter" data-level="4.4" data-path="intro-a-visualización-de-datos.html"><a href="intro-a-visualización-de-datos.html#ggplot"><i class="fa fa-check"></i><b>4.4</b> ggplot</a>
+<li class="chapter" data-level="5.1" data-path="importar-datos.html"><a href="importar-datos.html#archivos-.csv"><i class="fa fa-check"></i><b>5.1</b> Archivos <strong>.csv</strong></a></li>
+<li class="chapter" data-level="5.2" data-path="importar-datos.html"><a href="importar-datos.html#archivos-.xlsx-y-.xls"><i class="fa fa-check"></i><b>5.2</b> Archivos <strong>.xlsx y .xls</strong></a></li>
+<li class="chapter" data-level="5.3" data-path="importar-datos.html"><a href="importar-datos.html#otros-formatos-de-archivos-.sav-.data-.sas"><i class="fa fa-check"></i><b>5.3</b> Otros formatos de archivos <strong>.sav</strong>, <strong>.data</strong>, <strong>.sas</strong></a></li>
+<li class="chapter" data-level="5.4" data-path="importar-datos.html"><a href="importar-datos.html#ejercicios-de-práctica"><i class="fa fa-check"></i><b>5.4</b> Ejercicios de práctica</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="intro-a-visualización-de-datos.html"><a href="intro-a-visualización-de-datos.html#scatterplot"><i class="fa fa-check"></i><b>4.4.1</b> Scatterplot</a></li>
-<li class="chapter" data-level="4.4.2" data-path="intro-a-visualización-de-datos.html"><a href="intro-a-visualización-de-datos.html#barplot"><i class="fa fa-check"></i><b>4.4.2</b> Barplot</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="intro-a-visualización-de-datos.html"><a href="intro-a-visualización-de-datos.html#ejercicios-de-práctica-1"><i class="fa fa-check"></i><b>4.5</b> Ejercicios de práctica</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="intro-a-visualización-de-datos.html"><a href="intro-a-visualización-de-datos.html#ejercicio-7"><i class="fa fa-check"></i><b>4.5.1</b> Ejercicio 7</a></li>
-<li class="chapter" data-level="4.5.2" data-path="intro-a-visualización-de-datos.html"><a href="intro-a-visualización-de-datos.html#ejercicio-8"><i class="fa fa-check"></i><b>4.5.2</b> Ejercicio 8</a></li>
-<li class="chapter" data-level="4.5.3" data-path="intro-a-visualización-de-datos.html"><a href="intro-a-visualización-de-datos.html#ejercicio-9"><i class="fa fa-check"></i><b>4.5.3</b> Ejercicio 9</a></li>
+<li class="chapter" data-level="5.4.1" data-path="importar-datos.html"><a href="importar-datos.html#ejercicio-4"><i class="fa fa-check"></i><b>5.4.1</b> Ejercicio 4</a></li>
+<li class="chapter" data-level="5.4.2" data-path="importar-datos.html"><a href="importar-datos.html#ejercicio-5"><i class="fa fa-check"></i><b>5.4.2</b> Ejercicio 5</a></li>
+<li class="chapter" data-level="5.4.3" data-path="importar-datos.html"><a href="importar-datos.html#ejercicio-6"><i class="fa fa-check"></i><b>5.4.3</b> Ejercicio 6</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="estadística-básica.html"><a href="estadística-básica.html"><i class="fa fa-check"></i><b>5</b> Estadística básica</a>
+<li class="chapter" data-level="6" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html"><i class="fa fa-check"></i><b>6</b> Visualización de datos</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="estadística-básica.html"><a href="estadística-básica.html#ejercicios-de-práctica-2"><i class="fa fa-check"></i><b>5.1</b> Ejercicios de práctica</a>
+<li class="chapter" data-level="6.1" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#motivación-1"><i class="fa fa-check"></i><b>6.1</b> Motivación</a></li>
+<li class="chapter" data-level="6.2" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#formato-largo-y-ancho-de-bases"><i class="fa fa-check"></i><b>6.2</b> Formato largo y ancho de bases</a></li>
+<li class="chapter" data-level="6.3" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#tidyverse"><i class="fa fa-check"></i><b>6.3</b> tidyverse</a></li>
+<li class="chapter" data-level="6.4" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ggplot"><i class="fa fa-check"></i><b>6.4</b> ggplot</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="estadística-básica.html"><a href="estadística-básica.html#ejercicio-10"><i class="fa fa-check"></i><b>5.1.1</b> Ejercicio 10</a></li>
-<li class="chapter" data-level="5.1.2" data-path="estadística-básica.html"><a href="estadística-básica.html#distribution-function"><i class="fa fa-check"></i><b>5.1.2</b> Distribution function</a></li>
-<li class="chapter" data-level="5.1.3" data-path="estadística-básica.html"><a href="estadística-básica.html#quantile-function"><i class="fa fa-check"></i><b>5.1.3</b> Quantile function</a></li>
-<li class="chapter" data-level="5.1.4" data-path="estadística-básica.html"><a href="estadística-básica.html#random-function"><i class="fa fa-check"></i><b>5.1.4</b> Random function</a></li>
+<li class="chapter" data-level="6.4.1" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#scatterplot"><i class="fa fa-check"></i><b>6.4.1</b> Scatterplot</a></li>
+<li class="chapter" data-level="6.4.2" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#barplot"><i class="fa fa-check"></i><b>6.4.2</b> Barplot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-de-práctica-1"><i class="fa fa-check"></i><b>6.5</b> Ejercicios de práctica</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicio-7"><i class="fa fa-check"></i><b>6.5.1</b> Ejercicio 7</a></li>
+<li class="chapter" data-level="6.5.2" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicio-8"><i class="fa fa-check"></i><b>6.5.2</b> Ejercicio 8</a></li>
+<li class="chapter" data-level="6.5.3" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicio-9"><i class="fa fa-check"></i><b>6.5.3</b> Ejercicio 9</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html"><i class="fa fa-check"></i><b>6</b> Pruebas de hipótesis</a>
+<li class="chapter" data-level="7" data-path="dataset-transformation.html"><a href="dataset-transformation.html"><i class="fa fa-check"></i><b>7</b> Dataset transformation</a></li>
+<li class="chapter" data-level="8" data-path="interactive-graphs.html"><a href="interactive-graphs.html"><i class="fa fa-check"></i><b>8</b> Interactive graphs</a></li>
+<li class="chapter" data-level="9" data-path="dashboards-interactivos.html"><a href="dashboards-interactivos.html"><i class="fa fa-check"></i><b>9</b> Dashboards interactivos</a></li>
+<li class="chapter" data-level="10" data-path="introducción-a-estadística.html"><a href="introducción-a-estadística.html"><i class="fa fa-check"></i><b>10</b> Introducción a estadística</a></li>
+<li class="chapter" data-level="11" data-path="estadística-básica.html"><a href="estadística-básica.html"><i class="fa fa-check"></i><b>11</b> Estadística básica</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#ejemplo-de-estadístico-z"><i class="fa fa-check"></i><b>6.1</b> Ejemplo de estadístico Z</a>
+<li class="chapter" data-level="11.1" data-path="estadística-básica.html"><a href="estadística-básica.html#ejercicios-de-práctica-2"><i class="fa fa-check"></i><b>11.1</b> Ejercicios de práctica</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#diferencia-de-medias"><i class="fa fa-check"></i><b>6.1.1</b> Diferencia de Medias</a></li>
-<li class="chapter" data-level="6.1.2" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#diferencia-de-proporciones"><i class="fa fa-check"></i><b>6.1.2</b> Diferencia de Proporciones</a></li>
+<li class="chapter" data-level="11.1.1" data-path="estadística-básica.html"><a href="estadística-básica.html#ejercicio-10"><i class="fa fa-check"></i><b>11.1.1</b> Ejercicio 10</a></li>
+<li class="chapter" data-level="11.1.2" data-path="estadística-básica.html"><a href="estadística-básica.html#distribution-function"><i class="fa fa-check"></i><b>11.1.2</b> Distribution function</a></li>
+<li class="chapter" data-level="11.1.3" data-path="estadística-básica.html"><a href="estadística-básica.html#quantile-function"><i class="fa fa-check"></i><b>11.1.3</b> Quantile function</a></li>
+<li class="chapter" data-level="11.1.4" data-path="estadística-básica.html"><a href="estadística-básica.html#random-function"><i class="fa fa-check"></i><b>11.1.4</b> Random function</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#ejemplo-de-estadistico-t"><i class="fa fa-check"></i><b>6.2</b> Ejemplo de estadistico T</a>
+</ul></li>
+<li class="chapter" data-level="12" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html"><i class="fa fa-check"></i><b>12</b> Pruebas de hipótesis</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#diferencia-de-medias-pareada"><i class="fa fa-check"></i><b>6.2.1</b> Diferencia de medias pareada</a></li>
+<li class="chapter" data-level="12.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#ejemplo-de-estadístico-z"><i class="fa fa-check"></i><b>12.1</b> Ejemplo de estadístico Z</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#diferencia-de-medias"><i class="fa fa-check"></i><b>12.1.1</b> Diferencia de Medias</a></li>
+<li class="chapter" data-level="12.1.2" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#diferencia-de-proporciones"><i class="fa fa-check"></i><b>12.1.2</b> Diferencia de Proporciones</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#ejemplo-de-estadistico-j"><i class="fa fa-check"></i><b>6.3</b> Ejemplo de estadistico J</a></li>
-<li class="chapter" data-level="6.4" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#ejemplo-de-estadistico-f"><i class="fa fa-check"></i><b>6.4</b> Ejemplo de estadistico F</a></li>
+<li class="chapter" data-level="12.2" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#ejemplo-de-estadistico-t"><i class="fa fa-check"></i><b>12.2</b> Ejemplo de estadistico T</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#diferencia-de-medias-pareada"><i class="fa fa-check"></i><b>12.2.1</b> Diferencia de medias pareada</a></li>
 </ul></li>
+<li class="chapter" data-level="12.3" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#ejemplo-de-estadistico-j"><i class="fa fa-check"></i><b>12.3</b> Ejemplo de estadistico J</a></li>
+<li class="chapter" data-level="12.4" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#ejemplo-de-estadistico-f"><i class="fa fa-check"></i><b>12.4</b> Ejemplo de estadistico F</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html"><i class="fa fa-check"></i><b>13</b> Estimación por intervalos</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#estadístico-z---media-varianza-conocida"><i class="fa fa-check"></i><b>13.1</b> Estadístico Z - Media (varianza conocida)</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#ic-para-media"><i class="fa fa-check"></i><b>13.1.1</b> IC para media</a></li>
+<li class="chapter" data-level="13.1.2" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#ic-para-proporción"><i class="fa fa-check"></i><b>13.1.2</b> IC para proporción</a></li>
+<li class="chapter" data-level="13.1.3" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#ic-diferencia-de-medias-muestras-independientes"><i class="fa fa-check"></i><b>13.1.3</b> IC diferencia de medias (muestras independientes)</a></li>
+<li class="chapter" data-level="13.1.4" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#ic-diferencia-de-medias-muestras-dependientes"><i class="fa fa-check"></i><b>13.1.4</b> IC diferencia de medias (muestras dependientes)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#estadístico-t---media-varianza-desconocida"><i class="fa fa-check"></i><b>13.2</b> Estadístico T - Media (varianza desconocida)</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#ic-para-la-media"><i class="fa fa-check"></i><b>13.2.1</b> IC para la media</a></li>
+<li class="chapter" data-level="13.2.2" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#ic-para-la-proporción"><i class="fa fa-check"></i><b>13.2.2</b> IC para la proporción</a></li>
+<li class="chapter" data-level="13.2.3" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#ic-diferencia-de-medias-muestras-independientes-1"><i class="fa fa-check"></i><b>13.2.3</b> IC diferencia de medias (muestras independientes)</a></li>
+<li class="chapter" data-level="13.2.4" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#ic-diferencia-de-medias-muestras-dependientes-1"><i class="fa fa-check"></i><b>13.2.4</b> IC diferencia de medias (muestras dependientes)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#estadístico-j---varianza"><i class="fa fa-check"></i><b>13.3</b> Estadístico J - Varianza</a></li>
+<li class="chapter" data-level="13.4" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#estadístico-f---cociente-de-varianzas"><i class="fa fa-check"></i><b>13.4</b> Estadístico F - Cociente de varianzas</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#ic-para-cociente-de-varianzas-muestras-independientes"><i class="fa fa-check"></i><b>13.4.1</b> IC para cociente de varianzas (muestras independientes)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#tamaño-de-muestra"><i class="fa fa-check"></i><b>13.5</b> Tamaño de muestra</a>
+<ul>
+<li class="chapter" data-level="13.5.1" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#tamaño-de-muestra-para-la-media"><i class="fa fa-check"></i><b>13.5.1</b> Tamaño de muestra para la media</a></li>
+<li class="chapter" data-level="13.5.2" data-path="estimación-por-intervalos.html"><a href="estimación-por-intervalos.html#tamaño-de-muestra-para-la-proporción"><i class="fa fa-check"></i><b>13.5.2</b> Tamaño de muestra para la proporción</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="pruebas-de-hipótesis-1.html"><a href="pruebas-de-hipótesis-1.html"><i class="fa fa-check"></i><b>14</b> 12 Pruebas de hipótesis</a></li>
+<li class="chapter" data-level="15" data-path="introducción-a-forecasting.html"><a href="introducción-a-forecasting.html"><i class="fa fa-check"></i><b>15</b> Introducción a Forecasting</a></li>
+<li class="chapter" data-level="16" data-path="machine-learning-básico.html"><a href="machine-learning-básico.html"><i class="fa fa-check"></i><b>16</b> Machine Learning básico</a></li>
+<li class="chapter" data-level="17" data-path="introducción-a-neural-networks.html"><a href="introducción-a-neural-networks.html"><i class="fa fa-check"></i><b>17</b> Introducción a Neural Networks</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -237,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística basica</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduccion</a>
           </h1>
         </div>
 
@@ -245,8 +291,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pruebas-de-hipótesis" class="section level1" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Pruebas de hipótesis</h1>
+<div id="pruebas-de-hipótesis" class="section level1" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Pruebas de hipótesis</h1>
 <p>Las pruebas de hipótesis se componen de 4 elementos:</p>
 <ol style="list-style-type: decimal">
 <li>Hipótesis Nula</li>
@@ -254,17 +300,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Estadístico de Prueba</li>
 <li>Región de Rechazo</li>
 </ol>
-<div id="ejemplo-de-estadístico-z" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Ejemplo de estadístico Z</h2>
-<div id="diferencia-de-medias" class="section level3" number="6.1.1">
-<h3><span class="header-section-number">6.1.1</span> Diferencia de Medias</h3>
+<div id="ejemplo-de-estadístico-z" class="section level2" number="12.1">
+<h2><span class="header-section-number">12.1</span> Ejemplo de estadístico Z</h2>
+<div id="diferencia-de-medias" class="section level3" number="12.1.1">
+<h3><span class="header-section-number">12.1.1</span> Diferencia de Medias</h3>
 </div>
-<div id="diferencia-de-proporciones" class="section level3" number="6.1.2">
-<h3><span class="header-section-number">6.1.2</span> Diferencia de Proporciones</h3>
+<div id="diferencia-de-proporciones" class="section level3" number="12.1.2">
+<h3><span class="header-section-number">12.1.2</span> Diferencia de Proporciones</h3>
 <strong>CDE: 5.2.15</strong>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-9" class="exercise"><strong>Exercise 6.1  </strong></span>En un estudio reciente, se investigó el efecto de la ingesta de una cierta sustancia en el desarrollo de cáncer pulmonar. Se encontró que de 488 hombres que habían ingerido una baja cantidad de esta sustancia, 14 desarrollaron cáncer pulmonar. En un grupo del mismo tamaño en el que el consumo de esta sustancia era mayor, sólo 5 personas desarrollaron cáncer pulmonar.
+<span id="exr:unnamed-chunk-10" class="exercise"><strong>Exercise 12.1  </strong></span>En un estudio reciente, se investigó el efecto de la ingesta de una cierta sustancia en el desarrollo de cáncer pulmonar. Se encontró que de 488 hombres que habían ingerido una baja cantidad de esta sustancia, 14 desarrollaron cáncer pulmonar. En un grupo del mismo tamaño en el que el consumo de esta sustancia era mayor, sólo 5 personas desarrollaron cáncer pulmonar.
 a) ¿Pruebe si la ingesta alta de esa sustancia reduce el riesgo de cáncer pulmonar en los hombres? Emplee <span class="math inline">\(\alpha = 0.01\)</span>
 </div>
 <p>X: Antes, Y: Después</p>
@@ -276,7 +322,19 @@ a) ¿Pruebe si la ingesta alta de esa sustancia reduce el riesgo de cáncer pulm
 <li><p>Estadístico de Prueba: <span class="math inline">\(Z =\frac{(\hat{p_X}-\hat{p_Y}) - (p_X-p_Y)}{\sqrt{\frac{(\hat{p_X})(1-\hat{p_X})}{n}+\frac{(\hat{p_Y})(1-\hat{p_Y})}{m}}} = \frac{(0.0287-0.0102) - (0)}{\sqrt{\frac{(0.0287)(1-0.0287)}{488}+\frac{(0.0102)(1-0.0102)}{488}}} = 2.0894\)</span></p></li>
 <li><p>Región de Rechazo: <span class="math inline">\(RR = \{Z &lt; Z_{0.01}\} = \{Z &lt; qnorm(.01)\} = \{Z &lt; -2.3263\}\)</span></p></li>
 </ol>
-<p><img src="Chap04_basic_stats_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="pruebas-de-hipótesis.html#cb185-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb185-2"><a href="pruebas-de-hipótesis.html#cb185-2" aria-hidden="true"></a></span>
+<span id="cb185-3"><a href="pruebas-de-hipótesis.html#cb185-3" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)), <span class="kw">aes</span>(x)) <span class="op">+</span></span>
+<span id="cb185-4"><a href="pruebas-de-hipótesis.html#cb185-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">n =</span> <span class="dv">101</span>, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb185-5"><a href="pruebas-de-hipótesis.html#cb185-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb185-6"><a href="pruebas-de-hipótesis.html#cb185-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;mi texto en $&quot;</span>, </span>
+<span id="cb185-7"><a href="pruebas-de-hipótesis.html#cb185-7" aria-hidden="true"></a>       <span class="dt">y =</span> <span class="st">&quot;mi texto en €&quot;</span>, </span>
+<span id="cb185-8"><a href="pruebas-de-hipótesis.html#cb185-8" aria-hidden="true"></a>       <span class="dt">title =</span> <span class="st">&quot;mi titulo&quot;</span>, </span>
+<span id="cb185-9"><a href="pruebas-de-hipótesis.html#cb185-9" aria-hidden="true"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;mi subtitulo&quot;</span>) <span class="op">+</span></span>
+<span id="cb185-10"><a href="pruebas-de-hipótesis.html#cb185-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="fl">-2.3263</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb185-11"><a href="pruebas-de-hipótesis.html#cb185-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_rect</span>(<span class="kw">aes</span>(<span class="dt">xmin=</span><span class="op">-</span><span class="ot">Inf</span>,<span class="dt">xmax=</span><span class="op">-</span><span class="fl">2.3263</span>,<span class="dt">ymin=</span><span class="dv">0</span>,<span class="dt">ymax=</span>.<span class="dv">5</span>),<span class="dt">alpha=</span><span class="fl">0.1</span>,<span class="dt">fill=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb185-12"><a href="pruebas-de-hipótesis.html#cb185-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="fl">-2.0894</span>, <span class="dt">color =</span> <span class="st">&quot;orange&quot;</span>)</span></code></pre></div>
+<p><img src="Chap10_basic_stats_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p><strong>No Rechazamos H_0</strong></p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Obtenga el nivel de significancia descriptivo o valor p</li>
@@ -284,14 +342,14 @@ a) ¿Pruebe si la ingesta alta de esa sustancia reduce el riesgo de cáncer pulm
 <p>valor-p = <span class="math inline">\(pnorm(-2.09) = 0.0183089\)</span></p>
 </div>
 </div>
-<div id="ejemplo-de-estadistico-t" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> Ejemplo de estadistico T</h2>
-<div id="diferencia-de-medias-pareada" class="section level3" number="6.2.1">
-<h3><span class="header-section-number">6.2.1</span> Diferencia de medias pareada</h3>
+<div id="ejemplo-de-estadistico-t" class="section level2" number="12.2">
+<h2><span class="header-section-number">12.2</span> Ejemplo de estadistico T</h2>
+<div id="diferencia-de-medias-pareada" class="section level3" number="12.2.1">
+<h3><span class="header-section-number">12.2.1</span> Diferencia de medias pareada</h3>
 <strong>CDE: 5.2.16</strong>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-12" class="exercise"><strong>Exercise 6.2  </strong></span>Supóngase que, un psicólogo piensa que la edad influye en el coeficiente de inteligencia (IQ). Se toma una muestra aleatoria de 100 personas de mediana edad, de quienes se conoce su IQ a la edad de 16 años y actualmente. De restar, los coeficientes de su juventud de los coeficientes actuales, se obtuvo una diferencia promedio de 6 puntos, con una desviación estándar muestral de 7 puntos. Utilice <span class="math inline">\(\alpha = .01\)</span> para probar la hipotesis de que el IQ aumenta con la edad.
+<span id="exr:unnamed-chunk-13" class="exercise"><strong>Exercise 12.2  </strong></span>Supóngase que, un psicólogo piensa que la edad influye en el coeficiente de inteligencia (IQ). Se toma una muestra aleatoria de 100 personas de mediana edad, de quienes se conoce su IQ a la edad de 16 años y actualmente. De restar, los coeficientes de su juventud de los coeficientes actuales, se obtuvo una diferencia promedio de 6 puntos, con una desviación estándar muestral de 7 puntos. Utilice <span class="math inline">\(\alpha = .01\)</span> para probar la hipotesis de que el IQ aumenta con la edad.
 </div>
 <p>X: IQ a los 16 años
 Y: IQ actual
@@ -303,17 +361,17 @@ Y: IQ actual
 <li><p>Estadístico de Prueba: <span class="math inline">\(T =\frac{\bar{D} - \mu_{\bar{D}}}{\sqrt{\frac{{S_{\bar{D}^2}}}{n}}} = \frac{6 - 0}{\sqrt{\frac{7^2}{100}}} = 8.5714\)</span></p></li>
 <li><p>Región de Rechazo: <span class="math inline">\(RR = \{T &lt; T_{99, 0.01}\} = \{T &lt; qt(.99,99)\} = \{Z &lt; 2.3646\}\)</span></p></li>
 </ol>
-<p><img src="Chap04_basic_stats_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="Chap10_basic_stats_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p><strong>Rechazamos H_0</strong></p>
 <p>valor-p = <span class="math inline">\(pt(8.5714, 99, lower.tail = F) \sim 0\)</span></p>
 </div>
 </div>
-<div id="ejemplo-de-estadistico-j" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Ejemplo de estadistico J</h2>
+<div id="ejemplo-de-estadistico-j" class="section level2" number="12.3">
+<h2><span class="header-section-number">12.3</span> Ejemplo de estadistico J</h2>
 <strong>CDE: 5.2.23</strong>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-15" class="exercise"><strong>Exercise 6.3  </strong></span>La Policía Federal de Caminos desea probar un radar detector de velocidades. Para esto hace circular frente al radar 61 patrullas a una velocidad de 110 Km/h. según su correspondiente velocímetro. De las 61 lecturas del radar obtiene <span class="math inline">\(s^2 = 1.69\)</span>. Según la PFC el radar es aceptable si <span class="math inline">\(\sigma &lt;2km/h\)</span>. Adopte el punto de vista que el error grave es comprar el radar cuando en realidad el error de medición está por arriba del límite.
+<span id="exr:unnamed-chunk-16" class="exercise"><strong>Exercise 12.3  </strong></span>La Policía Federal de Caminos desea probar un radar detector de velocidades. Para esto hace circular frente al radar 61 patrullas a una velocidad de 110 Km/h. según su correspondiente velocímetro. De las 61 lecturas del radar obtiene <span class="math inline">\(s^2 = 1.69\)</span>. Según la PFC el radar es aceptable si <span class="math inline">\(\sigma &lt;2km/h\)</span>. Adopte el punto de vista que el error grave es comprar el radar cuando en realidad el error de medición está por arriba del límite.
 a) Formule las hipótesis H0 y H1 apropiadas a este problema.
 b) Pruebe las hipótesis de a) con un nivel de significancia del 1%.
 c) De una cota superior para el valor de P.
@@ -325,16 +383,16 @@ d) Verifique que la decisión de b) concuerda con la estimación de c)
 <li><p>Estadístico de Prueba: <span class="math inline">\(J =\frac{(n-1)S^2}{\sigma^2} = \frac{(61-1) 1.69}{4}= 25.35\)</span></p></li>
 <li><p>Región de Rechazo: <span class="math inline">\(RR = \{J &lt; J_{0.01,60}\} = \{J &lt; qchisq(.01,60)\} = \{J &lt; 37.4849\}\)</span></p></li>
 </ol>
-<p><img src="Chap04_basic_stats_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="Chap10_basic_stats_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p><strong>Rechazamos H_0</strong></p>
 <p>valor-p = <span class="math inline">\(pchisq(25.35, 60) \sim 0\)</span></p>
 </div>
-<div id="ejemplo-de-estadistico-f" class="section level2" number="6.4">
-<h2><span class="header-section-number">6.4</span> Ejemplo de estadistico F</h2>
+<div id="ejemplo-de-estadistico-f" class="section level2" number="12.4">
+<h2><span class="header-section-number">12.4</span> Ejemplo de estadistico F</h2>
 <strong>CDE: 5.2.18</strong>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-17" class="exercise"><strong>Exercise 6.4  </strong></span>La estabilidad de las mediciones de las características de un producto manufacturado es importante para mantener su calidad. En realidad, es mejor tener, a veces, una pequeña variación en el valor medio de alguna característica importante de un producto y tener una media del proceso un poco fuera del “blanco”, que tener una amplia variación con una media que se ajuste perfectamente a las necesidades. La última situación puede producir un porcentaje mayor de productos defectuosos que la primera. Un fabricante de lámparas eléctricas sospechoso que una de sus líneas de producción estaba fabricando bombillas con una alta variación en su vida útil. Para probar su teoría comparó la vida útil de <span class="math inline">\(n = 40\)</span> lámparas, muestreadas al azar, de la línea que supuestamente no trabajaba bien, y <span class="math inline">\(m = 40\)</span> de la línea que parecía estar “bajo control”. Las medias y las varianzas de las muestras para las dos líneas eran:
+<span id="exr:unnamed-chunk-18" class="exercise"><strong>Exercise 12.4  </strong></span>La estabilidad de las mediciones de las características de un producto manufacturado es importante para mantener su calidad. En realidad, es mejor tener, a veces, una pequeña variación en el valor medio de alguna característica importante de un producto y tener una media del proceso un poco fuera del “blanco”, que tener una amplia variación con una media que se ajuste perfectamente a las necesidades. La última situación puede producir un porcentaje mayor de productos defectuosos que la primera. Un fabricante de lámparas eléctricas sospechoso que una de sus líneas de producción estaba fabricando bombillas con una alta variación en su vida útil. Para probar su teoría comparó la vida útil de <span class="math inline">\(n = 40\)</span> lámparas, muestreadas al azar, de la línea que supuestamente no trabajaba bien, y <span class="math inline">\(m = 40\)</span> de la línea que parecía estar “bajo control”. Las medias y las varianzas de las muestras para las dos líneas eran:
 a) ¿Proporcionan los datos evidencia suficiente para indicar que las bombillas (o focos), producidos por la línea que supuestamente trabaja mal poseen una mayor varianza en la vida útil que las lámparas producidas por la línea que supuestamente estaba bajo control? Utilice <span class="math inline">\(\alpha = 0.05\)</span>.
 b) Encuentre el nivel de significancia descriptivo que se ha observado para la prueba e interprete su valor.
 </div>
@@ -344,7 +402,7 @@ b) Encuentre el nivel de significancia descriptivo que se ha observado para la p
 <li><p>Estadístico de Prueba: <span class="math inline">\(F =\frac{S_2^2 \sigma^2_1}{S_1^2\sigma^2_2} = \frac{37000}{92000} = 0.4021739\)</span></p></li>
 <li><p>Región de Rechazo: <span class="math inline">\(RR = \{F &gt; F_{0.05,39,39}\} = \{F &gt; qf(.95,39,39)\} = \{F &gt; 1.704465\}\)</span></p></li>
 </ol>
-<p><img src="Chap04_basic_stats_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="Chap10_basic_stats_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p><strong>No Rechazamos H_0</strong></p>
 <p>valor-p = <span class="math inline">\(pf(0.4021739, 39, 39, lower.tail = F) \sim 0.997279\)</span></p>
 
@@ -355,8 +413,8 @@ b) Encuentre el nivel de significancia descriptivo que se ha observado para la p
           </div>
         </div>
       </div>
-<a href="estadística-básica.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="estadística-básica.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estimación-por-intervalos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

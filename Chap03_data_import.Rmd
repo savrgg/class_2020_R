@@ -1,14 +1,3 @@
----
-title: "Importar datos"
-author: "Salvador Garcia"
-output:   
-  html_document:
-    toc: true
-    theme: united
-    toc_depth: 1
-
----
-
 # Importar datos
 Una parte importante al usar R es importar datos desde un archivo externo de datos. Las extensiones más comunes de estos archivos son separados por coma: `*.csv`, archivos de excel `*.xlsx`, `*.xls`, archivos de SPSS `*.sav`, archivos de STATA `*.dta` o archivos de SAS `*.sas`
 
@@ -44,11 +33,11 @@ Una de los principales motivos de la selección de estos paquetes es que son com
 ### Ejercicio 4
 ```{r}
 library(readr)
-readr::write_csv(mtcars, "mtcars.csv")
-file <- readr::read_csv("mtcars.csv")
+readr::write_csv(mtcars, "data/mtcars/mtcars.csv")
+file <- readr::read_csv("data/mtcars/mtcars.csv")
 
-readr::write_delim(mtcars, "mtcars.txt", delim = "\t")
-file <- readr::read_delim("mtcars.txt", delim = "\t")
+readr::write_delim(mtcars, "data/mtcars/mtcars.txt", delim = "\t")
+file <- readr::read_delim("data/mtcars/mtcars.txt", delim = "\t")
 ```
 
 ### Ejercicio 5
@@ -56,14 +45,14 @@ file <- readr::read_delim("mtcars.txt", delim = "\t")
 library(readxl)
 library(writexl)
 
-writexl::write_xlsx(mtcars, "mtcars.xlsx")
-file <- readxl::read_excel("mtcars.xlsx")
+writexl::write_xlsx(mtcars, "data/mtcars/mtcars.xlsx")
+file <- readxl::read_excel("data/mtcars/mtcars.xlsx")
 ```
 
 ### Ejercicio 6
 ```{r}
 library(haven)
 
-haven::write_sas(mtcars, "mtcars.sas7bdat")
-file <- haven::read_sas("mtcars.sas7bdat")
+haven::write_sas(mtcars, "data/mtcars/mtcars.sas7bdat")
+file <- haven::read_sas("data/mtcars/mtcars.sas7bdat")
 ```

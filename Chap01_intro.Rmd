@@ -1,13 +1,4 @@
----
-title: "Introduccion"
-author: "Salvador Garcia"
-output:   
-  html_document:
-    toc: true
-    theme: united
-    toc_depth: 1
-
----
+# Introducción
 
 ## El lenguaje de programación R
 

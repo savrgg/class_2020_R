@@ -2,7 +2,22 @@ book_filename: "bookdown-start"
 chapter_name: "Chapter "
 repo: 
 output_dir: docs
-rmd_files: ["index.Rmd", "Chap01_introduction.Rmd", "Chap02_data_import.Rmd", 
-            "Chap03_intro_data_visualization.Rmd", "Chap04_basic_stats.Rmd"]
+rmd_files: [
+  "index.Rmd", 
+  "Chap00_motivacion.Rmd", 
+  "Chap01_intro.Rmd",
+  "Chap02_estructuras.Rmd",
+  "Chap03_data_import.Rmd",
+  "Chap04_visualization.Rmd",
+  "Chap05_dataset_transformation.Rmd",
+  "Chap06_interactive_graphs.Rmd",
+  "Chap07_interactive_dashboards.Rmd",
+  "Chap10_basic_stats.Rmd",
+  "Chap11_estimacion_intervalos.Rmd",
+  "Chap12_pruebas_hipotesis.Rmd",
+  "Chap13_basic_forecasting.Rmd",
+  "Chap14_basic_ml.Rmd",
+  "Chap15_basic_nn.Rmd"
+  ]
 clean: [packages.bib, bookdown.bbl]
 new_session: yes

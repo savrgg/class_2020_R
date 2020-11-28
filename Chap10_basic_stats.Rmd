@@ -1,15 +1,6 @@
----
-title: "Estadística basica"
-author: "Salvador Garcia"
-output:   
-  html_document:
-    toc: true
-    theme: united
-    toc_depth: 1
+# Introducción a estadística
 
----
-
-
+```{r}
 library(crayon)
 library(tidyverse)
 library(Hmisc)
@@ -36,7 +27,7 @@ qchisq(.025, df = 11, lower.tail = F)
 # J (no simetrica)
 qf(.025, df1 = 11, df2 = 38, lower.tail = T)
 qf(.025, df1 = 11, df2 = 38, lower.tail = F)
-
+```
 
 
 # Estadística básica

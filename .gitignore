@@ -4,3 +4,8 @@
 .Ruserdata
 *.DS_Store
 data/*
+*.RDS
+*.csv
+*.sas7bdat
+*.txt
+*.xlsx
