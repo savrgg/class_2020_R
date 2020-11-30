@@ -803,7 +803,7 @@ install.packages("magrittr", repo="http://cran.rstudio.com/")
 ```
 ## 
 ## The downloaded binary packages are in
-## 	/var/folders/t4/6cs23xyn51b429l5x8q39fl80000gp/T//Rtmp2L3uNV/downloaded_packages
+## 	/var/folders/t4/6cs23xyn51b429l5x8q39fl80000gp/T//Rtmpa8DAbX/downloaded_packages
 ```
 
 

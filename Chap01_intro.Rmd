@@ -145,7 +145,8 @@ library(crayon)
 Para visualizar todos los paquetes se puede ocupar el panel derecho en la pestaña de packages o bien con la funcion: installed.packages()
   
 ```{r}
-installed.packages()
+library(tidyverse)
+installed.packages() %>% head()
 ```
 
 

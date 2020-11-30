@@ -104,3 +104,4 @@ pruebas-de-hipótesis-1
 introducción-a-forecasting
 machine-learning-básico
 introducción-a-neural-networks
+intervalos-de-confianza-de-un-lado

@@ -1,6 +1,13 @@
-book_filename: "bookdown-start"
-chapter_name: "Chapter "
-repo: 
+book_filename: Basic-statistics-with-R
+clean: [packages.bib, bookdown.bbl]
+delete_merged_file: yes
+language:
+  label:
+    fig: "FIGURE "
+    tab: "TABLE "
+  ui:
+    edit: "Edit"
+    chapter_name: "Chapter "
 output_dir: docs
 rmd_files: [
   "index.Rmd", 
@@ -19,5 +26,4 @@ rmd_files: [
   "Chap14_basic_ml.Rmd",
   "Chap15_basic_nn.Rmd"
   ]
-clean: [packages.bib, bookdown.bbl]
 new_session: yes
