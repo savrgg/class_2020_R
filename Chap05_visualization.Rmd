@@ -1,71 +1,5 @@
 # Visualización de datos
 
-## Motivación
-
-R tiene un framework para crear gráficas que (creo yo) es de los más versátiles para cosas estáticas. Este framework es llamado ggplot. Además de ese framework cuenta con otros como lattice o base, pero en general están en desuso. 
-
-```{r}
-library(alluvial)
-library(ggalluvial)
-library(magrittr)
-data(vaccinations)
-cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442",
-               "#0072B2", "#D55E00", "#CC79A7")
-levels(vaccinations$response) <- rev(levels(vaccinations$response))
-vaccinations %>% ggplot(
-  aes(x = survey, 
-      fill = response,
-      stratum = response, 
-      alluvium = subject,
-      weight = freq)) +
-  geom_flow() +
-  geom_stratum(alpha = .8) +
-  geom_text(stat = "stratum", infer.label = TRUE, size = 2.5) +
-  theme_bw() + theme(legend.position = "none", 
-                     panel.background = element_rect(fill = NA),
-                     panel.grid.major.y = element_line(size = 1),
-                     panel.grid.major.x = element_line(size = 0),
-                     panel.grid.minor = element_line(size = 0),
-                     axis.line = element_line(size = 0),
-                     panel.border = element_rect(size = 0)) +
-  scale_fill_manual( values = c(cbPalette, "#999999", "#999999")) +
-  theme(legend.position = "none") +
-  labs(title = "Respuestas en encuestas de vacunación en tres puntos en el tiempo", 
-       x = "encuesta", y = "numero de personas")
-```
-
-
-Si notan, el texto para crear la grafíca es largo y parece dificil, pero con practica todos estos comandos se vuelven intuitivos. Para esta intro a visualización de datos, solamente veremos diferentes tipos de gráficas y en capitulos siguientes profundizaremos en creación de gráficas. Además veremos conceptos básicos de bases de datos.
-
-## Formato largo y ancho de bases
-En procesamiento de bases comunmente se utilizan dos tipos de layout (largo/long, ancho/wide). En el formato wide, se tiene un renglon por cada data point y multiples columnas que contienen los atributos. En el formato long, cada punto se repite n veces de acuerdo al nùmero de atributos. R viene con algunos databases integrados, mtcars es uno de ellos.
-
-1. tidyr::gather() pasa de formato ancho a largo
-2. tidyr::spread() pasa de formato largo a ancho
-
-Ejemplo de formato ancho:
-```{r}
-library(tidyr)
-wide_db <- 
-  mtcars %>% 
-  dplyr::mutate(car_type = row.names(.)) %>% 
-  dplyr::filter(car_type == "Camaro Z28") 
-
-wide_db
-```
-
-
-Ejemplo de formato largo:
-
-```{r}
-long_db <- 
-  wide_db %>% 
-  tidyr::gather(attribute, value, mpg:carb)
-long_db
-```
-
-El formato que comunmente estamos acostumbrados es el ancho, pero para R y procesamiento de datos es más común y mejor práctica trabajar sobre formatos largos.
-
 ## tidyverse
 Tidyverse es una colección de paquetes/librerias que sirven para el análisis de datos, este consiste en un grupo de paquetes para facilitar el trabajo con datos.
 
@@ -96,7 +30,7 @@ Además, se le puede modificar el texto de la gráfica
 
 Sin formato
 ```{r}
-library(ggplot2)
+library(tidyverse)
 
 mtcars %>% 
   dplyr::mutate(car_type = row.names(.)) %>%

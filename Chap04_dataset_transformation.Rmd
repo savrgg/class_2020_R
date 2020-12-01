@@ -1,0 +1,30 @@
+# Dataset transformation
+
+## Formato largo y ancho de bases
+En procesamiento de bases comunmente se utilizan dos tipos de layout (largo/long, ancho/wide). En el formato wide, se tiene un renglon por cada data point y multiples columnas que contienen los atributos. En el formato long, cada punto se repite n veces de acuerdo al nùmero de atributos. R viene con algunos databases integrados, mtcars es uno de ellos.
+
+1. tidyr::gather() pasa de formato ancho a largo
+2. tidyr::spread() pasa de formato largo a ancho
+
+Ejemplo de formato ancho:
+```{r}
+library(tidyr)
+wide_db <- 
+  mtcars %>% 
+  dplyr::mutate(car_type = row.names(.)) %>% 
+  dplyr::filter(car_type == "Camaro Z28") 
+
+wide_db
+```
+
+
+Ejemplo de formato largo:
+
+```{r}
+long_db <- 
+  wide_db %>% 
+  tidyr::gather(attribute, value, mpg:carb)
+long_db
+```
+
+El formato que comunmente estamos acostumbrados es el ancho, pero para R y procesamiento de datos es más común y mejor práctica trabajar sobre formatos largos.

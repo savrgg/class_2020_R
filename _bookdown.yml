@@ -1,6 +1,7 @@
 book_filename: Basic-statistics-with-R
 clean: [packages.bib, bookdown.bbl]
 delete_merged_file: yes
+toc_depth: 1
 language:
   label:
     fig: "FIGURE "
@@ -15,15 +16,9 @@ rmd_files: [
   "Chap01_intro.Rmd",
   "Chap02_estructuras.Rmd",
   "Chap03_data_import.Rmd",
-  "Chap04_visualization.Rmd",
-  "Chap05_dataset_transformation.Rmd",
-  "Chap06_interactive_graphs.Rmd",
-  "Chap07_interactive_dashboards.Rmd",
-  "Chap10_basic_stats.Rmd",
-  "Chap11_estimacion_intervalos.Rmd",
-  "Chap12_pruebas_hipotesis.Rmd",
-  "Chap13_basic_forecasting.Rmd",
-  "Chap14_basic_ml.Rmd",
-  "Chap15_basic_nn.Rmd"
+  "Chap04_dataset_transformation.Rmd",
+  "Chap05_visualization.Rmd",
+  "Chap06_basic_stats.Rmd",
+  "Chap07_inferential_statistics.Rmd"
   ]
 new_session: yes

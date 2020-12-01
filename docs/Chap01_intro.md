@@ -148,7 +148,7 @@ install.packages("crayon", repo="http://cran.rstudio.com/")
 ```
 ## 
 ## The downloaded binary packages are in
-## 	/var/folders/t4/6cs23xyn51b429l5x8q39fl80000gp/T//RtmplPUTdD/downloaded_packages
+## 	/var/folders/t4/6cs23xyn51b429l5x8q39fl80000gp/T//RtmpTKSPVj/downloaded_packages
 ```
 
 

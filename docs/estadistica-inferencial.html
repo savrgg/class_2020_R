@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Estadistica inferencial | Introduccion</title>
+  <meta name="description" content="Notas para el curso de R para Estadística 2 - Primavera 2020" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Estadistica inferencial | Introduccion" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Notas para el curso de R para Estadística 2 - Primavera 2020" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Estadistica inferencial | Introduccion" />
+  
+  <meta name="twitter:description" content="Notas para el curso de R para Estadística 2 - Primavera 2020" />
+  
+
+<meta name="author" content="Salvador Garcia" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introducción-a-estadística.html"/>
+
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Curso básico de R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduccion</a></li>
+<li class="chapter" data-level="2" data-path="motivación.html"><a href="motivación.html"><i class="fa fa-check"></i><b>2</b> Motivación</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="motivación.html"><a href="motivación.html#image-recognition-cats-vs-dogs"><i class="fa fa-check"></i><b>2.1</b> Image Recognition: Cats vs Dogs</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="motivación.html"><a href="motivación.html#cargar-librerias-y-funciones-auxiliares"><i class="fa fa-check"></i><b>2.1.1</b> 1) Cargar librerias y funciones auxiliares</a></li>
+<li class="chapter" data-level="2.1.2" data-path="motivación.html"><a href="motivación.html#train---test-split"><i class="fa fa-check"></i><b>2.1.2</b> 2) Train - Test Split</a></li>
+<li class="chapter" data-level="2.1.3" data-path="motivación.html"><a href="motivación.html#definición-y-entrenamiento-de-modelo-keras"><i class="fa fa-check"></i><b>2.1.3</b> 3) Definición y entrenamiento de modelo (Keras)</a></li>
+<li class="chapter" data-level="2.1.4" data-path="motivación.html"><a href="motivación.html#predicción-de-nuevos-datos"><i class="fa fa-check"></i><b>2.1.4</b> 4) Predicción de nuevos datos</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="motivación.html"><a href="motivación.html#motivación-data-visualization"><i class="fa fa-check"></i><b>2.2</b> Motivación Data Visualization</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>3</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="introducción.html"><a href="introducción.html#el-lenguaje-de-programación-r"><i class="fa fa-check"></i><b>3.1</b> El lenguaje de programación R</a></li>
+<li class="chapter" data-level="3.2" data-path="introducción.html"><a href="introducción.html#paquetes-y-librerias-de-r"><i class="fa fa-check"></i><b>3.2</b> Paquetes y librerias de R</a></li>
+<li class="chapter" data-level="3.3" data-path="introducción.html"><a href="introducción.html#paradigma-de-r"><i class="fa fa-check"></i><b>3.3</b> Paradigma de R</a></li>
+<li class="chapter" data-level="3.4" data-path="introducción.html"><a href="introducción.html#proyectos-de-r-y-paths"><i class="fa fa-check"></i><b>3.4</b> Proyectos de R y Paths</a></li>
+<li class="chapter" data-level="3.5" data-path="introducción.html"><a href="introducción.html#instalación-de-r"><i class="fa fa-check"></i><b>3.5</b> Instalación de R</a></li>
+<li class="chapter" data-level="3.6" data-path="introducción.html"><a href="introducción.html#instalación-de-rstudio"><i class="fa fa-check"></i><b>3.6</b> Instalación de Rstudio</a></li>
+<li class="chapter" data-level="3.7" data-path="introducción.html"><a href="introducción.html#instalación-de-paquetes-desde-el-cran."><i class="fa fa-check"></i><b>3.7</b> Instalación de paquetes desde el CRAN.</a></li>
+<li class="chapter" data-level="3.8" data-path="introducción.html"><a href="introducción.html#ejercicios-de-practica"><i class="fa fa-check"></i><b>3.8</b> Ejercicios de practica</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="introducción.html"><a href="introducción.html#ejercicio-1."><i class="fa fa-check"></i><b>3.8.1</b> Ejercicio 1.</a></li>
+<li class="chapter" data-level="3.8.2" data-path="introducción.html"><a href="introducción.html#ejercicio-2."><i class="fa fa-check"></i><b>3.8.2</b> Ejercicio 2.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html"><i class="fa fa-check"></i><b>4</b> Estructura de datos de R</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#ayuda-y-vignettes"><i class="fa fa-check"></i><b>4.1</b> Ayuda y vignettes</a></li>
+<li class="chapter" data-level="4.2" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#namespaces"><i class="fa fa-check"></i><b>4.2</b> Namespaces</a></li>
+<li class="chapter" data-level="4.3" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#paquetería-útil-para-el-análisis-de-datos"><i class="fa fa-check"></i><b>4.3</b> Paquetería útil para el análisis de datos</a></li>
+<li class="chapter" data-level="4.4" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#estructuras-de-datos-en-r"><i class="fa fa-check"></i><b>4.4</b> Estructuras de datos en R</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#vectores-atómicos"><i class="fa fa-check"></i><b>4.4.1</b> Vectores atómicos</a></li>
+<li class="chapter" data-level="4.4.2" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#matrices-y-arrays."><i class="fa fa-check"></i><b>4.4.2</b> Matrices y arrays.</a></li>
+<li class="chapter" data-level="4.4.3" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#listas."><i class="fa fa-check"></i><b>4.4.3</b> Listas.</a></li>
+<li class="chapter" data-level="4.4.4" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#data.frames"><i class="fa fa-check"></i><b>4.4.4</b> Data.frames</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#funciones-condicionales-e-iteraciones"><i class="fa fa-check"></i><b>4.5</b> Funciones, condicionales e iteraciones:</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#funciones"><i class="fa fa-check"></i><b>4.5.1</b> Funciones</a></li>
+<li class="chapter" data-level="4.5.2" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#condicionales"><i class="fa fa-check"></i><b>4.5.2</b> Condicionales</a></li>
+<li class="chapter" data-level="4.5.3" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#iteraciones"><i class="fa fa-check"></i><b>4.5.3</b> Iteraciones</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#ejercicios-de-practica-1"><i class="fa fa-check"></i><b>4.6</b> Ejercicios de practica</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="estructura-de-datos-de-r.html"><a href="estructura-de-datos-de-r.html#ejercicio-3"><i class="fa fa-check"></i><b>4.6.1</b> Ejercicio 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="importar-datos.html"><a href="importar-datos.html"><i class="fa fa-check"></i><b>5</b> Importar datos</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="importar-datos.html"><a href="importar-datos.html#archivos-.csv"><i class="fa fa-check"></i><b>5.1</b> Archivos <strong>.csv</strong></a></li>
+<li class="chapter" data-level="5.2" data-path="importar-datos.html"><a href="importar-datos.html#archivos-.xlsx-y-.xls"><i class="fa fa-check"></i><b>5.2</b> Archivos <strong>.xlsx y .xls</strong></a></li>
+<li class="chapter" data-level="5.3" data-path="importar-datos.html"><a href="importar-datos.html#otros-formatos-de-archivos-.sav-.data-.sas"><i class="fa fa-check"></i><b>5.3</b> Otros formatos de archivos <strong>.sav</strong>, <strong>.data</strong>, <strong>.sas</strong></a></li>
+<li class="chapter" data-level="5.4" data-path="importar-datos.html"><a href="importar-datos.html#ejercicios-de-práctica"><i class="fa fa-check"></i><b>5.4</b> Ejercicios de práctica</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="importar-datos.html"><a href="importar-datos.html#ejercicio-4"><i class="fa fa-check"></i><b>5.4.1</b> Ejercicio 4</a></li>
+<li class="chapter" data-level="5.4.2" data-path="importar-datos.html"><a href="importar-datos.html#ejercicio-5"><i class="fa fa-check"></i><b>5.4.2</b> Ejercicio 5</a></li>
+<li class="chapter" data-level="5.4.3" data-path="importar-datos.html"><a href="importar-datos.html#ejercicio-6"><i class="fa fa-check"></i><b>5.4.3</b> Ejercicio 6</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="dataset-transformation.html"><a href="dataset-transformation.html"><i class="fa fa-check"></i><b>6</b> Dataset transformation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="dataset-transformation.html"><a href="dataset-transformation.html#formato-largo-y-ancho-de-bases"><i class="fa fa-check"></i><b>6.1</b> Formato largo y ancho de bases</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html"><i class="fa fa-check"></i><b>7</b> Visualización de datos</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#tidyverse"><i class="fa fa-check"></i><b>7.1</b> tidyverse</a></li>
+<li class="chapter" data-level="7.2" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ggplot"><i class="fa fa-check"></i><b>7.2</b> ggplot</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#scatterplot"><i class="fa fa-check"></i><b>7.2.1</b> Scatterplot</a></li>
+<li class="chapter" data-level="7.2.2" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#barplot"><i class="fa fa-check"></i><b>7.2.2</b> Barplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicios-de-práctica-1"><i class="fa fa-check"></i><b>7.3</b> Ejercicios de práctica</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicio-7"><i class="fa fa-check"></i><b>7.3.1</b> Ejercicio 7</a></li>
+<li class="chapter" data-level="7.3.2" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicio-8"><i class="fa fa-check"></i><b>7.3.2</b> Ejercicio 8</a></li>
+<li class="chapter" data-level="7.3.3" data-path="visualización-de-datos.html"><a href="visualización-de-datos.html#ejercicio-9"><i class="fa fa-check"></i><b>7.3.3</b> Ejercicio 9</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="introducción-a-estadística.html"><a href="introducción-a-estadística.html"><i class="fa fa-check"></i><b>8</b> Introducción a estadística</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="introducción-a-estadística.html"><a href="introducción-a-estadística.html#ejercicios-de-práctica-2"><i class="fa fa-check"></i><b>8.1</b> Ejercicios de práctica</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="introducción-a-estadística.html"><a href="introducción-a-estadística.html#ejercicio-10"><i class="fa fa-check"></i><b>8.1.1</b> Ejercicio 10</a></li>
+<li class="chapter" data-level="8.1.2" data-path="introducción-a-estadística.html"><a href="introducción-a-estadística.html#distribution-function"><i class="fa fa-check"></i><b>8.1.2</b> Distribution function</a></li>
+<li class="chapter" data-level="8.1.3" data-path="introducción-a-estadística.html"><a href="introducción-a-estadística.html#quantile-function"><i class="fa fa-check"></i><b>8.1.3</b> Quantile function</a></li>
+<li class="chapter" data-level="8.1.4" data-path="introducción-a-estadística.html"><a href="introducción-a-estadística.html#random-function"><i class="fa fa-check"></i><b>8.1.4</b> Random function</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html"><i class="fa fa-check"></i><b>9</b> Estadistica inferencial</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#estimación-por-intervalos"><i class="fa fa-check"></i><b>9.1</b> Estimación por intervalos</a></li>
+<li class="chapter" data-level="9.2" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#estadístico-z---media-varianza-conocida"><i class="fa fa-check"></i><b>9.2</b> Estadístico Z - Media (varianza conocida)</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#ic-para-media"><i class="fa fa-check"></i><b>9.2.1</b> IC para media</a></li>
+<li class="chapter" data-level="9.2.2" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#ic-para-proporción"><i class="fa fa-check"></i><b>9.2.2</b> IC para proporción</a></li>
+<li class="chapter" data-level="9.2.3" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#ic-diferencia-de-medias-muestras-independientes"><i class="fa fa-check"></i><b>9.2.3</b> IC diferencia de medias (muestras independientes)</a></li>
+<li class="chapter" data-level="9.2.4" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#ic-diferencia-de-medias-muestras-dependientes"><i class="fa fa-check"></i><b>9.2.4</b> IC diferencia de medias (muestras dependientes)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#estadístico-t---media-varianza-desconocida"><i class="fa fa-check"></i><b>9.3</b> Estadístico T - Media (varianza desconocida)</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#ic-para-la-media"><i class="fa fa-check"></i><b>9.3.1</b> IC para la media</a></li>
+<li class="chapter" data-level="9.3.2" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#ic-para-la-proporción"><i class="fa fa-check"></i><b>9.3.2</b> IC para la proporción</a></li>
+<li class="chapter" data-level="9.3.3" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#ic-diferencia-de-medias-muestras-independientes-1"><i class="fa fa-check"></i><b>9.3.3</b> IC diferencia de medias (muestras independientes)</a></li>
+<li class="chapter" data-level="9.3.4" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#ic-diferencia-de-medias-muestras-dependientes-1"><i class="fa fa-check"></i><b>9.3.4</b> IC diferencia de medias (muestras dependientes)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#estadístico-j---varianza"><i class="fa fa-check"></i><b>9.4</b> Estadístico J - Varianza</a></li>
+<li class="chapter" data-level="9.5" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#estadístico-f---cociente-de-varianzas"><i class="fa fa-check"></i><b>9.5</b> Estadístico F - Cociente de varianzas</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#ic-para-cociente-de-varianzas-muestras-independientes"><i class="fa fa-check"></i><b>9.5.1</b> IC para cociente de varianzas (muestras independientes)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#tamaño-de-muestra"><i class="fa fa-check"></i><b>9.6</b> Tamaño de muestra</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#tamaño-de-muestra-para-la-media"><i class="fa fa-check"></i><b>9.6.1</b> Tamaño de muestra para la media</a></li>
+<li class="chapter" data-level="9.6.2" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#tamaño-de-muestra-para-la-proporción"><i class="fa fa-check"></i><b>9.6.2</b> Tamaño de muestra para la proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#pruebas-de-hipótesis"><i class="fa fa-check"></i><b>9.7</b> Pruebas de hipótesis</a></li>
+<li class="chapter" data-level="9.8" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#ejemplo-de-estadístico-z"><i class="fa fa-check"></i><b>9.8</b> Ejemplo de estadístico Z</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#diferencia-de-medias"><i class="fa fa-check"></i><b>9.8.1</b> Diferencia de Medias</a></li>
+<li class="chapter" data-level="9.8.2" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#diferencia-de-proporciones"><i class="fa fa-check"></i><b>9.8.2</b> Diferencia de Proporciones</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#ejemplo-de-estadistico-t"><i class="fa fa-check"></i><b>9.9</b> Ejemplo de estadistico T</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#diferencia-de-medias-pareada"><i class="fa fa-check"></i><b>9.9.1</b> Diferencia de medias pareada</a></li>
+</ul></li>
+<li class="chapter" data-level="9.10" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#ejemplo-de-estadistico-j"><i class="fa fa-check"></i><b>9.10</b> Ejemplo de estadistico J</a></li>
+<li class="chapter" data-level="9.11" data-path="estadistica-inferencial.html"><a href="estadistica-inferencial.html#ejemplo-de-estadistico-f"><i class="fa fa-check"></i><b>9.11</b> Ejemplo de estadistico F</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduccion</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="estadistica-inferencial" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Estadistica inferencial</h1>
+<div id="estimación-por-intervalos" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Estimación por intervalos</h2>
+<p>El capítulo anterior abordó <strong>estimación puntual</strong>, que proporciona o estima un solo valor para darnos una idea del parámetro <span class="math inline">\(\theta\)</span>. En ocasiones estimar un solo valor no es suficiente por que se requiere tener un rango de valores donde creemos se encuentra el parámetro.</p>
+<p><strong>Nivel de confianza</strong>: Grado de seguridad que se tiene sobre la veracidad de una afirmación acerca del parámetro (o parámetros) de interés. El nivel de confianza se denota como <span class="math inline">\((1-\alpha)\)</span> con <span class="math inline">\(\alpha\)</span> constante entre 0 y 1.</p>
+<p><strong>Intervalo de confianza (IC)</strong>: Rango de valores en el que se encuentra el verdadero valor del parámetro <span class="math inline">\(\theta\)</span>. Este rango de valores es dependiente la nivel de confianza <span class="math inline">\((1-\alpha)\)</span>. Sean <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> dos valores tal que:</p>
+<p><span class="math display">\[P(a \leq \theta \leq b) = 1 - \alpha\]</span>
+Entonces <span class="math inline">\((a, b)\)</span> es un intervalo tal que la probabilidad que el verdadero parámetro <span class="math inline">\(\theta\)</span> se encuentre dentro de los valores es <span class="math inline">\((1-\alpha)\)</span></p>
+</div>
+<div id="estadístico-z---media-varianza-conocida" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Estadístico Z - Media (varianza conocida)</h2>
+<p>Recordando clases pasadas, se había encontrado la distrubión de los estimadores de la media (<span class="math inline">\(\overline{X}\)</span>). De acuerdo si se tenía una varianza conocida o desconocida, el estimador <span class="math inline">\(\overline{X}\)</span> se podía distribuir normalmente o como una distribución t-student respectivamente.</p>
+<div id="ic-para-media" class="section level3" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> IC para media</h3>
+<p>Si se tienen <span class="math inline">\(n\)</span> datos, donda cada <span class="math inline">\(X_i\)</span> se modela con media <span class="math inline">\(\mu\)</span> y varianza <span class="math inline">\(\sigma^2\)</span> <strong>conocida</strong>, entonces tenemos que:</p>
+<p><span class="math display">\[Z = \left(\frac{\overline{X}-\mu} {\sigma/\sqrt{n}} \right)  = \left(\frac{\overline{X}-\mu} {\sqrt{\frac{\sigma^2}{n}}} \right) \sim N\left(0,1\right)\]</span>
+Sean <span class="math inline">\(-z_{\alpha/2}\)</span> y <span class="math inline">\(z_{\alpha_2}\)</span> puntos críticos, tal que:</p>
+<p><span class="math display">\[
+P \left( -z_{\alpha/2} \leq Z \leq z_{\alpha/2}\right) = 1-\alpha\\
+P\left(-z_{\alpha/2} \leq \frac{\overline{X}-\mu} {\sqrt{\frac{\sigma^2}{n}}} \leq z_{\alpha/2}\right) = 1-\alpha\\
+P\left(\overline{X} - z_{\alpha/2} {\sqrt{\frac{\sigma^2}{n}}} \leq \mu \leq \overline{X} + z_{\alpha/2} {\sqrt{\frac{\sigma^2}{n}}}\right) = 1-\alpha
+\]</span></p>
+<p>Entonces el intervalo de confianza para <span class="math inline">\(\mu\)</span> puede ser expresado como:</p>
+<p><span class="math display" id="eq:form601">\[\begin{equation}
+\boxed{\left(\overline{X} - z_{\alpha/2} \frac{\sigma}{\sqrt{n}}, \overline{X} + z_{\alpha/2} \frac{\sigma}{\sqrt{n}}\right)}
+\tag{9.1}
+\end{equation}\]</span></p>
+</div>
+<div id="ic-para-proporción" class="section level3" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> IC para proporción</h3>
+<p>La proporción se puede ver como un caso particular de una media, solo que para el caso en el que cada <span class="math inline">\(X_i\)</span> se distribuye <em>Bernoulli</em>.</p>
+<p><span class="math display">\[Z = \left(\frac{\overline{X}-\mu}{\sqrt{\frac{\sigma^2}{n}}}\right) = \left(\frac{\hat{p}-p}{\sqrt{\frac{p(1-p)}{n}}}\right) \sim N\left(0,1\right)\]</span>
+Sean <span class="math inline">\(-z_{\alpha/2}\)</span> y <span class="math inline">\(z_{\alpha_2}\)</span> como puntos críticos, tal que:</p>
+<p><span class="math display">\[
+P\left(-z_{\alpha/2} \leq Z \leq z_{\alpha/2}\right) = 1-\alpha \\ \\
+P\left(-z_{\alpha/2} \leq \frac{\hat{p}-p}{\sqrt{\frac{p(1-p)}{n}}} \leq z_{\alpha/2}\right) = 1-\alpha\\ \\
+P\left(\hat{p} - z_{\alpha/2} {\sqrt{\frac{p(1-p)}{n}}} \leq p \leq \hat{p} + z_{\alpha/2}  {\sqrt{\frac{p(1-p)}{n}}}\right) = 1-\alpha
+\]</span>
+Entonces el intervalo de confianza puede ser expresado como:</p>
+<p><span class="math display" id="eq:form602">\[\begin{equation}
+\boxed{\left(\hat{p} - z_{\alpha/2} \sqrt{\frac{p(1-p)}{n}}, 
+      \hat{p} + z_{\alpha/2} \sqrt{\frac{p(1-p)}{n}} \right)}
+\tag{9.2}
+\end{equation}\]</span></p>
+</div>
+<div id="ic-diferencia-de-medias-muestras-independientes" class="section level3" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> IC diferencia de medias (muestras independientes)</h3>
+<p>En el caso de tener dos poblaciones es posible medir la diferencia de medias entre las poblaciones. Se le llama muestra independientes cuando no hay relación entre una u otra población. En cambio cuando son dependientes comúnmente son muestras pareadas (siguiente sección). En el caso de independencia y asumiendo normalidad, se tienen dos poblaciones <span class="math inline">\(X \sim N(\mu_x, \sigma_X^2)\)</span> y <span class="math inline">\(Y \sim N(\mu_y, \sigma_Y^2)\)</span>. En esta sección se asume que se conoce la varianza de ambas poblaciones. Con estos supuestos se sabe que <span class="math inline">\(\overline{Y}-\overline{X} \sim N(\mu_{Y}-\mu_{X},\frac{\sigma_X^2}{n}+\frac{\sigma_Y^2}{m})\)</span>. De esta manera podemos escribir a Z como:</p>
+<p><span class="math display">\[Z = \frac{\left(\overline{Y}-\overline{X}\right) -\left(\mu_{Y}-\mu_{X}\right)}{\sqrt{\frac{\sigma_X^2}{n}+\frac{\sigma_Y^2}{m}}} \sim N\left(0,1\right)\]</span>
+Sean <span class="math inline">\(-z_{\alpha/2}\)</span> y <span class="math inline">\(z_{\alpha_2}\)</span> puntos críticos, tal que:</p>
+<p><span class="math display">\[
+P\left(-z_{\alpha/2} \leq Z \leq z_{\alpha/2}\right) = 1-\alpha \\ \\
+P\left(-z_{\alpha/2} \leq \frac{\left(\overline{Y}-\overline{X}\right) -\left(\mu_{Y}-\mu_{X}\right)}{\sqrt{\frac{\sigma_X^2}{n}+\frac{\sigma_Y^2}{m}}} \leq z_{\alpha/2}\right) = 1-\alpha\\ \\
+P\left(\left(\overline{Y}-\overline{X}\right) - z_{\alpha/2} \sqrt{\frac{\sigma_X^2}{n}+\frac{\sigma_Y^2}{m}} \leq \mu_Y-\mu_X \leq \left(\overline{Y}-\overline{X}\right) + z_{\alpha/2}  \sqrt{\frac{\sigma_X^2}{n}+\frac{\sigma_Y^2}{m}}\right) = 1-\alpha
+\]</span>
+Entonces el intervalo de confianza puede ser expresado como:</p>
+<p><span class="math display" id="eq:form603">\[\begin{equation}
+\boxed{
+\left(\left(\overline{Y}-\overline{X}\right) - z_{\alpha/2} \sqrt{\frac{\sigma_X^2}{n}+\frac{\sigma_Y^2}{m}}, \left(\overline{Y}-\overline{X}\right) + z_{\alpha/2}  \sqrt{\frac{\sigma_X^2}{n}+\frac{\sigma_Y^2}{m}}\right)
+}
+\tag{9.3}
+\end{equation}\]</span></p>
+</div>
+<div id="ic-diferencia-de-medias-muestras-dependientes" class="section level3" number="9.2.4">
+<h3><span class="header-section-number">9.2.4</span> IC diferencia de medias (muestras dependientes)</h3>
+<p>Otro caso común es cuando se desea medir la diferencia de las medias de dos grupos. Donde cada <span class="math inline">\(X_i\)</span> esta distribuida con media <span class="math inline">\(\mu_X\)</span> y varianza <span class="math inline">\(\sigma_X^2\)</span>, y de una manera análoga <span class="math inline">\(Y_i\)</span> se distribuye <span class="math inline">\(\mu_X\)</span> y varianza <span class="math inline">\(\sigma_X^2\)</span>. Cuando se asume que las muestras son pareadas se calcula la diferencia entre cada par de valores (<span class="math inline">\(X_i\)</span>, <span class="math inline">\(Y_i\)</span>). Para esto, se definer la diferencia <span class="math inline">\(D_i = Y_i - X_i\)</span>. Definido de esta forma, D_i se distibuye con media <span class="math inline">\(\mu_D = \mu_X - \mu_Y\)</span> y varianza <span class="math inline">\(\sigma_D^2 = \sigma_X^2 + \sigma_Y^2 - 2\sigma_{XY}\)</span>. En particular, al asumir normalidad: <span class="math inline">\(\overline{Y}-\overline{X} \sim N\left(\mu_{Y}-\mu_{X},\frac{\sigma_X^2 + \sigma_Y^2 - 2\sigma_{XY}}{n}\right)\)</span> o visto de otra manera: <span class="math inline">\(\overline{D} \sim N\left(\mu_{D},\sqrt{\frac{\sigma_D^2}{n}}\right)\)</span></p>
+<p><span class="math display">\[  Z = \frac{\left(\overline{Y}-\overline{X} \right) - \left(\mu_{Y}-\mu_{X}\right)}{\sqrt{\frac{\sigma_X^2 + \sigma_Y^2 - 2\sigma_{XY}}{n}}}\]</span>
+Sean <span class="math inline">\(-z_{\alpha/2}\)</span> y <span class="math inline">\(z_{\alpha_2}\)</span> puntos críticos, tal que:</p>
+<p><span class="math display">\[
+P\left(-z_{\alpha/2} \leq Z \leq z_{\alpha/2}\right) = 1-\alpha \\ \\
+P\left(-z_{\alpha/2} \leq \frac{\left(\overline{Y}-\overline{X}\right) -\left(\mu_{Y}-\mu_{X}\right)}{\sqrt{\frac{\sigma_X^2 + \sigma_Y^2 - 2\sigma_{XY}}{n}}} \leq z_{\alpha/2}\right) = 1-\alpha\\ \\
+P\left(\left(\overline{Y}-\overline{X}\right) - z_{\alpha/2} \sqrt{\frac{\sigma_X^2 + \sigma_Y^2 - 2\sigma_{XY}}{n}} \leq \mu_Y-\mu_X \leq \left(\overline{Y}-\overline{X}\right) + z_{\alpha/2}  \sqrt{\frac{\sigma_X^2 + \sigma_Y^2 - 2\sigma_{XY}}{n}}\right) = 1-\alpha
+\]</span></p>
+<p><span class="math display" id="eq:form604">\[\begin{equation}
+\boxed{
+\left(\left(\overline{Y}-\overline{X}\right) - z_{\alpha/2} \sqrt{\frac{\sigma_X^2 + \sigma_Y^2 - 2\sigma_{XY}}{n}}, \left(\overline{Y}-\overline{X}\right) + z_{\alpha/2}  \sqrt{\frac{\sigma_X^2 + \sigma_Y^2 - 2\sigma_{XY}}{n}}\right)
+}
+\tag{9.4}
+\end{equation}\]</span></p>
+</div>
+</div>
+<div id="estadístico-t---media-varianza-desconocida" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Estadístico T - Media (varianza desconocida)</h2>
+<p>Los casos para el estadístico T son muy similares al estadístico Z, solamente que ahora se asume que no se conoce la varianza poblacional y es estimada por la varianza muestral.</p>
+<div id="ic-para-la-media" class="section level3" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> IC para la media</h3>
+<p>Si se tienen <span class="math inline">\(n\)</span> datos, donde cada <span class="math inline">\(X_i\)</span> se modela con media <span class="math inline">\(\mu\)</span> y varianza <span class="math inline">\(\sigma^2\)</span> <strong>desconocida</strong>, entonces la varianza se estima con con <span class="math inline">\(s^2\)</span>. Por lo tanto tenemos que:</p>
+<p><span class="math display">\[T = \left(\frac{\overline{X}-\mu}{s/\sqrt{n}}\right) = \left(\frac{\overline{X}-\mu}{\sqrt{\frac{s^2}{n}}}\right) \sim t_{n-1}\]</span></p>
+<p>Sean <span class="math inline">\(-t_{(n-1, \alpha/2)}\)</span> y <span class="math inline">\(t_{(n-1, \alpha/2)}\)</span> como puntos críticos, tal que:</p>
+<p><span class="math display">\[
+P\left(-t_{(n-1, \alpha/2)} \leq T \leq t_{(n-1, \alpha/2)}\right) = 1-\alpha \\
+P\left(-t_{(n-1, \alpha/2)} \leq \frac{\overline{X}-\mu}{\sqrt{\frac{s^2}{n}}} \leq t_{(n-1, \alpha/2)}\right) = 1-\alpha\\
+P\left(\overline{X} - t_{(n-1, \alpha/2)} \sqrt{\frac{s^2}{n}} \leq \mu \leq \overline{X} + t_{(n-1, \alpha/2)} \sqrt{\frac{s^2}{n}}\right) = 1-\alpha
+\]</span>
+Entonces el intervalo de confianza puede ser expresado como:</p>
+<p><span class="math display" id="eq:form605">\[\begin{equation}
+\boxed{\left(\overline{X} - t_{(n-1, \alpha/2)} \frac{s}{\sqrt{n}}, \overline{X} + t_{(n-1, \alpha/2)} \frac{s}{\sqrt{n}} \right)}
+\tag{9.5}
+\end{equation}\]</span></p>
+</div>
+<div id="ic-para-la-proporción" class="section level3" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> IC para la proporción</h3>
+<p>Nota: para el caso de la distribución <span class="math inline">\(Bernoulli(p)\)</span>, al conocer la media se conoce la varianza. Esto es por que la media de la Bernoulli es <span class="math inline">\(p\)</span> y la varianza <span class="math inline">\(p(1-p)\)</span>. Por lo tanto la proporción no se puede distribuir como <span class="math inline">\(t-student\)</span>.</p>
+</div>
+<div id="ic-diferencia-de-medias-muestras-independientes-1" class="section level3" number="9.3.3">
+<h3><span class="header-section-number">9.3.3</span> IC diferencia de medias (muestras independientes)</h3>
+<p>Para la diferencia de medias se tiene no se conoce la varianza de X ni de Y, por lo que se estiman por medio de <span class="math inline">\(S_X^2\)</span> y <span class="math inline">\(S_Y^2\)</span>:</p>
+<p><span class="math display">\[T = \frac{\left(\overline{Y}-\overline{X}\right) -\left(\mu_{Y}-\mu_{X}\right)}{\sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{m}}} \sim t_{n+m-2}\]</span>
+Sean <span class="math inline">\(-t_{(n+m-2,\alpha/2)}\)</span> y <span class="math inline">\(t_{(n+m-2, \alpha/2)}\)</span> puntos críticos, tal que:</p>
+<p><span class="math display">\[
+P\left(-t_{(n+m-2,\alpha/2)} \leq T \leq t_{(n+m-2,\alpha/2)}\right) = 1-\alpha \\ \\
+P\left(-t_{(n+m-2,\alpha/2)} \leq \frac{\left(\overline{Y}-\overline{X}\right) -\left(\mu_{Y}-\mu_{X}\right)}{\sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{m}}} \leq t_{(n+m-2,\alpha/2)}\right) = 1-\alpha\\ \\
+P\left(\left(\overline{Y}-\overline{X}\right) - t_{(n+m-2,\alpha/2)} \sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{m}} \leq \mu_Y-\mu_X \leq \left(\overline{Y}-\overline{X}\right) + t_{(n+m-2,\alpha/2)}  \sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{m}}\right) = 1-\alpha
+\]</span>
+Entonces el intervalo de confianza puede ser expresado como:</p>
+<p><span class="math display" id="eq:form607">\[\begin{equation}
+\boxed{
+\left(\left(\overline{Y}-\overline{X}\right) - t_{(n+m-2, \alpha/2)} \sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{m}}, \left(\overline{Y}-\overline{X}\right) + t_{(n+m-2,\alpha/2)}  \sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{m}}\right)
+}
+\tag{9.6}
+\end{equation}\]</span></p>
+</div>
+<div id="ic-diferencia-de-medias-muestras-dependientes-1" class="section level3" number="9.3.4">
+<h3><span class="header-section-number">9.3.4</span> IC diferencia de medias (muestras dependientes)</h3>
+<p>Para el caso de muestras independientes, podemos estimar la varianza como sigue:</p>
+<p><span class="math display">\[S_D^2  = \frac{1}{n-1} \sum_{i = 1}^{n} (D_i-\bar{D})^2\]</span></p>
+<p>De manera que:</p>
+<p><span class="math display">\[ T = \frac{\bar{D}- (\mu_Y-\mu_X)}{\sqrt{\frac{S_D^2}{n}}} \sim t_{n-1}\]</span>
+Es importante notar que los grados de libertad siguen siendo <span class="math inline">\(n-1\)</span>. Sean <span class="math inline">\(-t_{(n-1, \alpha/2)}\)</span> y <span class="math inline">\(t_{(n-1,\alpha\2)}\)</span> puntos críticos, tal que:</p>
+<p><span class="math display">\[
+P\left(-t_{(n-1,\alpha/2)} \leq T \leq t_{(n-1,\alpha/2)}\right) = 1-\alpha \\ \\
+P\left(-t_{(n-1,\alpha/2)} \leq \frac{\overline{D} -\left(\mu_{Y}-\mu_{X}\right)}{\sqrt{\frac{S_D^2}{n}}} \leq t_{(n-1,\alpha/2)}\right) = 1-\alpha\\ \\
+P\left(\overline{D} - t_{(n-1,\alpha/2)} \sqrt{\frac{S_D^2}{n}} \leq \mu_Y-\mu_X \leq \overline{D} + t_{(n-1,\alpha/2)}  \sqrt{\frac{S_D^2}{n}}\right) = 1-\alpha
+\]</span></p>
+<p>Entonces el intervalo de confianza puede ser expresado como:</p>
+<p><span class="math display" id="eq:form608">\[\begin{equation}
+\boxed{
+\left(\overline{D} - t_{(n-1, \alpha/2)} \sqrt{\frac{S_D^2}{n}}, \overline{D} + t_{(n-1,\alpha/2)}  \sqrt{\frac{S_D^2}{n}}\right)
+}
+\tag{9.7}
+\end{equation}\]</span></p>
+</div>
+</div>
+<div id="estadístico-j---varianza" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> Estadístico J - Varianza</h2>
+<p>Una vez revisado el intervalo de confianza para la media con varianza conocida y desconocida, un paso intuitivo es construir el de la varianza. Como se estudio en clases pasadas, el estimador más común de la varianza es <span class="math inline">\(S^2\)</span>. Además se definió el estadistico J con distribución <span class="math inline">\(\chi^2\)</span>. Suponiendo que se cada <span class="math inline">\(X_i\)</span> se distribuye normal y que se tienen n observaciones:</p>
+<p><span class="math display">\[J = \frac{(n-1) s^2}{\sigma^2} \sim \chi_{n-1}^2\]</span></p>
+<p>Entonces, definiendo <span class="math inline">\(\chi_{(n-1, 1-\alpha/2)}^2\)</span> y <span class="math inline">\(\chi_{(n-1, \alpha/2)}^2\)</span> como puntos criticos:</p>
+<p><span class="math display">\[
+P\left(\chi_{(n-1, 1-\alpha/2)}^2 \leq J \leq \chi_{(n-1, \alpha/2)}^2\right) = 1-\alpha \\ \\
+P\left(\chi_{(n-1, 1-\alpha/2)}^2 \leq \frac{(n-1) s^2}{\sigma^2} \leq \chi_{(n-1, \alpha/2)}^2\right) = 1-\alpha\\ \\
+P\left( \frac{(n-1)s^2}{\chi_{(n-1, \alpha/2)}^2}  \leq \sigma^2 \leq \frac{(n-1)s^2}{\chi_{(n-1, 1-\alpha/2)}^2}  \right) = 1-\alpha
+\]</span>
+Entonces el intervalo de confianza puede ser expresado como:</p>
+<p><span class="math display" id="eq:form609">\[\begin{equation}
+\boxed{
+\left( \frac{(n-1)s^2}{\chi_{(n-1, \alpha/2)}^2}, \frac{(n-1)s^2}{\chi_{(n-1, 1-\alpha/2)}^2}  \right)
+}
+\tag{9.8}
+\end{equation}\]</span></p>
+</div>
+<div id="estadístico-f---cociente-de-varianzas" class="section level2" number="9.5">
+<h2><span class="header-section-number">9.5</span> Estadístico F - Cociente de varianzas</h2>
+<div id="ic-para-cociente-de-varianzas-muestras-independientes" class="section level3" number="9.5.1">
+<h3><span class="header-section-number">9.5.1</span> IC para cociente de varianzas (muestras independientes)</h3>
+<p>El último estadistico estudiado es la F, usado para el cociente de varianzas. Este es usado en procesos donde se requiere comparar la variabilidad de distintas poblaciones. Para comparar esta variaciones tomamos el supuesto de independencia de las muestras. De clases pasadas sabemos que el estadístico para medir esta variabilidad es la F:</p>
+<p><span class="math display">\[ F = \frac{S_X^2 \sigma_Y^2}{S_Y^2 \sigma_X^2} \sim F_{(n-1, m-1)}\]</span></p>
+<p>Entonces, definiendo <span class="math inline">\(F_{(n-1, m-1, 1-\alpha/2)}\)</span> y <span class="math inline">\(F_{(n-1, m-1, \alpha/2)}\)</span> como puntos criticos:</p>
+<p><span class="math display">\[
+P\left(F_{(n-1, m-1, 1- \alpha/2)} \leq F \leq F_{(n-1, m-1, \alpha/2)}\right) = 1-\alpha \\ \\
+P\left(F_{(n-1, m-1, 1- \alpha/2)} \leq \frac{S_X^2 \sigma_Y^2}{S_Y^2 \sigma_X^2} \leq F_{(n-1, m-1, \alpha/2)}\right) = 1-\alpha\\ \\
+P\left(\frac{S_Y^2}{S_X^2}F_{(n-1, m-1, 1- \alpha/2)} \leq \frac{\sigma_Y^2}{ \sigma_X^2} \leq    \frac{S_Y^2}{S_X^2} F_{(n-1, m-1, \alpha/2)}\right) = 1-\alpha
+\]</span>
+Entonces el intervalo de confianza puede ser expresado como:
+<span class="math display" id="eq:form610">\[\begin{equation}
+\boxed{
+\left(\frac{S_Y^2}{S_X^2}F_{n-1, m-1, 1- \alpha/2}, \frac{S_Y^2}{S_X^2} F_{n-1, m-1, \alpha/2}  \right)
+}
+\tag{9.9}
+\end{equation}\]</span></p>
+</div>
+</div>
+<div id="tamaño-de-muestra" class="section level2" number="9.6">
+<h2><span class="header-section-number">9.6</span> Tamaño de muestra</h2>
+<p>De los intervalos de confianza mostrados anteriormente, se puede ver que muchos dependen de dos factores: el nivel de confianza <span class="math inline">\(1-\alpha\)</span> y del tamaño de muestra <span class="math inline">\(n\)</span>. Entonces podemos observar que el tamaño de la muestra influye el intervalo que mostramos. Generalmente el <span class="math inline">\(n\)</span> se encuentra en el denominador, por lo que a mayor tamaño de muestra, el intervalo de confianza se hace más reducido. De las primeras clases del curso se introdujo la expresion:</p>
+<p><span class="math display">\[|{\hat{\theta}- \theta}| \leq B\]</span></p>
+<p>Es decir, que tan cerca se encuentra el estimador del parámetro poblacional. La B la definimos coo el error máximo de estimación, tal que:</p>
+<p><span class="math display">\[P(|{\hat{\theta}- \theta}| \leq B) = 1-\alpha\]</span></p>
+<div id="tamaño-de-muestra-para-la-media" class="section level3" number="9.6.1">
+<h3><span class="header-section-number">9.6.1</span> Tamaño de muestra para la media</h3>
+<p>En el caso de la media, tenemos que el intervalo de confianza para <span class="math inline">\(\mu\)</span>:</p>
+<p><span class="math display">\[\left(\overline{X} - z_{\alpha/2} \frac{\sigma}{\sqrt{n}}, \overline{X} + z_{\alpha/2} \frac{\sigma}{\sqrt{n}}\right)\]</span>
+Y adecuando la expresión del tamaño de muestra para el caso tenemos que:</p>
+<p><span class="math display">\[P(|{{\overline{X}}- \mu}| \leq B) = 1-\alpha\]</span>
+De esta manera, podemos ver <span class="math inline">\(B =z_{\alpha/2} \frac{\sigma}{\sqrt{n}}\)</span>. Despejando <span class="math inline">\(n\)</span> de la expresión tenemos que:</p>
+<p><span class="math display">\[ n = \frac{(z_{\alpha/2})^2 \sigma^2}{B^2} \]</span></p>
+</div>
+<div id="tamaño-de-muestra-para-la-proporción" class="section level3" number="9.6.2">
+<h3><span class="header-section-number">9.6.2</span> Tamaño de muestra para la proporción</h3>
+<p>En el caso de la proporción, tenemos que el intervalo de confianza para <span class="math inline">\(p\)</span>:</p>
+<p><span class="math display">\[\left(\hat{p} - z_{\alpha/2} \sqrt{\frac{p(1-p)}{n}}, 
+      \hat{p} + z_{\alpha/2} \sqrt{\frac{p(1-p)}{n}} \right)\]</span></p>
+<p>Y adecuando la expresión del tamaño de muestra para el caso tenemos que:</p>
+<p><span class="math display">\[P(|{{\hat{p}}- p}| \leq B) = 1-\alpha\]</span>
+De esta manera, podemos ver <span class="math inline">\(B =z_{\alpha/2} \frac{\sqrt{\hat{p}({1-\hat{p}})}}{\sqrt{n}}\)</span>. Despejando <span class="math inline">\(n\)</span> de la expresión tenemos que:</p>
+<p><span class="math display">\[ n = \frac{(z_{\alpha/2})^2 \hat{p}({1-\hat{p}})}{B^2} \]</span>
+## Intervalos de confianza de un lado</p>
+<p>Otra manera de construir intervalos de confianza es tomando unicamente en cuenta una cola. Se dice que un intervalo de confianza es <strong>inferior</strong> para <span class="math inline">\(\theta\)</span> si unicamente se proporciona un valor mínimo sin especificar un máximo:</p>
+<p><span class="math display">\[(B, \infty)\]</span></p>
+<p>Por otro lado, se dice que un intervalo de confianza es <strong>superior</strong> para <span class="math inline">\(\theta\)</span> si unicamente se proporciona un valor máximo sin especificar un valor mínimo:
+<span class="math display">\[(-\infty, A)\]</span></p>
+</div>
+</div>
+<div id="pruebas-de-hipótesis" class="section level2" number="9.7">
+<h2><span class="header-section-number">9.7</span> Pruebas de hipótesis</h2>
+<p>Las pruebas de hipótesis se componen de 4 elementos:</p>
+<ol style="list-style-type: decimal">
+<li>Hipótesis Nula</li>
+<li>Hipótesis Alternativa</li>
+<li>Estadístico de Prueba</li>
+<li>Región de Rechazo</li>
+</ol>
+</div>
+<div id="ejemplo-de-estadístico-z" class="section level2" number="9.8">
+<h2><span class="header-section-number">9.8</span> Ejemplo de estadístico Z</h2>
+<div id="diferencia-de-medias" class="section level3" number="9.8.1">
+<h3><span class="header-section-number">9.8.1</span> Diferencia de Medias</h3>
+</div>
+<div id="diferencia-de-proporciones" class="section level3" number="9.8.2">
+<h3><span class="header-section-number">9.8.2</span> Diferencia de Proporciones</h3>
+<strong>CDE: 5.2.15</strong>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-1" class="exercise"><strong>Exercise 9.1  </strong></span>En un estudio reciente, se investigó el efecto de la ingesta de una cierta sustancia en el desarrollo de cáncer pulmonar. Se encontró que de 488 hombres que habían ingerido una baja cantidad de esta sustancia, 14 desarrollaron cáncer pulmonar. En un grupo del mismo tamaño en el que el consumo de esta sustancia era mayor, sólo 5 personas desarrollaron cáncer pulmonar.
+a) ¿Pruebe si la ingesta alta de esa sustancia reduce el riesgo de cáncer pulmonar en los hombres? Emplee <span class="math inline">\(\alpha = 0.01\)</span>
+</div>
+<p>X: Antes, Y: Después</p>
+<p><span class="math inline">\(\hat{p_X} = 14/488 = 0.0287\)</span></p>
+<p><span class="math inline">\(\hat{p_Y} = 5/488 = 0.0102\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Hipótesis Nula: <span class="math inline">\(H_0: \mu_X-\mu_Y = 0\)</span></p></li>
+<li><p>Hipótesis Alternativa: <span class="math inline">\(H_1: \mu_X-\mu_Y&lt; 0\)</span></p></li>
+<li><p>Estadístico de Prueba: <span class="math inline">\(Z =\frac{(\hat{p_X}-\hat{p_Y}) - (p_X-p_Y)}{\sqrt{\frac{(\hat{p_X})(1-\hat{p_X})}{n}+\frac{(\hat{p_Y})(1-\hat{p_Y})}{m}}} = \frac{(0.0287-0.0102) - (0)}{\sqrt{\frac{(0.0287)(1-0.0287)}{488}+\frac{(0.0102)(1-0.0102)}{488}}} = 2.0894\)</span></p></li>
+<li><p>Región de Rechazo: <span class="math inline">\(RR = \{Z &lt; Z_{0.01}\} = \{Z &lt; qnorm(.01)\} = \{Z &lt; -2.3263\}\)</span></p></li>
+</ol>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="estadistica-inferencial.html#cb184-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb184-2"><a href="estadistica-inferencial.html#cb184-2" aria-hidden="true"></a></span>
+<span id="cb184-3"><a href="estadistica-inferencial.html#cb184-3" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)), <span class="kw">aes</span>(x)) <span class="op">+</span></span>
+<span id="cb184-4"><a href="estadistica-inferencial.html#cb184-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">n =</span> <span class="dv">101</span>, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb184-5"><a href="estadistica-inferencial.html#cb184-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb184-6"><a href="estadistica-inferencial.html#cb184-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;mi texto en $&quot;</span>, </span>
+<span id="cb184-7"><a href="estadistica-inferencial.html#cb184-7" aria-hidden="true"></a>       <span class="dt">y =</span> <span class="st">&quot;mi texto en €&quot;</span>, </span>
+<span id="cb184-8"><a href="estadistica-inferencial.html#cb184-8" aria-hidden="true"></a>       <span class="dt">title =</span> <span class="st">&quot;mi titulo&quot;</span>, </span>
+<span id="cb184-9"><a href="estadistica-inferencial.html#cb184-9" aria-hidden="true"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;mi subtitulo&quot;</span>) <span class="op">+</span></span>
+<span id="cb184-10"><a href="estadistica-inferencial.html#cb184-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="fl">-2.3263</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb184-11"><a href="estadistica-inferencial.html#cb184-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_rect</span>(<span class="kw">aes</span>(<span class="dt">xmin=</span><span class="op">-</span><span class="ot">Inf</span>,<span class="dt">xmax=</span><span class="op">-</span><span class="fl">2.3263</span>,<span class="dt">ymin=</span><span class="dv">0</span>,<span class="dt">ymax=</span>.<span class="dv">5</span>),<span class="dt">alpha=</span><span class="fl">0.1</span>,<span class="dt">fill=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb184-12"><a href="estadistica-inferencial.html#cb184-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="fl">-2.0894</span>, <span class="dt">color =</span> <span class="st">&quot;orange&quot;</span>)</span></code></pre></div>
+<p><img src="Chap07_inferential_statistics_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><strong>No Rechazamos H_0</strong></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Obtenga el nivel de significancia descriptivo o valor p</li>
+</ol>
+<p>valor-p = <span class="math inline">\(pnorm(-2.09) = 0.0183089\)</span></p>
+</div>
+</div>
+<div id="ejemplo-de-estadistico-t" class="section level2" number="9.9">
+<h2><span class="header-section-number">9.9</span> Ejemplo de estadistico T</h2>
+<div id="diferencia-de-medias-pareada" class="section level3" number="9.9.1">
+<h3><span class="header-section-number">9.9.1</span> Diferencia de medias pareada</h3>
+<strong>CDE: 5.2.16</strong>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-4" class="exercise"><strong>Exercise 9.2  </strong></span>Supóngase que, un psicólogo piensa que la edad influye en el coeficiente de inteligencia (IQ). Se toma una muestra aleatoria de 100 personas de mediana edad, de quienes se conoce su IQ a la edad de 16 años y actualmente. De restar, los coeficientes de su juventud de los coeficientes actuales, se obtuvo una diferencia promedio de 6 puntos, con una desviación estándar muestral de 7 puntos. Utilice <span class="math inline">\(\alpha = .01\)</span> para probar la hipotesis de que el IQ aumenta con la edad.
+</div>
+<p>X: IQ a los 16 años
+Y: IQ actual
+<span class="math inline">\(\bar{D}: \bar{Y}-\bar{X} = 6\)</span>
+<span class="math inline">\(S_{\bar{D}} = 7\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Hipótesis Nula: <span class="math inline">\(H_0: \mu_D = 0\)</span></p></li>
+<li><p>Hipótesis Alternativa: <span class="math inline">\(H_1: \mu_D &gt; 0\)</span></p></li>
+<li><p>Estadístico de Prueba: <span class="math inline">\(T =\frac{\bar{D} - \mu_{\bar{D}}}{\sqrt{\frac{{S_{\bar{D}^2}}}{n}}} = \frac{6 - 0}{\sqrt{\frac{7^2}{100}}} = 8.5714\)</span></p></li>
+<li><p>Región de Rechazo: <span class="math inline">\(RR = \{T &lt; T_{99, 0.01}\} = \{T &lt; qt(.99,99)\} = \{Z &lt; 2.3646\}\)</span></p></li>
+</ol>
+<p><img src="Chap07_inferential_statistics_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><strong>Rechazamos H_0</strong></p>
+<p>valor-p = <span class="math inline">\(pt(8.5714, 99, lower.tail = F) \sim 0\)</span></p>
+</div>
+</div>
+<div id="ejemplo-de-estadistico-j" class="section level2" number="9.10">
+<h2><span class="header-section-number">9.10</span> Ejemplo de estadistico J</h2>
+<strong>CDE: 5.2.23</strong>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-7" class="exercise"><strong>Exercise 9.3  </strong></span>La Policía Federal de Caminos desea probar un radar detector de velocidades. Para esto hace circular frente al radar 61 patrullas a una velocidad de 110 Km/h. según su correspondiente velocímetro. De las 61 lecturas del radar obtiene <span class="math inline">\(s^2 = 1.69\)</span>. Según la PFC el radar es aceptable si <span class="math inline">\(\sigma &lt;2km/h\)</span>. Adopte el punto de vista que el error grave es comprar el radar cuando en realidad el error de medición está por arriba del límite.
+a) Formule las hipótesis H0 y H1 apropiadas a este problema.
+b) Pruebe las hipótesis de a) con un nivel de significancia del 1%.
+c) De una cota superior para el valor de P.
+d) Verifique que la decisión de b) concuerda con la estimación de c)
+</div>
+<ol style="list-style-type: decimal">
+<li><p>Hipótesis Nula: <span class="math inline">\(H_0: \sigma^2 = 4\)</span></p></li>
+<li><p>Hipótesis Alternativa: <span class="math inline">\(H_1: \sigma^2 &lt; 4\)</span></p></li>
+<li><p>Estadístico de Prueba: <span class="math inline">\(J =\frac{(n-1)S^2}{\sigma^2} = \frac{(61-1) 1.69}{4}= 25.35\)</span></p></li>
+<li><p>Región de Rechazo: <span class="math inline">\(RR = \{J &lt; J_{0.01,60}\} = \{J &lt; qchisq(.01,60)\} = \{J &lt; 37.4849\}\)</span></p></li>
+</ol>
+<p><img src="Chap07_inferential_statistics_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><strong>Rechazamos H_0</strong></p>
+<p>valor-p = <span class="math inline">\(pchisq(25.35, 60) \sim 0\)</span></p>
+</div>
+<div id="ejemplo-de-estadistico-f" class="section level2" number="9.11">
+<h2><span class="header-section-number">9.11</span> Ejemplo de estadistico F</h2>
+<strong>CDE: 5.2.18</strong>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-9" class="exercise"><strong>Exercise 9.4  </strong></span>La estabilidad de las mediciones de las características de un producto manufacturado es importante para mantener su calidad. En realidad, es mejor tener, a veces, una pequeña variación en el valor medio de alguna característica importante de un producto y tener una media del proceso un poco fuera del “blanco”, que tener una amplia variación con una media que se ajuste perfectamente a las necesidades. La última situación puede producir un porcentaje mayor de productos defectuosos que la primera. Un fabricante de lámparas eléctricas sospechoso que una de sus líneas de producción estaba fabricando bombillas con una alta variación en su vida útil. Para probar su teoría comparó la vida útil de <span class="math inline">\(n = 40\)</span> lámparas, muestreadas al azar, de la línea que supuestamente no trabajaba bien, y <span class="math inline">\(m = 40\)</span> de la línea que parecía estar “bajo control”. Las medias y las varianzas de las muestras para las dos líneas eran:
+a) ¿Proporcionan los datos evidencia suficiente para indicar que las bombillas (o focos), producidos por la línea que supuestamente trabaja mal poseen una mayor varianza en la vida útil que las lámparas producidas por la línea que supuestamente estaba bajo control? Utilice <span class="math inline">\(\alpha = 0.05\)</span>.
+b) Encuentre el nivel de significancia descriptivo que se ha observado para la prueba e interprete su valor.
+</div>
+<ol style="list-style-type: decimal">
+<li><p>Hipótesis Nula: <span class="math inline">\(H_0: \sigma^2_1 = \sigma^2_2 \Rightarrow \frac{\sigma^2_1}{\sigma^2_2} = 1\)</span></p></li>
+<li><p>Hipótesis Alternativa: <span class="math inline">\(H_1: \sigma^2_1 &gt; \sigma^2_2 \Rightarrow \frac{\sigma^2_1}{\sigma^2_2} &gt; 1\)</span></p></li>
+<li><p>Estadístico de Prueba: <span class="math inline">\(F =\frac{S_2^2 \sigma^2_1}{S_1^2\sigma^2_2} = \frac{37000}{92000} = 0.4021739\)</span></p></li>
+<li><p>Región de Rechazo: <span class="math inline">\(RR = \{F &gt; F_{0.05,39,39}\} = \{F &gt; qf(.95,39,39)\} = \{F &gt; 1.704465\}\)</span></p></li>
+</ol>
+<p><img src="Chap07_inferential_statistics_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><strong>No Rechazamos H_0</strong></p>
+<p>valor-p = <span class="math inline">\(pf(0.4021739, 39, 39, lower.tail = F) \sim 0.997279\)</span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introducción-a-estadística.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
